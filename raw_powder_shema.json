@@ -9,7 +9,12 @@
             "description": "Must be unique among all raw powders",
             "type": "string",
             "format": "custom",
-            "pattern": "^[a-zA-Z0-9_]+$",
+            "template": "PWD_{{alloy}}_{{supplyCompany}}_{{purchaser}}",
+            "watch": {
+                "supplyCompany": "root.supplyCompany",
+                "alloy": "root.alloy",
+                "purchaser": "root.purchaser"
+            },
             "propertyOrder": 0
         },
         "alloy": {
@@ -23,18 +28,58 @@
         "supplyCompany": {
             "title": "Supply Company",
             "type": "string",
+            "options": {
+                "enum_titles": [
+                    "ATI",
+                    "Elementum",
+                    "Carpenter",
+                    "EOS",
+                    "Kennametal",
+                    "Tekna",
+                    "AP&C",
+                    "PAC",
+                    "Unknown"
+                ]
+            },
             "enum": [
                 "ATI",
-                "Elementum",
-                "Carpenter",
+                "ELM",
+                "CRP",
                 "EOS",
-                "Kennametal",
-                "Tekna",
-                "AP&C",
+                "KNM",
+                "TKN",
+                "APC",
                 "PAC",
-                "Unknown"
+                "UNK"
             ],
             "propertyOrder": 2
+        },
+        "purchaser": {
+            "title": "Purchaser",
+            "type": "string",
+            "options": {
+                "enum_titles": [
+                    "Carnegie Mellon University",
+                    "Johns Hopkins University",
+                    "Vanderbilt University",
+                    "University of Texas at San Antonio",
+                    "University of Virginia",
+                    "Case Western Reserve University",
+                    "Southwest Research Institute",
+                    "Pratt & Whitney"
+                ]
+            },
+            "enum": [
+                "CMU",
+                "JHU",
+                "VU",
+                "UTSA",
+                "UVA",
+                "CWRU",
+                "SWRI",
+                "PW"
+            ],
+            "propertyOrder": 3
         },
         "batchInformation": {
             "title": "Additional batch information",
