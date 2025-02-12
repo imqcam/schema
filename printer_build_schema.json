@@ -184,6 +184,7 @@
         "recoater": {
             "title": "Recoater",
             "type": "object",
+            "format": "grid",
             "properties": {
                 "material": {
                     "title": "Material",
