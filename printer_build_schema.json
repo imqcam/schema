@@ -280,21 +280,7 @@
             "description": "Key-value pairs for miscellaneous metadata",
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "key": {
-                        "type": "string",
-                        "title": "Key"
-                    },
-                    "value": {
-                        "type": "string",
-                        "title": "Value"
-                    }
-                },
-                "required": [
-                    "key",
-                    "value"
-                ]
+                "$ref": "#/definitions/keyValue"
             },
             "propertyOrder": 13
         }
