@@ -219,47 +219,30 @@
             "properties": {
                 "contouringParameters": {
                     "title": "Contouring Parameters",
-                    "type": "object",
-                    "properties": {
-                        "laserPower": {
-                            "title": "Laser Power (W)",
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 370,
-                            "propertyOrder": 0
-                        },
-                        "laserVelocity": {
-                            "title": "Laser Velocity (mm/s)",
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 10000,
-                            "propertyOrder": 1
-                        },
-                        "hatchSpacing": {
-                            "title": "Hatch Spacing (µm)",
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 300,
-                            "propertyOrder": 2
-                        },
-                        "layerThickness": {
-                            "title": "Layer Thickness (µm)",
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 100,
-                            "propertyOrder": 3
-                        }
-                    },
-                    "required": [
-                        "laserPower",
-                        "laserVelocity",
-                        "hatchSpacing",
-                        "layerThickness"
-                    ]
+                    "$ref": "#/definitions/buildParameterSet",
+                    "propertyOrder": 0
+                },
+                "infillParameters": {
+                    "title": "Infill Parameters",
+                    "$ref": "#/definitions/buildParameterSet",
+                    "propertyOrder": 1
+                },
+                "upskinParameters": {
+                    "title": "Upskin Parameters",
+                    "$ref": "#/definitions/buildParameterSet",
+                    "propertyOrder": 2
+                },
+                "downskinParameters": {
+                    "title": "Downskin Parameters",
+                    "$ref": "#/definitions/buildParameterSet",
+                    "propertyOrder": 3
                 }
             },
             "required": [
-                "contouringParameters"
+                "contouringParameters",
+                "infillParameters",
+                "upskinParameters",
+                "downskinParameters"
             ],
             "propertyOrder": 10
         },
