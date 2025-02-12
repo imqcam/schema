@@ -9,11 +9,13 @@
             "description": "Must be unique among all raw powders",
             "type": "string",
             "format": "custom",
-            "template": "PWD_{{alloy}}_{{supplyCompany}}_{{purchaser}}",
+            "template": "PWD_{{alloy}}_{{supplyCompany}}_{{purchaser}}_{{padNumber sampleNumber 3}}{{joinarray extraInfo '_' true}}",
             "watch": {
                 "supplyCompany": "root.supplyCompany",
                 "alloy": "root.alloy",
-                "purchaser": "root.purchaser"
+                "purchaser": "root.purchaser",
+                "sampleNumber": "root.sampleNumber",
+                "extraInfo": "root.extraInfo"
             },
             "propertyOrder": 0
         },
@@ -37,19 +39,19 @@
                     "Kennametal",
                     "Tekna",
                     "AP&C",
-                    "PAC",
+                    "P&C",
                     "Unknown"
                 ]
             },
             "enum": [
                 "ATI",
-                "ELM",
-                "CRP",
+                "ELE",
+                "CAR",
                 "EOS",
-                "KNM",
-                "TKN",
+                "KEN",
+                "TEK",
                 "APC",
-                "PAC",
+                "PC",
                 "UNK"
             ],
             "propertyOrder": 2
@@ -59,7 +61,9 @@
             "type": "string",
             "options": {
                 "enum_titles": [
+                    "Applied Physics Laboratory",
                     "Carnegie Mellon University",
+                    "Northwestern University",
                     "Johns Hopkins University",
                     "Vanderbilt University",
                     "University of Texas at San Antonio",
@@ -70,7 +74,9 @@
                 ]
             },
             "enum": [
+                "APL",
                 "CMU",
+                "NU",
                 "JHU",
                 "VU",
                 "UTSA",
@@ -81,6 +87,22 @@
             ],
             "propertyOrder": 3
         },
+        "sampleNumber": {
+            "title": "Sample Number",
+            "description": "Sequential identifier for this sample of powder",
+            "type": "integer",
+            "propertyOrder": 4
+        },
+        "extraInfo": {
+            "title": "Extraneous Information",
+            "description": "Optional identifiers for split/batch numbers, etc.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "propertyOrder": 5
+        },
         "batchInformation": {
             "title": "Additional batch information",
             "description": "String-only keys/values for misc. metadata (not validated)",
@@ -88,7 +110,7 @@
             "items": {
                 "$ref": "#/definitions/keyValue"
             },
-            "propertyOrder": 3
+            "propertyOrder": 6
         },
         "composition": {
             "title": "Powder Composition",
@@ -97,7 +119,7 @@
                 "$ref": "#/definitions/compositionElement"
             },
             "minItems": 1,
-            "propertyOrder": 4
+            "propertyOrder": 7
         },
         "characteristics": {
             "title": "Powder Characteristics",
@@ -147,7 +169,7 @@
                     "propertyOrder": 5
                 }
             },
-            "propertyOrder": 5
+            "propertyOrder": 8
         },
         "files": {
             "title": "Associated Files",
@@ -155,7 +177,7 @@
             "items": {
                 "$ref": "#/definitions/fileUpload"
             },
-            "propertyOrder": 6
+            "propertyOrder": 9
         }
     },
     "required": [
