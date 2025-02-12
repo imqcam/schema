@@ -1,19 +1,26 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Printer Build",
     "description": "Metadata for a single build using a metals additive manufacturing printer",
     "type": "object",
     "properties": {
         "printerBuildID": {
             "title": "Printer Build ID",
-            "description": "Must be unique among all 'Printer Build' entries",
+            "description": "Automatically generated identifier for the printer build",
             "type": "string",
-            "format": "custom",
-            "pattern": "^[a-zA-Z0-9_]+$",
+            "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}_{{buildGeometry}}_{{padNumber partNumber 3}}{{joinarray extraInfo '_' true}}",
+            "watch": {
+                "params": "root.userParameters",
+                "material": "root.buildPlate.material",
+                "buildGeometry": "root.buildGeometry",
+                "partNumber": "root.partNumber",
+                "extraInfo": "root.extraInfo"
+            },
+            "readOnly": true,
             "propertyOrder": 0
         },
         "buildMachine": {
             "title": "Build Machine",
+            "description": "Machine used for the build",
             "type": "string",
             "enum": [
                 "EOS M290 at CMU"
@@ -22,10 +29,37 @@
         },
         "rawPowderID": {
             "title": "Raw Powder",
-            "description": "Reference to a previously-defined 'Raw Powder' entry",
+            "description": "Reference to a 'Raw Powder Details' entry",
             "type": "string",
             "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
             "propertyOrder": 2
+        },
+        "buildGeometry": {
+            "title": "Build Geometry",
+            "description": "The geometry of the build",
+            "type": "string",
+            "default": "4PTF",
+            "propertyOrder": 3,
+            "enum": [
+                "4PTF"
+            ]
+        },
+        "partNumber": {
+            "title": "Part Number",
+            "description": "Number assigned to the part",
+            "type": "number",
+            "propertyOrder": 4,
+            "default": 1
+        },
+        "extraInfo": {
+            "title": "Extraneous Information",
+            "description": "Optional identifiers for split/batch numbers, etc.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "propertyOrder": 5
         },
         "buildPlate": {
             "title": "Build Plate",
@@ -38,10 +72,11 @@
                     "enum": [
                         "Ti-6Al-4V"
                     ],
+                    "default": "Ti-6Al-4V",
                     "propertyOrder": 0
                 },
                 "temperature": {
-                    "title": "Temperature (deg C)",
+                    "title": "Temperature (C)",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 450,
@@ -52,7 +87,7 @@
                 "material",
                 "temperature"
             ],
-            "propertyOrder": 3
+            "propertyOrder": 7
         },
         "flowGas": {
             "title": "Flow Gas",
@@ -60,7 +95,7 @@
             "format": "grid",
             "properties": {
                 "type": {
-                    "title": "Type",
+                    "title": "Gas Type",
                     "type": "string",
                     "enum": [
                         "Ar",
@@ -76,7 +111,7 @@
                     "propertyOrder": 1
                 },
                 "o2Concentration": {
-                    "title": "O2 concentration (%)",
+                    "title": "Oxygen Concentration (%)",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -87,7 +122,7 @@
                 "type",
                 "o2Concentration"
             ],
-            "propertyOrder": 4
+            "propertyOrder": 8
         },
         "recoater": {
             "title": "Recoater",
@@ -119,7 +154,7 @@
                 "material",
                 "style"
             ],
-            "propertyOrder": 5
+            "propertyOrder": 9
         },
         "buildParameters": {
             "title": "Build Parameters",
@@ -147,31 +182,51 @@
                 }
             },
             "required": [
-                "contouringParameters",
-                "infillParameters",
-                "upskinParameters",
-                "downskinParameters"
+                "contouringParameters"
             ],
-            "propertyOrder": 6
+            "propertyOrder": 10
         },
         "userParameters": {
             "title": "User Parameters",
             "type": "object",
+            "format": "grid",
             "properties": {
                 "runDate": {
-                    "title": "Run date",
+                    "title": "Run Date",
                     "type": "string",
                     "format": "date",
+                    "description": "Date in YYYY-MM-DD format",
+                    "default": "2025-01-01",
                     "propertyOrder": 0
                 },
                 "runTime": {
-                    "title": "Run time",
+                    "title": "Run Time",
                     "type": "string",
                     "format": "time",
+                    "default": "00:00:00",
                     "propertyOrder": 1
                 },
+                "location": {
+                    "title": "Location",
+                    "description": "Location where the build occurred",
+                    "type": "string",
+                    "options": {
+                        "enum_titles": [
+                            "Applied Physics Laboratory",
+                            "Carnegie Mellon University",
+                            "Northwestern University"
+                        ]
+                    },
+                    "default": "CMU",
+                    "enum": [
+                        "APL",
+                        "CMU",
+                        "NU"
+                    ],
+                    "propertyOrder": 2
+                },
                 "teamMembers": {
-                    "title": "Personnel involved",
+                    "title": "Team Members",
                     "type": "array",
                     "items": {
                         "type": "string",
@@ -181,44 +236,50 @@
                             "Katie O'Donnell"
                         ]
                     },
-                    "propertyOrder": 2
+                    "propertyOrder": 3
                 }
             },
             "required": [
                 "runDate",
                 "runTime",
+                "location",
                 "teamMembers"
             ],
-            "propertyOrder": 7
+            "propertyOrder": 6
         },
         "openjzFile": {
-            "title": "Build File (*.openjz)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 8
+            "title": "Build File",
+            "description": "Upload the build file (*.openjz)",
+            "type": "string",
+            "propertyOrder": 11
         },
         "eosReportFile": {
-            "title": "EOS Job Quality Report (PDF)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 9
+            "title": "EOS Report",
+            "description": "Upload the EOS job quality report (PDF)",
+            "type": "string",
+            "propertyOrder": 12
         },
         "misc": {
-            "title": "Additional information",
-            "description": "String-only keys/values for misc. metadata (not validated)",
+            "title": "Additional Information",
+            "description": "Key-value pairs for miscellaneous metadata",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/keyValue"
             },
-            "propertyOrder": 10
+            "propertyOrder": 13
         }
     },
     "required": [
         "printerBuildID",
         "buildMachine",
+        "rawPowderID",
+        "buildGeometry",
+        "partNumber",
+        "userParameters",
         "buildPlate",
         "flowGas",
         "recoater",
         "buildParameters",
-        "userParameters",
         "openjzFile",
         "eosReportFile"
     ],
@@ -240,13 +301,13 @@
                     "maximum": 10000
                 },
                 "hatchSpacing": {
-                    "title": "Hatch Spacing (microns)",
+                    "title": "Hatch Spacing (µm)",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 300
                 },
                 "layerThickness": {
-                    "title": "Layer Thickness (microns)",
+                    "title": "Layer Thickness (µm)",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100
