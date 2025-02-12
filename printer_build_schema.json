@@ -123,6 +123,7 @@
         "buildPlate": {
             "title": "Build Plate",
             "type": "object",
+            "format": "grid",
             "properties": {
                 "material": {
                     "title": "Material",
