@@ -10,10 +10,21 @@
             "type": "string",
             "format": "custom",
             "pattern": "^[a-zA-Z0-9_]+$",
-            "propertyOrder": 0
+            "propertyOrder": 0,
+            "template": "{{formattedRunDate}}_{{location}}_{{split rawPowderID '_' 1}}_{{buildGeometry}}_{{partNumber}}{{joinarray extraInfo '_' true}}",
+            "watch": {
+                "formattedRunDate": "userParameters.runDate",
+                "location": "userParameters.location",
+                "rawPowderID": "rawPowderID",
+                "buildGeometry": "buildGeometry",
+                "partNumber": "partNumber",
+                "extraInfo": "extraInfo"
+            },
+            "readOnly": true
         },
         "buildMachine": {
             "title": "Build Machine",
+            "description": "Machine used for the build",
             "type": "string",
             "enum": [
                 "EOS M290 at CMU"
@@ -26,6 +37,88 @@
             "type": "string",
             "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
             "propertyOrder": 2
+        },
+        "buildGeometry": {
+            "title": "Build Geometry",
+            "description": "The geometry of the build",
+            "type": "string",
+            "enum": [
+                "4PTF"
+            ],
+            "propertyOrder": 3
+        },
+        "partNumber": {
+            "title": "Part Number",
+            "description": "Number assigned to the part",
+            "type": "number",
+            "propertyOrder": 4
+        },
+        "extraInfo": {
+            "title": "Extraneous Information",
+            "description": "Optional identifiers for split/batch numbers, etc.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "propertyOrder": 5
+        },
+        "userParameters": {
+            "title": "User Parameters",
+            "type": "object",
+            "properties": {
+                "runDate": {
+                    "title": "Run Date",
+                    "type": "string",
+                    "format": "date",
+                    "description": "Date in YYYY-MM-DD format",
+                    "propertyOrder": 0
+                },
+                "runTime": {
+                    "title": "Run Time",
+                    "type": "string",
+                    "format": "time",
+                    "propertyOrder": 1
+                },
+                "location": {
+                    "title": "Location",
+                    "description": "Location where the build occurred",
+                    "type": "string",
+                    "options": {
+                        "enum_titles": [
+                            "Applied Physics Laboratory",
+                            "Carnegie Mellon University",
+                            "Northwestern University"
+                        ]
+                    },
+                    "enum": [
+                        "APL",
+                        "CMU",
+                        "NU"
+                    ],
+                    "propertyOrder": 2
+                },
+                "teamMembers": {
+                    "title": "Team Members",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "Evan Adcock",
+                            "Nick Lamprinakos",
+                            "Katie O'Donnell"
+                        ]
+                    },
+                    "propertyOrder": 3
+                }
+            },
+            "required": [
+                "runDate",
+                "runTime",
+                "location",
+                "teamMembers"
+            ],
+            "propertyOrder": 6
         },
         "buildPlate": {
             "title": "Build Plate",
@@ -41,7 +134,7 @@
                     "propertyOrder": 0
                 },
                 "temperature": {
-                    "title": "Temperature (deg C)",
+                    "title": "Temperature",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 450,
@@ -52,15 +145,14 @@
                 "material",
                 "temperature"
             ],
-            "propertyOrder": 3
+            "propertyOrder": 7
         },
         "flowGas": {
             "title": "Flow Gas",
             "type": "object",
-            "format": "grid",
             "properties": {
                 "type": {
-                    "title": "Type",
+                    "title": "Gas Type",
                     "type": "string",
                     "enum": [
                         "Ar",
@@ -76,7 +168,7 @@
                     "propertyOrder": 1
                 },
                 "o2Concentration": {
-                    "title": "O2 concentration (%)",
+                    "title": "Oxygen Concentration (%)",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -87,7 +179,7 @@
                 "type",
                 "o2Concentration"
             ],
-            "propertyOrder": 4
+            "propertyOrder": 8
         },
         "recoater": {
             "title": "Recoater",
@@ -119,7 +211,7 @@
                 "material",
                 "style"
             ],
-            "propertyOrder": 5
+            "propertyOrder": 9
         },
         "buildParameters": {
             "title": "Build Parameters",
@@ -152,73 +244,41 @@
                 "upskinParameters",
                 "downskinParameters"
             ],
-            "propertyOrder": 6
-        },
-        "userParameters": {
-            "title": "User Parameters",
-            "type": "object",
-            "properties": {
-                "runDate": {
-                    "title": "Run date",
-                    "type": "string",
-                    "format": "date",
-                    "propertyOrder": 0
-                },
-                "runTime": {
-                    "title": "Run time",
-                    "type": "string",
-                    "format": "time",
-                    "propertyOrder": 1
-                },
-                "teamMembers": {
-                    "title": "Personnel involved",
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "Evan Adcock",
-                            "Nick Lamprinakos",
-                            "Katie O'Donnell"
-                        ]
-                    },
-                    "propertyOrder": 2
-                }
-            },
-            "required": [
-                "runDate",
-                "runTime",
-                "teamMembers"
-            ],
-            "propertyOrder": 7
+            "propertyOrder": 10
         },
         "openjzFile": {
-            "title": "Build File (*.openjz)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 8
+            "title": "Build File",
+            "description": "Upload the build file (*.openjz)",
+            "type": "string",
+            "propertyOrder": 11
         },
         "eosReportFile": {
-            "title": "EOS Job Quality Report (PDF)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 9
+            "title": "EOS Report",
+            "description": "Upload the EOS job quality report (PDF)",
+            "type": "string",
+            "propertyOrder": 12
         },
         "misc": {
-            "title": "Additional information",
-            "description": "String-only keys/values for misc. metadata (not validated)",
+            "title": "Additional Information",
+            "description": "Key-value pairs for miscellaneous metadata",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/keyValue"
             },
-            "propertyOrder": 10
+            "propertyOrder": 13
         }
     },
     "required": [
         "printerBuildID",
         "buildMachine",
+        "rawPowderID",
+        "buildGeometry",
+        "partNumber",
+        "userParameters",
         "buildPlate",
         "flowGas",
         "recoater",
         "buildParameters",
-        "userParameters",
         "openjzFile",
         "eosReportFile"
     ],
