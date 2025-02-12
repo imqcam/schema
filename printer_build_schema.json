@@ -1,177 +1,86 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Printer Build",
     "description": "Metadata for a single build using a metals additive manufacturing printer",
     "type": "object",
     "properties": {
         "printerBuildID": {
             "title": "Printer Build ID",
-            "description": "Must be unique among all 'Printer Build' entries",
+            "description": "Automatically generated identifier for the printer build",
             "type": "string",
-            "format": "custom",
-            "pattern": "^[a-zA-Z0-9_]+$",
-            "propertyOrder": 0
+            "template": "{{formattedRunDate}}_{{location}}_{{alloy}}_{{buildGeometry}}_{{partNumber}}",
+            "watch": {
+                "formattedRunDate": "userParameters.runDate",
+                "location": "userParameters.location",
+                "alloy": "rawPowderID",
+                "buildGeometry": "buildGeometry",
+                "partNumber": "partNumber"
+            },
+            "readOnly": true,
+            "propertyOrder": 0,
+            "transform": {
+                "formattedRunDate": {
+                    "from": "userParameters.runDate",
+                    "transform": "function(date) { return date.replace(/-/g, ''); }"
+                },
+                "alloy": {
+                    "from": "rawPowderID",
+                    "transform": "function(rawPowderID) { const parts = rawPowderID.split('_'); return parts.length > 1 ? parts[1] : 'UNKNOWN'; }"
+                }
+            }
         },
         "buildMachine": {
             "title": "Build Machine",
+            "description": "Machine used for the build",
             "type": "string",
             "enum": [
                 "EOS M290 at CMU"
-            ],
-            "propertyOrder": 1
+            ]
         },
         "rawPowderID": {
             "title": "Raw Powder",
-            "description": "Reference to a previously-defined 'Raw Powder' entry",
+            "description": "Reference to a 'Raw Powder Details' entry",
+            "type": "string"
+        },
+        "buildGeometry": {
+            "title": "Build Geometry",
+            "description": "The geometry of the build",
             "type": "string",
-            "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
-            "propertyOrder": 2
+            "enum": [
+                "4PTF"
+            ]
         },
-        "buildPlate": {
-            "title": "Build Plate",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "material": {
-                    "title": "Material",
-                    "type": "string",
-                    "enum": [
-                        "Ti-6Al-4V"
-                    ],
-                    "propertyOrder": 0
-                },
-                "temperature": {
-                    "title": "Temperature (deg C)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 450,
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "material",
-                "temperature"
-            ],
-            "propertyOrder": 3
-        },
-        "flowGas": {
-            "title": "Flow Gas",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "type": {
-                    "title": "Type",
-                    "type": "string",
-                    "enum": [
-                        "Ar",
-                        "N2"
-                    ],
-                    "propertyOrder": 0
-                },
-                "flowRate": {
-                    "title": "Flow Rate (lpm)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "propertyOrder": 1
-                },
-                "o2Concentration": {
-                    "title": "O2 concentration (%)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100,
-                    "propertyOrder": 2
-                }
-            },
-            "required": [
-                "type",
-                "o2Concentration"
-            ],
-            "propertyOrder": 4
-        },
-        "recoater": {
-            "title": "Recoater",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "material": {
-                    "title": "Material",
-                    "type": "string",
-                    "enum": [
-                        "metal",
-                        "rubber",
-                        "ceramic"
-                    ],
-                    "propertyOrder": 0
-                },
-                "style": {
-                    "title": "Style",
-                    "type": "string",
-                    "enum": [
-                        "rake",
-                        "roller",
-                        "blade"
-                    ],
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "material",
-                "style"
-            ],
-            "propertyOrder": 5
-        },
-        "buildParameters": {
-            "title": "Build Parameters",
-            "type": "object",
-            "properties": {
-                "contouringParameters": {
-                    "title": "Contouring Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 0
-                },
-                "infillParameters": {
-                    "title": "Infill Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 1
-                },
-                "upskinParameters": {
-                    "title": "Upskin Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 2
-                },
-                "downskinParameters": {
-                    "title": "Downskin Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 3
-                }
-            },
-            "required": [
-                "contouringParameters",
-                "infillParameters",
-                "upskinParameters",
-                "downskinParameters"
-            ],
-            "propertyOrder": 6
+        "partNumber": {
+            "title": "Part Number",
+            "description": "Number assigned to the part",
+            "type": "number"
         },
         "userParameters": {
             "title": "User Parameters",
             "type": "object",
             "properties": {
                 "runDate": {
-                    "title": "Run date",
+                    "title": "Run Date",
                     "type": "string",
                     "format": "date",
-                    "propertyOrder": 0
+                    "description": "Date in YYYY-MM-DD format"
                 },
                 "runTime": {
-                    "title": "Run time",
+                    "title": "Run Time",
                     "type": "string",
-                    "format": "time",
-                    "propertyOrder": 1
+                    "format": "time"
+                },
+                "location": {
+                    "title": "Location",
+                    "description": "Location where the build occurred",
+                    "type": "string",
+                    "enum": [
+                        "APL",
+                        "CMU",
+                        "NU"
+                    ]
                 },
                 "teamMembers": {
-                    "title": "Personnel involved",
+                    "title": "Team Members",
                     "type": "array",
                     "items": {
                         "type": "string",
@@ -180,45 +89,186 @@
                             "Nick Lamprinakos",
                             "Katie O'Donnell"
                         ]
-                    },
-                    "propertyOrder": 2
+                    }
                 }
             },
             "required": [
                 "runDate",
                 "runTime",
+                "location",
                 "teamMembers"
-            ],
-            "propertyOrder": 7
+            ]
+        },
+        "buildPlate": {
+            "title": "Build Plate",
+            "type": "object",
+            "properties": {
+                "material": {
+                    "title": "Material",
+                    "type": "string",
+                    "enum": [
+                        "Ti-6Al-4V"
+                    ]
+                },
+                "temperature": {
+                    "title": "Temperature",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 450
+                }
+            },
+            "required": [
+                "material",
+                "temperature"
+            ]
+        },
+        "flowGas": {
+            "title": "Flow Gas",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "Gas Type",
+                    "type": "string",
+                    "enum": [
+                        "Ar",
+                        "N2"
+                    ]
+                },
+                "flowRate": {
+                    "title": "Flow Rate (lpm)",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                },
+                "o2Concentration": {
+                    "title": "Oxygen Concentration (%)",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                }
+            },
+            "required": [
+                "type",
+                "o2Concentration"
+            ]
+        },
+        "recoater": {
+            "title": "Recoater",
+            "type": "object",
+            "properties": {
+                "material": {
+                    "title": "Material",
+                    "type": "string",
+                    "enum": [
+                        "metal",
+                        "rubber",
+                        "ceramic"
+                    ]
+                },
+                "style": {
+                    "title": "Style",
+                    "type": "string",
+                    "enum": [
+                        "rake",
+                        "roller",
+                        "blade"
+                    ]
+                }
+            },
+            "required": [
+                "material",
+                "style"
+            ]
+        },
+        "buildParameters": {
+            "title": "Build Parameters",
+            "type": "object",
+            "properties": {
+                "contouringParameters": {
+                    "title": "Contouring Parameters",
+                    "type": "object",
+                    "properties": {
+                        "laserPower": {
+                            "title": "Laser Power (W)",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 370
+                        },
+                        "laserVelocity": {
+                            "title": "Laser Velocity (mm/s)",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10000
+                        },
+                        "hatchSpacing": {
+                            "title": "Hatch Spacing (µm)",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 300
+                        },
+                        "layerThickness": {
+                            "title": "Layer Thickness (µm)",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        }
+                    },
+                    "required": [
+                        "laserPower",
+                        "laserVelocity",
+                        "hatchSpacing",
+                        "layerThickness"
+                    ]
+                }
+            },
+            "required": [
+                "contouringParameters"
+            ]
         },
         "openjzFile": {
-            "title": "Build File (*.openjz)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 8
+            "title": "Build File",
+            "description": "Upload the build file (*.openjz)",
+            "type": "string"
         },
         "eosReportFile": {
-            "title": "EOS Job Quality Report (PDF)",
-            "$ref": "#/definitions/fileUpload",
-            "propertyOrder": 9
+            "title": "EOS Report",
+            "description": "Upload the EOS job quality report (PDF)",
+            "type": "string"
         },
         "misc": {
-            "title": "Additional information",
-            "description": "String-only keys/values for misc. metadata (not validated)",
+            "title": "Additional Information",
+            "description": "Key-value pairs for miscellaneous metadata",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/keyValue"
-            },
-            "propertyOrder": 10
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "title": "Key"
+                    },
+                    "value": {
+                        "type": "string",
+                        "title": "Value"
+                    }
+                },
+                "required": [
+                    "key",
+                    "value"
+                ]
+            }
         }
     },
     "required": [
         "printerBuildID",
         "buildMachine",
+        "rawPowderID",
+        "buildGeometry",
+        "partNumber",
+        "userParameters",
         "buildPlate",
         "flowGas",
         "recoater",
         "buildParameters",
-        "userParameters",
         "openjzFile",
         "eosReportFile"
     ],
