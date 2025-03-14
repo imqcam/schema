@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NASA Ti64 30um Layers Data",
+  "description": "Metadata associated with experimental results from NASA Ti64 30um layers study",
+  "type": "object",
+  "properties": {
+    "Parameter_Label": {
+      "title": "Parameter Label",
+      "description": "",
+      "type": "string",
+      "pattern": "^[A-C][0-9]{2}$",
+      "propertyOrder": 0
+    },
+    "DOE_Code": {
+      "title": "DOE Code",
+      "description": "",
+      "type": "integer",
+      "readOnly": true,
+      "template": "{{firstChar Parameter_Label}}",
+      "watch": {
+        "Parameter_Label": "root.Parameter_Label"
+      },
+      "propertyOrder": 1
+    },
+    "DOE_ID": {
+      "title": "DOE ID",
+      "description": "Derived from the Parameter_Label",
+      "type": "string",
+      "format": "custom",
+      "template": "{{charToOrd (firstChar Parameter_Label)}}",
+      "watch": {
+        "Parameter_Label": "root.Parameter_Label"
+      },
+      "propertyOrder": 2
+    },
+    "Specimen_Position": {
+      "title": "Specimen Position",
+      "description": "On build plate or on top of other material",
+      "type": "string",
+      "enum": [
+        "On Build Plate",
+        "On Top Of Other Material"
+      ]
+    },
+    "Orientation": {
+      "title": "Orientation",
+      "description": "Horizontal (XY plane) or Vertical (Z direction)",
+      "type": "string",
+      "enum": [
+        "Horizontal",
+        "Vertical"
+      ]
+    },
+    "Modulus_GPa": {
+      "title": "Elastic Modulus",
+      "description": "Elastic Modulus in GPa",
+      "type": "number"
+    },
+    "Yield_Strength_MPa": {
+      "title": "Yield Strength",
+      "description": "Yield Strength in MPa (-1 if not tested)",
+      "type": "number"
+    },
+    "Peak_Stress_MPa": {
+      "title": "Ultimate Tensile Strength",
+      "description": "Peak stress in MPa (-1 if not tested)",
+      "type": "number"
+    },
+    "Elongation_Percent": {
+      "title": "Elongation %",
+      "description": "Engineering strain at failure in percentage (-1 if not tested)",
+      "type": "number"
+    },
+    "Hatch_mm": {
+      "title": "Hatch Spacing",
+      "description": "Hatch spacing in mm",
+      "type": "number"
+    },
+    "Speed_mm_per_s": {
+      "title": "Speed",
+      "description": "Laser speed in mm/s",
+      "type": "number"
+    },
+    "Power_W": {
+      "title": "Power",
+      "description": "Laser Power in Watts",
+      "type": "number"
+    },
+    "Layer_mm": {
+      "title": "Layer Thickness",
+      "description": "Layer thickness in mm",
+      "type": "number"
+    },
+    "VED_J_per_mm3": {
+      "title": "Volumetric Energy Density",
+      "description": "Volumetric energy density in J/mm³",
+      "type": "number"
+    },
+    "Porosity_percent_infill": {
+      "title": "Porosity Percent (Interior)",
+      "description": "Porosity percent in the interior region",
+      "type": "number"
+    },
+    "Percent_Porosity_Contour": {
+      "title": "Porosity Percent (Contour)",
+      "description": "Porosity within 1mm of surface (-1 if not calculated)",
+      "type": "number"
+    },
+    "Total_Porosity_Percent": {
+      "title": "Total Porosity %",
+      "description": "Porosity over entire volume (-1 if not calculated)",
+      "type": "number"
+    }
+  },
+  "required": [
+    "Parameter_Label",
+    "DOE_Code",
+    "DOE_ID",
+    "Specimen_Position",
+    "Orientation",
+    "Modulus_GPa",
+    "Yield_Strength_MPa",
+    "Peak_Stress_MPa",
+    "Elongation_Percent",
+    "Hatch_mm",
+    "Speed_mm_per_s",
+    "Power_W",
+    "Layer_mm",
+    "VED_J_per_mm3",
+    "Porosity_percent_infill",
+    "Percent_Porosity_Contour",
+    "Total_Porosity_Percent"
+  ]
+}
