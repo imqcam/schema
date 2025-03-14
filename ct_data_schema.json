@@ -16,7 +16,7 @@
       "description": "",
       "type": "integer",
       "readOnly": true,
-      "template": "{{firstChar Parameter_Label}}",
+      "template": "{{charToOrd (firstChar Parameter_Label)}}",
       "watch": {
         "Parameter_Label": "root.Parameter_Label"
       },
@@ -27,7 +27,7 @@
       "description": "Derived from the Parameter_Label",
       "type": "string",
       "format": "custom",
-      "template": "{{charToOrd (firstChar Parameter_Label)}}",
+      "template": "{{firstChar Parameter_Label}}",
       "watch": {
         "Parameter_Label": "root.Parameter_Label"
       },
