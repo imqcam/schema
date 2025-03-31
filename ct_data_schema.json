@@ -4,12 +4,27 @@
   "description": "Metadata associated with experimental results from NASA Ti64 30um layers study",
   "type": "object",
   "properties": {
+    "Build_ID": {
+      "title": "Build ID",
+      "description": "Unique identifier for the build, formatted as DATE_LOC_MAT_GEOM_PART_[###]",
+      "type": "string",
+      "format": "custom",
+      "template": "{{Parameter_Label}}_{{Build_Date}}_{{Location}}_{{Material}}_{{Geometry}}",
+      "watch": {
+        "Build_Date": "root.Build_Date",
+        "Location": "root.Location",
+        "Material": "root.Material",
+        "Geometry": "root.Geometry",
+        "Parameter_Label": "root.Parameter_Label"
+      },
+      "propertyOrder": 0
+    },
     "Parameter_Label": {
       "title": "Parameter Label",
       "description": "",
       "type": "string",
       "pattern": "^[A-C][0-9]{2}$",
-      "propertyOrder": 0
+      "propertyOrder": 1
     },
     "DOE_Code": {
       "title": "DOE Code",
@@ -20,7 +35,7 @@
       "watch": {
         "Parameter_Label": "root.Parameter_Label"
       },
-      "propertyOrder": 1
+      "propertyOrder": 2
     },
     "DOE_ID": {
       "title": "DOE ID",
@@ -31,7 +46,38 @@
       "watch": {
         "Parameter_Label": "root.Parameter_Label"
       },
-      "propertyOrder": 2
+      "propertyOrder": 3
+    },
+    "Build_Date": {
+  "title": "Build Date",
+  "description": "Estimated build date of the sample",
+  "type": "string",
+  "format": "date",
+  "propertyOrder": 4
+    },
+    "Location": {
+      "title": "Build Location",
+      "description": "Facility where the sample was built",
+      "type": "string",
+      "const": "JHUAPL_EOSM290",
+      "default": "JHUAPL_EOSM290",
+      "propertyOrder": 5
+    },
+    "Material": {
+      "title": "Material",
+      "description": "Material used in the build",
+      "type": "string",
+      "const": "Ti64",
+      "default": "Ti64",
+      "propertyOrder": 6
+    },
+    "Geometry": {
+      "title": "Build Geometry",
+      "description": "Geometry of the sample",
+      "type": "string",
+      "const": "Cylinder",
+      "default": "Cylinder",
+      "propertyOrder": 7
     },
     "Specimen_Position": {
       "title": "Specimen Position",
@@ -40,7 +86,8 @@
       "enum": [
         "On Build Plate",
         "On Top Of Other Material"
-      ]
+      ],
+      "propertyOrder": 8
     },
     "Orientation": {
       "title": "Orientation",
@@ -49,73 +96,91 @@
       "enum": [
         "Horizontal",
         "Vertical"
-      ]
+      ],
+      "propertyOrder": 9
     },
     "Modulus_GPa": {
       "title": "Elastic Modulus",
       "description": "Elastic Modulus in GPa",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 10
     },
     "Yield_Strength_MPa": {
       "title": "Yield Strength",
       "description": "Yield Strength in MPa (-1 if not tested)",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 11
     },
     "Peak_Stress_MPa": {
       "title": "Ultimate Tensile Strength",
       "description": "Peak stress in MPa (-1 if not tested)",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 12
     },
     "Elongation_Percent": {
       "title": "Elongation %",
       "description": "Engineering strain at failure in percentage (-1 if not tested)",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 13
     },
     "Hatch_mm": {
       "title": "Hatch Spacing",
       "description": "Hatch spacing in mm",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 14
     },
     "Speed_mm_per_s": {
       "title": "Speed",
       "description": "Laser speed in mm/s",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 15
     },
     "Power_W": {
       "title": "Power",
       "description": "Laser Power in Watts",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 16
     },
     "Layer_mm": {
       "title": "Layer Thickness",
       "description": "Layer thickness in mm",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 17
     },
     "VED_J_per_mm3": {
       "title": "Volumetric Energy Density",
       "description": "Volumetric energy density in J/mm³",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 18
     },
     "Porosity_percent_infill": {
       "title": "Porosity Percent (Interior)",
       "description": "Porosity percent in the interior region",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 19
     },
     "Percent_Porosity_Contour": {
       "title": "Porosity Percent (Contour)",
       "description": "Porosity within 1mm of surface (-1 if not calculated)",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 20
     },
     "Total_Porosity_Percent": {
       "title": "Total Porosity %",
       "description": "Porosity over entire volume (-1 if not calculated)",
-      "type": "number"
+      "type": "number",
+      "propertyOrder": 21
     }
   },
   "required": [
+    "Build_ID",
     "Parameter_Label",
     "DOE_Code",
     "DOE_ID",
+    "Build_Date",
+    "Location",
+    "Material",
+    "Geometry",
     "Specimen_Position",
     "Orientation",
     "Modulus_GPa",
