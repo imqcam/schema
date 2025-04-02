@@ -7,11 +7,12 @@
             "title": "Printer Build ID",
             "description": "Automatically generated identifier for the printer build",
             "type": "string",
-            "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}_{{buildGeometry}}_{{padNumber partNumber 3}}{{joinarray extraInfo '_' true}}",
+            "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}_{{buildGeometry}}_{{buildCondition}}_{{padNumber partNumber 3}}{{joinarray extraInfo '_' true}}",
             "watch": {
                 "params": "root.userParameters",
                 "material": "root.buildPlate.material",
                 "buildGeometry": "root.buildGeometry",
+                "buildCondition": "root.buildCondition",
                 "partNumber": "root.partNumber",
                 "extraInfo": "root.extraInfo"
             },
@@ -34,21 +35,42 @@
             "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
             "propertyOrder": 2
         },
+        "buildCondition": {
+            "title": "Build Condition",
+            "description": "The condition of the build (i.e., heat treatment type)",
+            "type": "string",
+            "default": "ASB",
+            "propertyOrder": 3,
+            "enum": [
+                "ASB",
+                "HT",
+                "HIP"
+            ],
+            "options": {
+                "enum_titles": [
+                    "As built (including stress relief)",
+                    "Heat treatment",
+                    "Hot isostatic pressing"
+                ]
+            }
+        },
         "buildGeometry": {
             "title": "Build Geometry",
             "description": "The geometry of the build",
             "type": "string",
             "default": "4PTF",
-            "propertyOrder": 3,
+            "propertyOrder": 4,
             "enum": [
-                "4PTF"
+                "4PTF",
+                "TEN",
+                "AXFT"
             ]
         },
         "partNumber": {
             "title": "Part Number",
             "description": "Number assigned to the part",
             "type": "number",
-            "propertyOrder": 4,
+            "propertyOrder": 5,
             "default": 1
         },
         "extraInfo": {
@@ -59,7 +81,7 @@
                 "type": "string"
             },
             "default": [],
-            "propertyOrder": 5
+            "propertyOrder": 6
         },
         "buildPlate": {
             "title": "Build Plate",
@@ -245,19 +267,19 @@
                 "location",
                 "teamMembers"
             ],
-            "propertyOrder": 6
+            "propertyOrder":11
         },
         "openjzFile": {
             "title": "Build File",
             "description": "Upload the build file (*.openjz)",
             "type": "string",
-            "propertyOrder": 11
+            "propertyOrder": 12
         },
         "eosReportFile": {
             "title": "EOS Report",
             "description": "Upload the EOS job quality report (PDF)",
             "type": "string",
-            "propertyOrder": 12
+            "propertyOrder": 13
         },
         "misc": {
             "title": "Additional Information",
@@ -266,7 +288,7 @@
             "items": {
                 "$ref": "#/definitions/keyValue"
             },
-            "propertyOrder": 13
+            "propertyOrder": 14
         }
     },
     "required": [
