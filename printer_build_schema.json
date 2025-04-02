@@ -64,7 +64,14 @@
                 "4PTF",
                 "TEN",
                 "AXFT"
-            ]
+            ],
+            "options": {
+                "enum_titles": [
+                    "4-point bending fatigue",
+                    "Tensile",
+                    "Axial Fatigue"
+                ]
+            }
         },
         "partNumber": {
             "title": "Part Number",
@@ -267,7 +274,7 @@
                 "location",
                 "teamMembers"
             ],
-            "propertyOrder":11
+            "propertyOrder": 11
         },
         "openjzFile": {
             "title": "Build File",
