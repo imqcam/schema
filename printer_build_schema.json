@@ -1,368 +1,755 @@
 {
-    "title": "Printer Build",
-    "description": "Metadata for a single build using a metals additive manufacturing printer",
-    "type": "object",
-    "properties": {
-        "printerBuildID": {
-            "title": "Printer Build ID",
-            "description": "Automatically generated identifier for the printer build",
-            "type": "string",
-            "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}_{{buildGeometry}}_{{padNumber partNumber 3}}{{joinarray extraInfo '_' true}}",
-            "watch": {
-                "params": "root.userParameters",
-                "material": "root.buildPlate.material",
-                "buildGeometry": "root.buildGeometry",
-                "partNumber": "root.partNumber",
-                "extraInfo": "root.extraInfo"
-            },
-            "readOnly": true,
-            "propertyOrder": 0
+  "title": "Printer Build",
+  "description": "Metadata for a single build using a metals additive manufacturing printer",
+  "type": "object",
+  "definitions": {
+    "igsnMetadata": {
+      "id": "igsnMetadata",
+      "type": "object",
+      "format": "grid-strict",
+      "title": "Sample IGSN Creation",
+      "options": {
+        "grid_columns": 12,
+        "titleHidden": true
+      },
+      "properties": {
+        "_text1": {
+          "format": "hidden",
+          "type": "string",
+          "title": "IGSN metadata",
+          "description": "<p>This section gathers necessary information to create an IGSNs for each sample created during the build</p>",
+          "propertyOrder": 0,
+          "options": {
+            "grid_columns": 12,
+            "grid_break": true
+          }
         },
-        "buildMachine": {
-            "title": "Build Machine",
-            "description": "Machine used for the build",
-            "type": "string",
-            "enum": [
-                "EOS M290 at CMU"
-            ],
-            "propertyOrder": 1
-        },
-        "rawPowderID": {
-            "title": "Raw Powder",
-            "description": "Reference to a 'Raw Powder Details' entry",
-            "type": "string",
-            "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
-            "propertyOrder": 2
-        },
-        "buildGeometry": {
-            "title": "Build Geometry",
-            "description": "The geometry of the build",
-            "type": "string",
-            "default": "4PTF",
-            "propertyOrder": 3,
-            "enum": [
-                "4PTF"
+        "institution": {
+          "type": "string",
+          "description": "Originating Institution",
+          "enum": [
+            "CM"
+          ],
+          "default": "CM",
+          "propertyOrder": 1,
+          "options": {
+            "titleHidden": true,
+            "grid_columns": 3,
+            "enum_titles": [
+              "Carnegie Mellon University"
             ]
+          }
         },
-        "partNumber": {
-            "title": "Part Number",
-            "description": "Number assigned to the part",
-            "type": "number",
-            "propertyOrder": 4,
-            "default": 1
-        },
-        "extraInfo": {
-            "title": "Extraneous Information",
-            "description": "Optional identifiers for split/batch numbers, etc.",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "propertyOrder": 5
-        },
-        "buildPlate": {
-            "title": "Build Plate",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "material": {
-                    "title": "Material",
-                    "type": "string",
-                    "enum": [
-                        "Ti-6Al-4V"
-                    ],
-                    "default": "Ti-6Al-4V",
-                    "propertyOrder": 0
-                },
-                "temperature": {
-                    "title": "Temperature (C)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 450,
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "material",
-                "temperature"
-            ],
-            "propertyOrder": 7
-        },
-        "flowGas": {
-            "title": "Flow Gas",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "type": {
-                    "title": "Gas Type",
-                    "type": "string",
-                    "enum": [
-                        "Ar",
-                        "N2"
-                    ],
-                    "propertyOrder": 0
-                },
-                "flowRate": {
-                    "title": "Flow Rate (lpm)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "propertyOrder": 1
-                },
-                "o2Concentration": {
-                    "title": "Oxygen Concentration (%)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100,
-                    "propertyOrder": 2
-                }
-            },
-            "required": [
-                "type",
-                "o2Concentration"
-            ],
-            "propertyOrder": 8
-        },
-        "recoater": {
-            "title": "Recoater",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "material": {
-                    "title": "Material",
-                    "type": "string",
-                    "enum": [
-                        "metal",
-                        "rubber",
-                        "ceramic"
-                    ],
-                    "propertyOrder": 0
-                },
-                "style": {
-                    "title": "Style",
-                    "type": "string",
-                    "enum": [
-                        "rake",
-                        "roller",
-                        "blade"
-                    ],
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "material",
-                "style"
-            ],
-            "propertyOrder": 9
-        },
-        "buildParameters": {
-            "title": "Build Parameters",
-            "type": "object",
-            "properties": {
-                "contouringParameters": {
-                    "title": "Contouring Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 0
-                },
-                "infillParameters": {
-                    "title": "Infill Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 1
-                },
-                "upskinParameters": {
-                    "title": "Upskin Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 2
-                },
-                "downskinParameters": {
-                    "title": "Downskin Parameters",
-                    "$ref": "#/definitions/buildParameterSet",
-                    "propertyOrder": 3
-                }
-            },
-            "required": [
-                "contouringParameters"
-            ],
-            "propertyOrder": 10
-        },
-        "userParameters": {
-            "title": "User Parameters",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "runDate": {
-                    "title": "Run Date",
-                    "type": "string",
-                    "format": "date",
-                    "description": "Date in YYYY-MM-DD format",
-                    "default": "2025-01-01",
-                    "propertyOrder": 0
-                },
-                "runTime": {
-                    "title": "Run Time",
-                    "type": "string",
-                    "format": "time",
-                    "default": "00:00:00",
-                    "propertyOrder": 1
-                },
-                "location": {
-                    "title": "Location",
-                    "description": "Location where the build occurred",
-                    "type": "string",
-                    "options": {
-                        "enum_titles": [
-                            "Applied Physics Laboratory",
-                            "Carnegie Mellon University",
-                            "Northwestern University"
-                        ]
-                    },
-                    "default": "CMU",
-                    "enum": [
-                        "APL",
-                        "CMU",
-                        "NU"
-                    ],
-                    "propertyOrder": 2
-                },
-                "teamMembers": {
-                    "title": "Team Members",
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "Evan Adcock",
-                            "Nick Lamprinakos",
-                            "Katie O'Donnell"
-                        ]
-                    },
-                    "propertyOrder": 3
-                }
-            },
-            "required": [
-                "runDate",
-                "runTime",
-                "location",
-                "teamMembers"
-            ],
-            "propertyOrder": 6
-        },
-        "openjzFile": {
-            "title": "Build File",
-            "description": "Upload the build file (*.openjz)",
-            "type": "string",
-            "propertyOrder": 11
-        },
-        "eosReportFile": {
-            "title": "EOS Report",
-            "description": "Upload the EOS job quality report (PDF)",
-            "type": "string",
-            "propertyOrder": 12
-        },
-        "misc": {
-            "title": "Additional Information",
-            "description": "Key-value pairs for miscellaneous metadata",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/keyValue"
-            },
-            "propertyOrder": 13
-        }
-    },
-    "required": [
-        "printerBuildID",
-        "buildMachine",
-        "rawPowderID",
-        "buildGeometry",
-        "partNumber",
-        "userParameters",
-        "buildPlate",
-        "flowGas",
-        "recoater",
-        "buildParameters",
-        "openjzFile",
-        "eosReportFile"
-    ],
-    "definitions": {
-        "buildParameterSet": {
-            "title": "Build parameter set",
-            "type": "object",
-            "properties": {
-                "laserPower": {
-                    "title": "Laser Power (W)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 370
-                },
-                "laserVelocity": {
-                    "title": "Laser Velocity (mm/s)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10000
-                },
-                "hatchSpacing": {
-                    "title": "Hatch Spacing (µm)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 300
-                },
-                "layerThickness": {
-                    "title": "Layer Thickness (µm)",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100
-                }
-            },
-            "required": [
-                "laserPower",
-                "laserVelocity",
-                "hatchSpacing",
-                "layerThickness"
+        "groupCM": {
+          "type": "string",
+          "description": "Group within the institution",
+          "enum": [
+            "X"
+          ],
+          "default": "X",
+          "propertyOrder": 2,
+          "options": {
+            "titleHidden": true,
+            "grid_columns": 3,
+            "enum_titles": [
+              "Unknown"
             ]
+          }
         },
-        "fileUpload": {
-            "title": "File",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "file": {
-                    "title": "Upload file",
+        "material": {
+          "type": "string",
+          "description": "Material Type",
+          "enum": [
+            "MA"
+          ],
+          "default": "MA",
+          "propertyOrder": 3,
+          "options": {
+            "titleHidden": true,
+            "grid_columns": 3,
+            "enum_titles": [
+              "metals and alloys"
+            ]
+          }
+        },
+        "submaterialMA": {
+          "type": "string",
+          "description": "Material Subtype",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L"
+          ],
+          "propertyOrder": 4,
+          "default": "L",
+          "options": {
+            "titleHidden": true,
+            "dependencies": {
+              "material": "MA"
+            },
+            "enum_titles": [
+              "Al-containing",
+              "commercially puremetals",
+              "Cu-containing",
+              "Fe-containing",
+              "intermetallics",
+              "Mg-containing",
+              "Ni-containing",
+              "rare earth",
+              "refactories",
+              "steels",
+              "superalloys",
+              "Ti-containing"
+            ],
+            "grid_columns": 3,
+            "grid_break": true
+          }
+        },
+        "title": {
+          "type": "string",
+          "title": "Sample Name",
+          "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}{{joinarray extraInfo '_' true}}",
+          "watch": {
+            "params": "root.userParameters",
+            "material": "root.buildPlate.material",
+            "extraInfo": "root.extraInfo"
+          },
+          "readOnly": true,
+          "propertyOrder": 5,
+          "options": {
+            "grid_columns": 12,
+            "titleHidden": true,
+            "hidden": true
+          }
+        },
+        "attributes": {
+          "type": "object",
+          "propertyOrder": 6,
+          "properties": {
+            "alternateIdentifiers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "alternateIdentifier": {
                     "type": "string",
-                    "propertyOrder": 0
-                },
-                "button": {
-                    "title": "Browse",
-                    "format": "button",
-                    "options": {
-                        "button": {
-                            "action": "button1CB",
-                            "uploadFor": "file"
-                        }
+                    "propertyOrder": 1,
+                    "watch": {
+                      "sampleId": "root.printerBuildID"
                     },
-                    "propertyOrder": 2
+                    "template": "{{sampleId}}"
+                  },
+                  "alternateIdentifierType": {
+                    "type": "string",
+                    "propertyOrder": 2,
+                    "default": "local"
+                  }
                 }
+              }
             }
+          },
+          "options": {
+            "grid_columns": 12,
+            "grid_break": true,
+            "hidden": true
+          }
         },
-        "keyValue": {
-            "title": "Misc. metadata",
+        "relatedIdentifiers": {
+          "type": "array",
+          "title": "Related Identifiers",
+          "propertyOrder": 7,
+          "readonly": true,
+          "minItems": 1,
+          "items": {
             "type": "object",
-            "format": "grid",
             "properties": {
-                "key": {
-                    "title": "Key",
-                    "type": "string",
-                    "propertyOrder": 0
+              "relatedIdentifier": {
+                "type": "string",
+                "title": "Related Identifier",
+                "propertyOrder": 1,
+                "readonly": true,
+                "watch": {
+                  "powderId": "root.rawPowderID"
                 },
-                "value": {
-                    "title": "Value",
-                    "type": "string",
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "key",
-                "value"
-            ]
+                "template": "/api/v1/entry/{{powderId}}"
+              },
+              "relatedIdentifierType": {
+                "type": "string",
+                "propertyOrder": 2,
+                "readonly": true,
+                "enum": [
+                  "URL",
+                  "IGSN",
+                  "DOI",
+                  "Other"
+                ],
+                "default": "URL"
+              },
+              "relationType": {
+                "type": "string",
+                "propertyOrder": 3,
+                "readonly": true,
+                "default": "HasMetadata"
+              },
+              "relatedMetadataScheme": {
+                "type": "string",
+                "propertyOrder": 4,
+                "readonly": true,
+                "default": "/api/v1/form/663e6d21b18fa1c426e939ab/schema"
+              }
+            }
+          },
+          "options": {
+            "grid_columns": 12,
+            "grid_break": true,
+            "hidden": true
+          }
         }
+      }
+    },
+    "igsn": {
+      "id": "igsn",
+      "type": "object",
+      "format": "grid-strict",
+      "title": "Sample IGSN Creation",
+      "options": {
+        "grid_columns": 12,
+        "titleHidden": true
+      },
+      "properties": {
+        "suffix": {
+          "type": "string",
+          "propertyOrder": 1,
+          "options": {
+            "hidden": true,
+            "grid_columns": 12
+          },
+          "default": ""
+        },
+        "prefix": {
+          "type": "string",
+          "propertyOrder": 2,
+          "description": "The unique identifier for the build.",
+          "hidden": true,
+          "template": "{{org}}{{gCM}}{{material}}{{sMA}}",
+          "watch": {
+            "org": "root.igsnMeta.institution",
+            "gCM": "root.igsnMeta.groupCM",
+            "material": "root.igsnMeta.material",
+            "sMA": "root.igsnMeta.submaterialMA"
+          },
+          "options": {
+            "grid_columns": 12,
+            "hidden": true
+          }
+        },
+        "request": {
+          "type": "boolean",
+          "propertyOrder": 3,
+          "title": "Request IGSN",
+          "description": "Whether to request an IGSN.",
+          "default": true,
+          "options": {
+            "hidden": true,
+            "grid_columns": 12
+          }
+        },
+        "track": {
+          "type": "boolean",
+          "propertyOrder": 4,
+          "title": "Track IGSN",
+          "description": "Whether to create Sample tracking.",
+          "default": true,
+          "options": {
+            "hidden": true,
+            "grid_columns": 12
+          }
+        },
+        "field": {
+          "type": "string",
+          "propertyOrder": 5,
+          "title": "Field with IGSN prefix",
+          "const": "assignedIGSN",
+          "default": "assignedIGSN",
+          "options": {
+            "hidden": true,
+            "grid_columns": 12
+          }
+        },
+        "batch": {
+          "type": "object",
+          "propertyOrder": 6,
+          "properties": {
+            "method": {
+              "type": "string",
+              "propertyOrder": 1,
+              "title": "Batching Method",
+              "default": "imqcam",
+              "options": {
+                "hidden": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "format": "grid-strict",
+      "properties": {
+        "geometryType": {
+          "title": "Geometry Type",
+          "type": "string",
+          "enum": [
+            "4PTF",
+            "TEN",
+            "AXFT"
+          ],
+          "options": {
+            "grid_columns": 6,
+            "enum_titles": [
+              "4PTF (4-point bending fatigue)",
+              "TEN (Tensile)",
+              "AXFT (Axial Fatigue)"
+            ]
+          },
+          "propertyOrder": 0,
+          "description": "The geometry type available for the build"
+        },
+        "count": {
+          "title": "Count",
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000,
+          "propertyOrder": 1,
+          "options": {
+            "grid_columns": 6
+          },
+          "description": "The number of parts that can be built with this geometry type"
+        }
+      },
+      "description": "Geometry type for the build"
+    },
+    "buildParameterSet": {
+      "title": "Build parameter set",
+      "type": "object",
+      "properties": {
+        "laserPower": {
+          "title": "Laser Power (W)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 370
+        },
+        "laserVelocity": {
+          "title": "Laser Velocity (mm/s)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "hatchSpacing": {
+          "title": "Hatch Spacing (µm)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 300
+        },
+        "layerThickness": {
+          "title": "Layer Thickness (µm)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "laserPower",
+        "laserVelocity",
+        "hatchSpacing",
+        "layerThickness"
+      ]
+    },
+    "fileUpload": {
+      "title": "File",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "file": {
+          "title": "Upload file",
+          "type": "string",
+          "propertyOrder": 0
+        },
+        "button": {
+          "title": "Browse",
+          "format": "button",
+          "options": {
+            "button": {
+              "action": "button1CB",
+              "uploadFor": "file"
+            }
+          },
+          "propertyOrder": 2
+        }
+      }
+    },
+    "keyValue": {
+      "title": "Misc. metadata",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string",
+          "propertyOrder": 0
+        },
+        "value": {
+          "title": "Value",
+          "type": "string",
+          "propertyOrder": 1
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ]
     }
+  },
+  "properties": {
+    "assignedIGSN": {
+      "type": "string",
+      "propertyOrder": 0,
+      "template": "{{prefix}}{{suffix}}",
+      "watch": {
+        "prefix": "igsn.prefix",
+        "suffix": "igsn.suffix"
+      },
+      "options": {
+        "hidden": true,
+        "grid_columns": 12
+      }
+    },
+    "igsnMeta": {
+      "$ref": "#/definitions/igsnMetadata",
+      "propertyOrder": 0,
+      "options": {
+        "hidden": false
+      }
+    },
+    "igsn": {
+      "$ref": "#/definitions/igsn",
+      "propertyOrder": 0,
+      "options": {
+        "hidden": true
+      }
+    },
+    "printerBuildID": {
+      "title": "Printer Build ID",
+      "description": "Automatically generated identifier for the printer build",
+      "type": "string",
+      "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}{{joinarray extraInfo '_' true}}",
+      "watch": {
+        "params": "root.userParameters",
+        "material": "root.buildPlate.material",
+        "extraInfo": "root.extraInfo"
+      },
+      "readOnly": true,
+      "propertyOrder": 1
+    },
+    "buildMachine": {
+      "title": "Build Machine",
+      "description": "Machine used for the build",
+      "type": "string",
+      "enum": [
+        "EOS M290 at CMU"
+      ],
+      "propertyOrder": 2
+    },
+    "rawPowderID": {
+      "title": "Raw Powder",
+      "description": "Reference to a 'Raw Powder Details' entry",
+      "type": "string",
+      "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
+      "propertyOrder": 3
+    },
+    "buildGeometries": {
+      "title": "Build Geometries",
+      "description": "Available build geometries for the printer",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "headerTemplate": "Geometry {{i1}}",
+        "$ref": "#/definitions/geometry"
+      },
+      "propertyOrder": 4,
+      "options": {
+        "grid_columns": 12
+      },
+      "format": "grid"
+    },
+    "extraInfo": {
+      "title": "Extraneous Information",
+      "description": "Optional identifiers for split/batch numbers, etc.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "propertyOrder": 5
+    },
+    "buildPlate": {
+      "title": "Build Plate",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "material": {
+          "title": "Material",
+          "type": "string",
+          "enum": [
+            "Ti-6Al-4V"
+          ],
+          "default": "Ti-6Al-4V",
+          "propertyOrder": 0
+        },
+        "temperature": {
+          "title": "Temperature (C)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 450,
+          "propertyOrder": 1
+        }
+      },
+      "required": [
+        "material",
+        "temperature"
+      ],
+      "propertyOrder": 7
+    },
+    "flowGas": {
+      "title": "Flow Gas",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "type": {
+          "title": "Gas Type",
+          "type": "string",
+          "enum": [
+            "Ar",
+            "N2"
+          ],
+          "propertyOrder": 0
+        },
+        "flowRate": {
+          "title": "Flow Rate (lpm)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "propertyOrder": 1
+        },
+        "o2Concentration": {
+          "title": "Oxygen Concentration (%)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "propertyOrder": 2
+        }
+      },
+      "required": [
+        "type",
+        "o2Concentration"
+      ],
+      "propertyOrder": 8
+    },
+    "recoater": {
+      "title": "Recoater",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "material": {
+          "title": "Material",
+          "type": "string",
+          "enum": [
+            "metal",
+            "rubber",
+            "ceramic"
+          ],
+          "propertyOrder": 0
+        },
+        "style": {
+          "title": "Style",
+          "type": "string",
+          "enum": [
+            "rake",
+            "roller",
+            "blade"
+          ],
+          "propertyOrder": 1
+        }
+      },
+      "required": [
+        "material",
+        "style"
+      ],
+      "propertyOrder": 9
+    },
+    "buildParameters": {
+      "title": "Build Parameters",
+      "type": "object",
+      "properties": {
+        "contouringParameters": {
+          "title": "Contouring Parameters",
+          "$ref": "#/definitions/buildParameterSet",
+          "propertyOrder": 0
+        },
+        "infillParameters": {
+          "title": "Infill Parameters",
+          "$ref": "#/definitions/buildParameterSet",
+          "propertyOrder": 1
+        },
+        "upskinParameters": {
+          "title": "Upskin Parameters",
+          "$ref": "#/definitions/buildParameterSet",
+          "propertyOrder": 2
+        },
+        "downskinParameters": {
+          "title": "Downskin Parameters",
+          "$ref": "#/definitions/buildParameterSet",
+          "propertyOrder": 3
+        }
+      },
+      "required": [
+        "contouringParameters"
+      ],
+      "propertyOrder": 10
+    },
+    "userParameters": {
+      "title": "User Parameters",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "runDate": {
+          "title": "Run Date",
+          "type": "string",
+          "format": "date",
+          "description": "Date in YYYY-MM-DD format",
+          "default": "2025-01-01",
+          "propertyOrder": 0
+        },
+        "runTime": {
+          "title": "Run Time",
+          "type": "string",
+          "format": "time",
+          "default": "00:00:00",
+          "propertyOrder": 1
+        },
+        "location": {
+          "title": "Location",
+          "description": "Location where the build occurred",
+          "type": "string",
+          "options": {
+            "enum_titles": [
+              "Applied Physics Laboratory",
+              "Carnegie Mellon University",
+              "Northwestern University"
+            ]
+          },
+          "default": "CMU",
+          "enum": [
+            "APL",
+            "CMU",
+            "NU"
+          ],
+          "propertyOrder": 2
+        },
+        "teamMembers": {
+          "title": "Team Members",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Evan Adcock",
+              "Nick Lamprinakos",
+              "Katie O'Donnell"
+            ]
+          },
+          "propertyOrder": 3
+        }
+      },
+      "required": [
+        "runDate",
+        "runTime",
+        "location",
+        "teamMembers"
+      ],
+      "propertyOrder": 6
+    },
+    "openjzFile": {
+      "title": "Build File",
+      "description": "Upload the build file (*.openjz)",
+      "type": "string",
+      "propertyOrder": 11
+    },
+    "eosReportFile": {
+      "title": "EOS Report",
+      "description": "Upload the EOS job quality report (PDF)",
+      "type": "string",
+      "propertyOrder": 12
+    },
+    "misc": {
+      "title": "Additional Information",
+      "description": "Key-value pairs for miscellaneous metadata",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/keyValue"
+      },
+      "propertyOrder": 13
+    }
+  },
+  "required": [
+    "printerBuildID",
+    "buildMachine",
+    "rawPowderID",
+    "buildGeometries",
+    "userParameters",
+    "buildPlate",
+    "flowGas",
+    "recoater",
+    "buildParameters",
+    "openjzFile",
+    "eosReportFile"
+  ],
+  "if": {
+    "properties": {
+      "igsn": {
+        "properties": {
+          "request": {
+            "const": false
+          }
+        }
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "igsnMeta": {
+        "options": {
+          "hidden": true
+        },
+        "readonly": true
+      },
+      "assignedIGSN": {
+        "options": {
+          "hidden": false
+        },
+        "readonly": true
+      }
+    }
+  }
 }
