@@ -384,7 +384,7 @@
         "file": {
           "title": "Upload file",
           "type": "string",
-          "propertyOrder": 0
+          "propertyOrder": 1
         },
         "button": {
           "title": "Browse",
@@ -396,6 +396,18 @@
             }
           },
           "propertyOrder": 2
+        },
+        "targetPath": {
+          "type": "string",
+          "title": "Target Path",
+          "watch": {
+            "path": "root.printerBuildID"
+          },
+          "template": "{{path}}",
+          "options": {
+            "hidden": true
+          },
+          "propertyOrder": 3
         }
       }
     },
@@ -693,13 +705,13 @@
     "openjzFile": {
       "title": "Build File",
       "description": "Upload the build file (*.openjz)",
-      "type": "string",
+      "$ref": "#/definitions/fileUpload",
       "propertyOrder": 11
     },
     "eosReportFile": {
       "title": "EOS Report",
       "description": "Upload the EOS job quality report (PDF)",
-      "type": "string",
+      "$ref": "#/definitions/fileUpload",
       "propertyOrder": 12
     },
     "misc": {
