@@ -4,32 +4,36 @@
   "description": "Metadata associated with experimental results from NASA Ti64 30um layers study",
   "type": "object",
   "definitions": {
-    "speed": {
+    "laserSpeed": {
       "type": "number",
-      "title": "Speed",
+      "title": "Laser Speed",
       "description": "Laser speed in mm/s",
       "minimum": 0,
+      "maximum": 10000,
       "unit": "mm/s"
     },
-    "hatch_spacing": {
+    "hatchSpacing": {
       "type": "number",
       "title": "Hatch Spacing",
       "description": "Hatch spacing in mm",
       "minimum": 0,
+      "maximum": 300,
       "unit": "mm"
     },
-    "power": {
+    "laserPower": {
       "type": "number",
-      "title": "Power",
+      "title": "Laser Power",
       "description": "Laser Power in Watts",
       "minimum": 0,
+      "maximum": 370,
       "unit": "W"
     },
-    "layer_thickness": {
+    "layerThickness": {
       "type": "number",
       "title": "Layer Thickness",
       "description": "Layer thickness in mm",
       "minimum": 0,
+      "maximum": 100,
       "unit": "mm"
     },
   },
@@ -153,40 +157,22 @@
       "type": "number",
       "propertyOrder": 13
     },
-    // "Hatch_mm": {
-    //  "title": "Hatch Spacing",
-    //  "description": "Hatch spacing in mm",
-    //  "type": "number",
-    //  "propertyOrder": 14
-    // },
-    "Hatch_mm": {
-      "$ref": "#/definitions/hatch_spacing",
+    "HatchSpacing": {
+      "$ref": "#/definitions/hatchSpacing",
       "propertyOrder": 14
     },
-    "Speed_mm_per_s": {
-      "$ref": "#/definitions/speed",
+    "laserSpeed": {
+      "$ref": "#/definitions/laserSpeed",
       "propertyOrder": 15
     },
-    "Power_W": {
-      "$ref": "#/definitions/power",
+    "laserPower": {
+      "$ref": "#/definitions/laserPower",
       "propertyOrder": 16
     },
-    // "Power_W": {
-    //   "title": "Power",
-    //   "description": "Laser Power in Watts",
-    //   "type": "number",
-    //   "propertyOrder": 16
-    // },
-    "Layer_mm": {
-      "$ref": "#/definitions/layer_thickness",
+    "layerThickness": {
+      "$ref": "#/definitions/layerThickness",
       "propertyOrder": 17
     },
-    // "Layer_mm": {
-    //  "title": "Layer Thickness",
-    //  "description": "Layer thickness in mm",
-    //  "type": "number",
-    //  "propertyOrder": 17
-    // },
     "VED_J_per_mm3": {
       "title": "Volumetric Energy Density",
       "description": "Volumetric energy density in J/mm³",
@@ -227,10 +213,10 @@
     "Yield_Strength_MPa",
     "Peak_Stress_MPa",
     "Elongation_Percent",
-    "Hatch_mm",
-    "Speed_mm_per_s",
-    "Power_W",
-    "Layer_mm",
+    "HatchSpacing",
+    "laserSpeed",
+    "laserPower",
+    "layerThickness",
     "VED_J_per_mm3",
     "Porosity_percent_infill",
     "Percent_Porosity_Contour",
