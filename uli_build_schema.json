@@ -1,0 +1,368 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Unified Build Importer Schema",
+    "type": "object",
+    "properties": {
+      "Build": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier for the build" },
+          "FID": { "type": "string", "description": "Foreign identifier linking to related records" },
+          "EOS_Job_File": { "type": "string", "description": "EOS job file name or path" },
+          "Build_Report_File": { "type": "string", "description": "Build report file name or path" },
+          "Feedstock_Workbook": { "type": "string", "description": "Feedstock workbook file path" },
+          "Meltpool_Data": { "type": "string", "description": "Meltpool data file path" },
+          "OT_Data": { "type": "string", "description": "OT data file path" },
+          "Location": { "type": "string", "description": "Build location" },
+          "Brand_Model": { "type": "string", "description": "Brand and model of the machine" },
+          "Serial_Number": { "type": "string", "description": "Machine serial number" },
+          "Build_Time_Est": { "type": "number", "description": "Estimated build time in hours" },
+          "Build_Time": { "type": "number", "description": "Actual build time in hours" },
+          "Start_Date": { "type": "string", "format": "date", "description": "Build start date" },
+          "End_Date": { "type": "string", "format": "date", "description": "Build end date" },
+          "Nozzle_Type": { "type": "string", "description": "Type of nozzle used" },
+          "Max_Level_O2": { "type": "number", "description": "Maximum oxygen level in ppm" },
+          "Chamber_Pressure": { "type": "number", "description": "Chamber pressure in mBar" },
+          "Cover_Gas_Velocity": { "type": "number", "description": "Cover gas velocity in mBar" },
+          "Build_Plate_Thickness": { "type": "number", "description": "Build plate thickness in mm" },
+          "Build_Plate_Material": { "type": "string", "description": "Material of the build plate" },
+          "Bed_Preheat": { "type": "number", "description": "Bed preheat temperature in °C" },
+          "Rake_Blade_Material": { "type": "string", "description": "Material of the rake blade" },
+          "Deposition_Velocity": { "type": "number", "description": "Deposition velocity in mm/s" },
+          "Dosing": { "type": "string", "description": "Dosing description" },
+          "Min_Dose": { "type": "number", "description": "Minimum dose in %" },
+          "Max_Dose": { "type": "number", "description": "Maximum dose in %" },
+          "Min_Layer_Time": { "type": "number", "description": "Minimum layer time in seconds" },
+          "Move_to_Dosage_Position": { "type": "boolean", "description": "Flag indicating move to dosage position" },
+          "Layer_Thickness": { "type": "number", "description": "Layer thickness in mm" },
+          "Build_Plate_Separation": { "type": "number", "description": "Build plate separation in mm" },
+          "Notes": { "type": "string", "description": "Additional notes" },
+          "Granta_Record_Name": { "type": "string", "description": "Granta record name" },
+          "Granta_Record_Short_Name": { "type": "string", "description": "Granta short record name" },
+          "Granta_Embed_Importer": { "type": "string", "description": "Granta embed importer info" },
+          "Build_Project": { "type": "string", "description": "Build project name" },
+          "Set_Point_T": { "type": "number", "description": "Set point temperature" },
+          "DS": { "type": "string", "description": "Data source or other DS info" }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Part": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier for the part" },
+          "FID": { "type": "string", "description": "Foreign identifier linking to build" },
+          "Scan_Order": { "type": "integer", "description": "Scan order or number of layers" },
+          "Plate_Location_X": { "type": "number", "description": "Plate location X coordinate in mm" },
+          "Plate_Location_Y": { "type": "number", "description": "Plate location Y coordinate in mm" },
+          "Global_Offset": { "type": "string", "description": "Global offset in mm" },
+          "Offset_Angle": { "type": "number", "description": "Offset angle in degrees (°)" },
+          "Rotation_Angle": { "type": "number", "description": "Rotation angle in degrees (°)" },
+          "Restriction_Angle": { "type": "number", "description": "Restriction angle in degrees (°)" },
+          "Skip": { "type": "boolean", "description": "Flag to skip this part" },
+          "Hatch_Offset": { "type": "number", "description": "Hatch offset in mm" },
+          "Overlap_with_Infill": { "type": "number", "description": "Overlap with infill in mm" },
+          "Min_Vector_Length": { "type": "number", "description": "Minimum vector length in mm" },
+          "Note": { "type": "string", "description": "Notes related to the part" },
+          "CAD_File": { "type": "string", "description": "CAD file path or name (~10-100 MB)" },
+          "Job_File": { "type": "string", "description": "Job file path or name" },
+          "Granta_Record_Name": { "type": "string", "description": "Granta record name" }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Infill_Stripes": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Skywriting": {
+            "type": "string",
+            "enum": ["Yes", "No"],
+            "description": "Enable skywriting (Yes/No)"
+          },
+          "Flow_Optimization": {
+            "type": "boolean",
+            "description": "Flow optimization enabled (true/false)"
+          },
+          "Shifted": {
+            "type": "boolean",
+            "description": "Shifted pattern enabled (true/false)"
+          },
+          "Exposure_Mode": {
+            "type": "string",
+            "description": "Exposure mode (Single/Double)"
+          },
+          "Power_Reduction_Factor": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Power reduction factor (0 to 1)"
+          },
+          "Time_Homogenization": {
+            "type": "boolean",
+            "description": "Time homogenization enabled (true/false)"
+          },
+          "Stripe_Width": {
+            "type": "number",
+            "description": "Stripe width in mm"
+          },
+          "Overlap_Stripes": {
+            "type": "number",
+            "description": "Stripe overlap in mm"
+          },
+          "Power": {
+            "type": "number",
+            "description": "Laser power in Watts (W)"
+          },
+          "Hatch_Spacing": {
+            "type": "number",
+            "description": "Hatch spacing in mm"
+          },
+          "Scan_Speed": {
+            "type": "number",
+            "description": "Scan speed in mm/s"
+          },
+          "General": {
+            "type": "string",
+            "description": "General notes or parameters"
+          },
+          "Granta_Record_Name": {
+            "type": "string",
+            "description": "Granta record name"
+          }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Upskin": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Hatch_Sorting": {
+            "type": "string",
+            "enum": ["Straight Lined", "Time Optimized"],
+            "description": "Hatch sorting method"
+          },
+          "Skywriting": {
+            "type": "string",
+            "enum": ["Yes", "No"],
+            "description": "Enable skywriting"
+          },
+          "Exposure_Mode": {
+            "type": "string",
+            "enum": ["Single", "Double"],
+            "description": "Exposure mode"
+          },
+          "Upskin_Thickness": {
+            "type": "integer",
+            "description": "Number of upskin layers"
+          },
+          "Upskin_Ridge": {
+            "type": "number",
+            "description": "Upskin ridge height in mm"
+          },
+          "Power": {
+            "type": "number",
+            "description": "Laser power in Watts"
+          },
+          "Hatch_Spacing": {
+            "type": "number",
+            "description": "Hatch spacing in mm"
+          },
+          "Scan_Speed": {
+            "type": "number",
+            "description": "Scan speed in mm/s"
+          },
+          "General": {
+            "type": "string",
+            "description": "General notes"
+          }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Downskin": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Hatch_Sorting": {
+            "type": "string",
+            "enum": ["Straight lined", "Time optimized"],
+            "description": "Hatch sorting method"
+          },
+          "Skywriting": {
+            "type": "string",
+            "enum": ["Yes", "No"],
+            "description": "Enable skywriting"
+          },
+          "Exposure_Mode": {
+            "type": "string",
+            "enum": ["Single", "Double"],
+            "description": "Exposure mode"
+          },
+          "Downskin_Thickness": {
+            "type": "integer",
+            "description": "Number of downskin layers"
+          },
+          "Upskin_Ridge": {
+            "type": "number",
+            "description": "Ridge height in mm"
+          },
+          "Power": {
+            "type": "number",
+            "description": "Laser power in Watts"
+          },
+          "Hatch_Spacing": {
+            "type": "number",
+            "description": "Hatch spacing in mm"
+          },
+          "Scan_Speed": {
+            "type": "number",
+            "description": "Scan speed in mm/s"
+          },
+          "General": {
+            "type": "string",
+            "description": "General notes"
+          }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Contour": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Contour_Number": {
+            "type": "integer",
+            "description": "Number of contour passes"
+          },
+          "Contour_Offset": {
+            "type": "number",
+            "description": "Offset from part boundary in mm"
+          },
+          "Thickness": {
+            "type": "integer",
+            "description": "Number of layers"
+          },
+          "Corridor": {
+            "type": "number",
+            "description": "Corridor distance in mm"
+          },
+          "Power_1": {
+            "type": "number",
+            "description": "Laser power for pass 1 in Watts"
+          },
+          "Speed_1": {
+            "type": "number",
+            "description": "Scan speed for pass 1 in mm/s"
+          },
+          "Power_2": {
+            "type": "number",
+            "description": "Laser power for pass 2 in Watts"
+          },
+          "Speed_2": {
+            "type": "number",
+            "description": "Scan speed for pass 2 in mm/s"
+          },
+          "Power_3": {
+            "type": "number",
+            "description": "Laser power for pass 3 in Watts"
+          },
+          "Speed_3": {
+            "type": "number",
+            "description": "Scan speed for pass 3 in mm/s"
+          }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Edge": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Edge_Offset": {
+            "type": "number",
+            "description": "Offset from part edge in mm"
+          },
+          "Edge_Factor": {
+            "type": "number",
+            "description": "Factor applied to edge regions"
+          },
+          "Threshold": {
+            "type": "number",
+            "description": "Threshold value for edge enhancement"
+          },
+          "Min_Radius_Factor": {
+            "type": "number",
+            "description": "Minimum radius factor for edge detection"
+          },
+          "Power": {
+            "type": "number",
+            "description": "Laser power in Watts"
+          },
+          "Speed": {
+            "type": "number",
+            "description": "Scan speed in mm/s"
+          }
+        },
+        "required": ["UID", "FID"]
+      },
+  
+      "Support_Bulk": {
+        "type": "object",
+        "properties": {
+          "UID": { "type": "string", "description": "Unique identifier" },
+          "FID": { "type": "string", "description": "Foreign identifier" },
+          "Files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "data-url",
+              "description": "Upload .stl files"
+            },
+            "description": "Bulk upload of .stl files"
+          },
+          "Overlap_in_Part": {
+            "type": "number",
+            "description": "Overlap in part in mm"
+          },
+          "Rotation": {
+            "type": "number",
+            "description": "Rotation angle in degrees"
+          },
+          "Skip": {
+            "type": "boolean",
+            "description": "Flag to skip the part"
+          },
+          "Power": {
+            "type": "number",
+            "description": "Laser power in Watts"
+          },
+          "Hatch": {
+            "type": "number",
+            "description": "Hatch spacing in mm"
+          },
+          "Speed": {
+            "type": "number",
+            "description": "Scan speed in mm/s"
+          },
+          "Notes": {
+            "type": "string",
+            "description": "Additional notes"
+          },
+          "Support": {
+            "type": "string",
+            "description": "Support type or description"
+          }
+        },
+        "required": ["UID", "FID", "Files"]
+      }
+    },
+    "required": ["Build", "Part", "Infill_Stripes", "Upskin", "Downskin", "Contour", "Edge", "Support_Bulk"]
+  }
+  
