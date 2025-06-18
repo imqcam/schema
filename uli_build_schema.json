@@ -58,7 +58,7 @@
     },
     "layerCount": {
       "type": "number",
-      "title": "Count of Layers",
+      "title": "Number of Layers",
       "description": "Number of Layers",
       "minimum": 0
     }
@@ -427,7 +427,7 @@
           ],
           "description": "Exposure mode"
         },
-        "Upskin_Thickness": {
+        "Upskin_LayerCount": {
           "$ref": "#/definitions/layerCount"
         },
         "Upskin_Ridge": {
@@ -488,9 +488,8 @@
           ],
           "description": "Exposure mode"
         },
-        "Downskin_Thickness": {
-          "type": "integer",
-          "description": "Number of downskin layers"
+        "Downskin_LayerCount": {
+          "$ref": "#/definitions/layerCount"
         },
         "Upskin_Ridge": {
           "type": "number",
@@ -548,15 +547,19 @@
           "$ref": "#/definitions/laserSpeed"
         },
         "laserPower2": {
+          "title": "Laser Power 2",
           "$ref": "#/definitions/laserPower"
         },
         "laserSpeed2": {
+          "title": "Laser Speed 2",
           "$ref": "#/definitions/laserSpeed"
         },
         "laserPower3": {
+          "title": "Laser Power 3",
           "$ref": "#/definitions/laserPower"
         },
         "laserSpeed3": {
+          "title": "Laser Speed 3",
           "$ref": "#/definitions/laserSpeed"
         }
       },
