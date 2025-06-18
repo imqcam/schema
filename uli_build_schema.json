@@ -124,11 +124,15 @@
         },
         "Build_Time_Est": {
           "type": "number",
-          "description": "Estimated build time in hours"
+          "description": "Estimated build time in hours",
+          "minimum": 0,
+          "unit": "hours"
         },
         "Build_Time": {
           "type": "number",
-          "description": "Actual build time in hours"
+          "description": "Actual build time in hours",
+          "minimum": 0,
+          "unit": "hours"
         },
         "Start_Date": {
           "type": "string",
@@ -146,19 +150,27 @@
         },
         "Max_Level_O2": {
           "type": "number",
-          "description": "Maximum oxygen level in ppm"
+          "description": "Maximum oxygen level in ppm",
+          "minimum": 0,
+          "unit": "ppm"
         },
         "Chamber_Pressure": {
           "type": "number",
-          "description": "Chamber pressure in mBar"
+          "description": "Chamber pressure in mBar",
+          "minimum": 0,
+          "unit": "mBar"
         },
         "Cover_Gas_Velocity": {
           "type": "number",
-          "description": "Cover gas velocity in mBar"
+          "description": "Cover gas velocity in mBar",
+          "minimum": 0,
+          "unit": "mBar"
         },
         "Build_Plate_Thickness": {
           "type": "number",
-          "description": "Build plate thickness in mm"
+          "description": "Build plate thickness in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Build_Plate_Material": {
           "type": "string",
@@ -166,7 +178,8 @@
         },
         "Bed_Preheat": {
           "type": "number",
-          "description": "Bed preheat temperature in °C"
+          "description": "Bed preheat temperature in °C",
+          "unit": "celsius"
         },
         "Rake_Blade_Material": {
           "type": "string",
@@ -174,7 +187,9 @@
         },
         "Deposition_Velocity": {
           "type": "number",
-          "description": "Deposition velocity in mm/s"
+          "description": "Deposition velocity in mm/s",
+          "minimum": 0,
+          "unit": "mm/s"
         },
         "Dosing": {
           "type": "string",
@@ -190,18 +205,24 @@
         },
         "Min_Layer_Time": {
           "type": "number",
-          "description": "Minimum layer time in seconds"
+          "description": "Minimum layer time in seconds",
+          "minimum": 0,
+          "unit": "seconds"
         },
         "Move_to_Dosage_Position": {
-          "type": "boolean",
-          "description": "Flag indicating move to dosage position"
+          "type": "number",
+          "description": "move to dosage position",
+          "minimum": 0,
+          "unit": "mm/s"
         },
         "layerThickness": {
           "$ref": "#/definitions/layerThickness"
         },
         "Build_Plate_Separation": {
           "type": "number",
-          "description": "Build plate separation in mm"
+          "description": "Build plate separation in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Notes": {
           "type": "string",
@@ -226,10 +247,6 @@
         "Set_Point_T": {
           "type": "number",
           "description": "Set point temperature"
-        },
-        "DS": {
-          "type": "string",
-          "description": "Data source or other DS info"
         }
       },
       "required": [
