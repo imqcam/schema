@@ -18,9 +18,21 @@
             "items": { "$ref": "#/definitions/fileUpload" },
             "description": "Build report file name or path"
           },
-          "Feedstock_Workbook": { "type": "string", "description": "Feedstock workbook file path" },
-          "Meltpool_Data": { "type": "string", "description": "Meltpool data file path" },
-          "OT_Data": { "type": "string", "description": "OT data file path" },
+          "Feedstock_Workbook": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "Feedstock workbook file path"
+          },
+          "Meltpool_Data": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "Meltpool data file path"
+          },
+          "OT_Data": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "OT data file path"
+          },
           "Location": { "type": "string", "description": "Build location" },
           "Brand_Model": { "type": "string", "description": "Brand and model of the machine" },
           "Serial_Number": { "type": "string", "description": "Machine serial number" },
