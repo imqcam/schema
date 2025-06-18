@@ -8,7 +8,6 @@
       "title": "Laser Speed",
       "description": "Laser speed in mm/s",
       "minimum": 0,
-      "maximum": 10000,
       "unit": "mm/s"
     },
     "hatchSpacing": {
@@ -16,7 +15,6 @@
       "title": "Hatch Spacing",
       "description": "Hatch spacing in µm",
       "minimum": 0,
-      "maximum": 300,
       "unit": "µm"
     },
     "laserPower": {
@@ -24,7 +22,6 @@
       "title": "Laser Power",
       "description": "Laser Power in Watts",
       "minimum": 0,
-      "maximum": 370,
       "unit": "W"
     },
     "layerThickness": {
@@ -32,7 +29,6 @@
       "title": "Layer Thickness",
       "description": "Layer thickness in µm",
       "minimum": 0,
-      "maximum": 100,
       "unit": "µm"
     },
     "igsnMetadata": {
