@@ -271,19 +271,27 @@
         },
         "Plate_Location_X": {
           "type": "number",
-          "description": "Plate location X coordinate in mm"
+          "description": "Plate location X coordinate in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Plate_Location_Y": {
           "type": "number",
-          "description": "Plate location Y coordinate in mm"
+          "description": "Plate location Y coordinate in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Global_Offset": {
           "type": "string",
-          "description": "Global offset in mm"
+          "description": "Global offset in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Offset_Angle": {
           "type": "number",
-          "description": "Offset angle in degrees (°)"
+          "description": "Offset angle in degrees (°)",
+          "minimum": 0,
+          "unit": "degrees"
         },
         "Rotation_Angle": {
           "type": "number",
@@ -299,15 +307,21 @@
         },
         "Hatch_Offset": {
           "type": "number",
-          "description": "Hatch offset in mm"
+          "description": "Hatch offset in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Overlap_with_Infill": {
           "type": "number",
-          "description": "Overlap with infill in mm"
+          "description": "Overlap with infill in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Min_Vector_Length": {
           "type": "number",
-          "description": "Minimum vector length in mm"
+          "description": "Minimum vector length in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Note": {
           "type": "string",
