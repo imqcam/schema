@@ -31,7 +31,7 @@
       "description": "Layer thickness in mm",
       "minimum": 0,
       "unit": "mm"
-    },
+    }
   },
   "properties": {
     "Build_ID": {
@@ -79,11 +79,11 @@
       "propertyOrder": 3
     },
     "Build_Date": {
-  "title": "Build Date",
-  "description": "Estimated build date of the sample",
-  "type": "string",
-  "format": "date",
-  "propertyOrder": 4
+      "title": "Build Date",
+      "description": "Estimated build date of the sample",
+      "type": "string",
+      "format": "date",
+      "propertyOrder": 4
     },
     "Location": {
       "title": "Build Location",
