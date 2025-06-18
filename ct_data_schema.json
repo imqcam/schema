@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "NASA Ti64 30um Layers Data",
-  "description": "Metadata associated with experimental results from NASA Ti64 30um layers study",
+  "description": "Metadata associated with experimental results from NASA Ti64 30um layers study (POC: Brendan Croom)",
   "type": "object",
   "definitions": {
     "laserSpeed": {

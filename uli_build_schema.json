@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Unified Build Importer Schema",
+  "description": "Metadata for ULI builds (POC: Brett Ley)",
   "type": "object",
   "definitions": {
     "fileUpload": {

@@ -1,6 +1,6 @@
 {
   "title": "Printer Build",
-  "description": "Metadata for a single build using a metals additive manufacturing printer",
+  "description": "Metadata for a single build using a metals additive manufacturing printer (POC: Katie O'Donnell and Sierra Green)",
   "type": "object",
   "definitions": {
     "laserSpeed": {
