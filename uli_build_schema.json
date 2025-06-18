@@ -394,11 +394,15 @@
         },
         "Stripe_Width": {
           "type": "number",
-          "description": "Stripe width in mm"
+          "description": "Stripe width in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Overlap_Stripes": {
           "type": "number",
-          "description": "Stripe overlap in mm"
+          "description": "Stripe overlap in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "laserPower": {
           "$ref": "#/definitions/laserPower"
@@ -463,7 +467,9 @@
         },
         "Upskin_Ridge": {
           "type": "number",
-          "description": "Upskin ridge height in mm"
+          "description": "Upskin ridge height in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "laserPower": {
           "$ref": "#/definitions/laserPower"
@@ -524,7 +530,9 @@
         },
         "Upskin_Ridge": {
           "type": "number",
-          "description": "Ridge height in mm"
+          "description": "Ridge height in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "laserPower": {
           "$ref": "#/definitions/laserPower"
@@ -558,18 +566,23 @@
         },
         "Contour_Number": {
           "type": "integer",
-          "description": "Number of contour passes"
+          "description": "Number of contour passes",
+          "minimum": 0
         },
         "Contour_Offset": {
           "type": "number",
-          "description": "Offset from part boundary in mm"
+          "description": "Offset from part boundary in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Thickness": {
           "$ref": "#/definitions/layerCount"
         },
         "Corridor": {
           "type": "number",
-          "description": "Corridor distance in mm"
+          "description": "Corridor distance in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "laserPower1": {
           "$ref": "#/definitions/laserPower"
@@ -612,7 +625,9 @@
         },
         "Edge_Offset": {
           "type": "number",
-          "description": "Offset from part edge in mm"
+          "description": "Offset from part edge in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Edge_Factor": {
           "type": "number",
@@ -624,7 +639,8 @@
         },
         "Min_Radius_Factor": {
           "type": "number",
-          "description": "Minimum radius factor for edge detection"
+          "description": "Minimum radius factor for edge detection",
+          "minimum": 0
         },
         "laserPower": {
           "$ref": "#/definitions/laserPower"
@@ -658,11 +674,15 @@
         },
         "Overlap_in_Part": {
           "type": "number",
-          "description": "Overlap in part in mm"
+          "description": "Overlap in part in mm",
+          "minimum": 0,
+          "unit": "mm"
         },
         "Rotation": {
           "type": "number",
-          "description": "Rotation angle in degrees"
+          "description": "Rotation angle in degrees",
+          "minimum": 0,
+          "unit": "degrees"
         },
         "Skip": {
           "type": "boolean",
