@@ -8,8 +8,16 @@
         "properties": {
           "UID": { "type": "string", "description": "Unique identifier for the build" },
           "FID": { "type": "string", "description": "Foreign identifier linking to related records" },
-          "EOS_Job_File": { "type": "string", "description": "EOS job file name or path" },
-          "Build_Report_File": { "type": "string", "description": "Build report file name or path" },
+          "EOS_Job_File": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "EOS job file name or path"
+          },
+          "Build_Report_File": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "Build report file name or path"
+          },
           "Feedstock_Workbook": { "type": "string", "description": "Feedstock workbook file path" },
           "Meltpool_Data": { "type": "string", "description": "Meltpool data file path" },
           "OT_Data": { "type": "string", "description": "OT data file path" },
@@ -46,7 +54,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Part": {
         "type": "object",
         "properties": {
@@ -64,13 +71,20 @@
           "Overlap_with_Infill": { "type": "number", "description": "Overlap with infill in mm" },
           "Min_Vector_Length": { "type": "number", "description": "Minimum vector length in mm" },
           "Note": { "type": "string", "description": "Notes related to the part" },
-          "CAD_File": { "type": "string", "description": "CAD file path or name (~10-100 MB)" },
-          "Job_File": { "type": "string", "description": "Job file path or name" },
+          "CAD_File": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "CAD file path or name (~10-100 MB)"
+          },
+          "Job_File": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/fileUpload" },
+            "description": "Job file path or name"
+          },
           "Granta_Record_Name": { "type": "string", "description": "Granta record name" }
         },
         "required": ["UID", "FID"]
       },
-  
       "Infill_Stripes": {
         "type": "object",
         "properties": {
@@ -134,7 +148,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Upskin": {
         "type": "object",
         "properties": {
@@ -182,7 +195,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Downskin": {
         "type": "object",
         "properties": {
@@ -230,7 +242,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Contour": {
         "type": "object",
         "properties": {
@@ -279,7 +290,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Edge": {
         "type": "object",
         "properties": {
@@ -312,7 +322,6 @@
         },
         "required": ["UID", "FID"]
       },
-  
       "Support_Bulk": {
         "type": "object",
         "properties": {
@@ -320,11 +329,7 @@
           "FID": { "type": "string", "description": "Foreign identifier" },
           "Files": {
             "type": "array",
-            "items": {
-              "type": "string",
-              "format": "data-url",
-              "description": "Upload .stl files"
-            },
+            "items": { "$ref": "#/definitions/fileUpload" },
             "description": "Bulk upload of .stl files"
           },
           "Overlap_in_Part": {
@@ -361,6 +366,31 @@
           }
         },
         "required": ["UID", "FID", "Files"]
+      }
+    },
+    "definitions": {
+      "fileUpload": {
+        "title": "File",
+        "type": "object",
+        "properties": {
+          "file": {
+            "title": "Upload file",
+            "type": "string",
+            "format": "data-url",
+            "description": "Select a file to upload"
+          },
+          "button": {
+            "title": "Browse",
+            "format": "button",
+            "options": {
+              "button": {
+                "action": "button1CB",
+                "uploadFor": "file"
+              }
+            }
+          }
+        },
+        "required": ["file"]
       }
     },
     "required": ["Build", "Part", "Infill_Stripes", "Upskin", "Downskin", "Contour", "Edge", "Support_Bulk"]
