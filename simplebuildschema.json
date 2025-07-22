@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "Build ID": {
+      "type": "string"
+    },
+    "Build #": {
+      "type": "string"
+    },
+    "Location": {
+      "type": "string"
+    },
+    "Container?": {
+      "type": "boolean",
+      "description": "Indicates if the test was in a container"
+    },
+    "Project Name": {
+      "type": "string"
+    },
+    "Scan Power (W)": {
+      "type": "number"
+    },
+    "Scan velocity (mm/s)": {
+      "type": "number"
+    },
+    "Hatch Spacing (mm)": {
+      "type": "number"
+    },
+    "b (mm)": {
+      "type": "number"
+    },
+    "d (mm)": {
+      "type": "number"
+    },
+    "L (mm)": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "Build ID",
+    "Build #",
+    "Location",
+    "Container?",
+    "Project Name",
+    "Scan Power (W)",
+    "Scan velocity (mm/s)",
+    "Hatch Spacing (mm)",
+    "b (mm)",
+    "d (mm)",
+    "L (mm)"
+  ]
+}
