@@ -17,7 +17,7 @@
       },
       "propertyOrder": 0
     },
-    "Tests": {
+    "tests": {
       "type": "array",
       "title": "Tests",
       "format": "tabs",
@@ -26,101 +26,107 @@
         "type": "object",
         "format": "grid-strict",
         "properties": {
-          "Test #": {
+          "testNumber": {
             "type": "string",
+            "title": "Test #",
             "description": "Test number",
             "options": {
               "grid_columns": 4
             }
           },
-          "Retest": {
+          "retestNumber": {
             "type": "string",
+            "title": "Retest",
             "description": "Retest number",
             "options": {
               "grid_columns": 4
             }
           },
-          "Tested?": {
+          "tested": {
             "type": "string",
-            "enum": [
-              "Yes",
-              "No"
-            ],
+            "title": "Tested?",
+            "enum": ["Yes", "No"],
             "description": "Has this sample been tested?",
             "options": {
               "grid_columns": 4
             }
           },
-          "Machine": {
+          "machine": {
             "type": "string",
+            "title": "Machine",
             "description": "Machine used for the test",
             "options": {
               "grid_columns": 4
             }
           },
-          "sigma max initiation (MPa)": {
+          "sigmaMaxInitiation": {
             "type": "number",
+            "title": "σ max initiation (MPa)",
             "description": "Maximum initiation stress in MPa",
             "options": {
               "grid_columns": 4
             }
           },
-          "delta sigma": {
+          "deltaSigma": {
             "type": "number",
+            "title": "Δ sigma",
             "description": "Delta sigma (σmax − σmin)",
             "options": {
               "grid_columns": 4
             }
           },
-          "P max (N)": {
+          "pMax": {
             "type": "number",
+            "title": "P max (N)",
             "description": "Maximum load in Newtons",
             "options": {
               "grid_columns": 4
             }
           },
-          "P min (N)": {
+          "pMin": {
             "type": "number",
+            "title": "P min (N)",
             "description": "Minimum load in Newtons",
             "options": {
               "grid_columns": 4
             }
           },
-          "R-ratio": {
+          "rRatio": {
             "type": "number",
+            "title": "R-ratio",
             "description": "Ratio of minimum to maximum stress",
             "options": {
               "grid_columns": 4
             }
           },
-          "Frequency (Hz)": {
+          "frequency": {
             "type": "number",
+            "title": "Frequency (Hz)",
             "description": "Frequency in Hertz",
             "options": {
               "grid_columns": 4
             }
           },
-          "Cycles": {
+          "cycles": {
             "type": "integer",
+            "title": "Cycles",
             "description": "Number of cycles",
             "options": {
               "grid_columns": 4
             }
           },
-          "Imaged?": {
+          "imaged": {
             "type": "string",
-            "enum": [
-              "Yes",
-              "No",
-              "DNF"
-            ],
+            "title": "Imaged?",
+            "enum": ["Yes", "No", "DNF"],
             "description": "Sample imaged status",
             "options": {
               "grid_columns": 4
             }
           },
-          "Notes": {
+          "notes": {
             "type": "string",
+            "title": "Notes",
             "description": "Additional notes",
             "options": {
               "grid_columns": 12

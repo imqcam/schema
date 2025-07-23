@@ -1,52 +1,62 @@
 {
   "type": "object",
   "properties": {
-    "Build ID": {
+    "buildId": {
+      "type": "string",
+      "title": "Build ID"
+    },
+    "buildNumber": {
+      "type": "string",
+      "title": "Build #"
+    },
+    "location": {
       "type": "string"
     },
-    "Build #": {
-      "type": "string"
-    },
-    "Location": {
-      "type": "string"
-    },
-    "Container?": {
+    "isContainer": {
       "type": "boolean",
+      "title": "Container?",
       "description": "Indicates if the test was in a container"
     },
-    "Project Name": {
-      "type": "string"
+    "projectName": {
+      "type": "string",
+      "title": "Project Name"
     },
-    "Scan Power (W)": {
-      "type": "number"
+    "scanPower": {
+      "type": "number",
+      "title": "Scan Power (W)"
     },
-    "Scan velocity (mm/s)": {
-      "type": "number"
+    "scanVelocity": {
+      "type": "number",
+      "title": "Scan velocity (mm/s)"
     },
-    "Hatch Spacing (mm)": {
-      "type": "number"
+    "hatchSpacing": {
+      "type": "number",
+      "title": "Hatch Spacing (mm)"
     },
-    "b (mm)": {
-      "type": "number"
+    "b": {
+      "type": "number",
+      "title": "b (mm)"
     },
-    "d (mm)": {
-      "type": "number"
+    "d": {
+      "type": "number",
+      "title": "d (mm)"
     },
-    "L (mm)": {
-      "type": "number"
+    "l": {
+      "type": "number",
+      "title": "L (mm)"
     }
   },
   "required": [
-    "Build ID",
-    "Build #",
-    "Location",
-    "Container?",
-    "Project Name",
-    "Scan Power (W)",
-    "Scan velocity (mm/s)",
-    "Hatch Spacing (mm)",
-    "b (mm)",
-    "d (mm)",
-    "L (mm)"
+    "buildId",
+    "buildNumber",
+    "location",
+    "isContainer",
+    "projectName",
+    "scanPower",
+    "scanVelocity",
+    "hatchSpacing",
+    "b",
+    "d",
+    "l"
   ]
 }
