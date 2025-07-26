@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "Build ID": {
+      "type": "string"
+    },
+    "Scan Power (W)": {
+      "type": "number"
+    },
+    "Scan velocity (mm/s)": {
+      "type": "number"
+    },
+    "Hatch Spacing (mm)": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "Build ID",
+    "Scan Power (W)",
+    "Scan velocity (mm/s)",
+    "Hatch Spacing (mm)"
+  ]
+}
