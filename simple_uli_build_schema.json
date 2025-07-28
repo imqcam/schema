@@ -1,45 +1,54 @@
 {
-   "title": "ULIBuild Form",
+  "title": "ULIBuild Form",
   "type": "object",
   "properties": {
     "buildId": {
       "type": "string",
-      "title": "Build ID"
+      "title": "Build ID",
+      "propertyOrder": 1
     },
     "location": {
       "type": "string",
       "const": "CMU",
       "title": "Location",
-      "default": "CMU"
+      "default": "CMU",
+      "propertyOrder": 2
     },
     "projectName": {
       "type": "string",
       "title": "Project Name",
-      "default": "NASAULI"
+      "default": "NASAULI",
+      "propertyOrder": 3
     },
     "scanPower": {
       "type": "number",
-      "title": "Scan Power (W)"
+      "title": "Scan Power (W)",
+      "propertyOrder": 4
     },
     "scanVelocity": {
       "type": "number",
-      "title": "Scan velocity (mm/s)"
+      "title": "Scan velocity (mm/s)",
+      "propertyOrder": 5
     },
     "hatchSpacing": {
       "type": "number",
-      "title": "Hatch Spacing (mm)"
+      "title": "Hatch Spacing (mm)",
+      "propertyOrder": 6
     },
     "b": {
       "type": "number",
-      "title": "b (mm)"
+      "title": "b (mm)",
+      "propertyOrder": 7
     },
     "d": {
       "type": "number",
-      "title": "d (mm)"
+      "title": "d (mm)",
+      "propertyOrder": 8
     },
     "l": {
       "type": "number",
-      "title": "L (mm)"
+      "title": "L (mm)",
+      "propertyOrder": 9
     }
   },
   "required": [
