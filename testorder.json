@@ -1,0 +1,126 @@
+{
+  "title": "4PointBendTest",
+  "type": "object",
+  "properties": {
+    "lookup": {
+      "type": "string",
+      "description": "Lookup for the IGSN of the sample",
+      "format": "autocomplete",
+      "options": {
+        "autocomplete": {
+          "search": "search_deposition",
+          "renderResult": "render_deposition",
+          "getResultValue": "get_deposition_value",
+          "autoSelect": true,
+          "debounceTime": 500
+        }
+      },
+      "propertyOrder": 0
+    },
+    "tests": {
+      "type": "array",
+      "title": "Tests",
+      "format": "tabs",
+      "propertyOrder": 1,
+      "items": {
+        "type": "object",
+        "format": "grid-strict",
+        "properties": {
+          "testNumber": {
+            "type": "string",
+            "title": "Test #",
+            "description": "Test number",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 0
+          },
+          "retestNumber": {
+            "type": "string",
+            "title": "Retest",
+            "description": "Retest number",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 1
+          },
+          "tested": {
+            "type": "string",
+            "title": "Tested?",
+            "enum": ["Yes", "No"],
+            "description": "Has this sample been tested?",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 2
+          },
+          "machine": {
+            "type": "string",
+            "title": "Machine",
+            "description": "Machine used for the test",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 3
+          },
+          "sigmaMaxInitiation": {
+            "type": "number",
+            "title": "σ max initiation (MPa)",
+            "description": "Maximum initiation stress in MPa",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 4
+          },
+          "deltaSigma": {
+            "type": "number",
+            "title": "Δ sigma",
+            "description": "Delta sigma (σmax − σmin)",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 5
+          },
+          "pMax": {
+            "type": "number",
+            "title": "P max (N)",
+            "description": "Maximum load in Newtons",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 6
+          },
+          "pMin": {
+            "type": "number",
+            "title": "P min (N)",
+            "description": "Minimum load in Newtons",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 7
+          },
+          "rRatio": {
+            "type": "number",
+            "title": "R-ratio",
+            "description": "Ratio of minimum to maximum stress",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 8
+          },
+          "frequency": {
+            "type": "number",
+            "title": "Frequency (Hz)",
+            "description": "Frequency in Hertz",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 9
+          },
+          "cycles": {
+            "type": "integer",
+            "title": "Cycles",
+            "description": "Number of cycles",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 10
+          },
+          "imaged": {
+            "type": "string",
+            "title": "Imaged?",
+            "enum": ["Yes", "No", "DNF"],
+            "description": "Sample imaged status",
+            "options": { "grid_columns": 4 },
+            "propertyOrder": 11
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes",
+            "description": "Additional notes",
+            "options": { "grid_columns": 12 },
+            "propertyOrder": 12
+          }
+        }
+      }
+    }
+  }
+}
