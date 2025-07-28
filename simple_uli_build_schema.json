@@ -1,25 +1,21 @@
 {
+   "title": "ULIBuild Form",
   "type": "object",
   "properties": {
     "buildId": {
       "type": "string",
       "title": "Build ID"
     },
-    "buildNumber": {
-      "type": "string",
-      "title": "Build #"
-    },
     "location": {
-      "type": "string"
-    },
-    "isContainer": {
-      "type": "boolean",
-      "title": "Container?",
-      "description": "Indicates if the test was in a container"
+      "type": "string",
+      "const": "CMU",
+      "title": "Location",
+      "default": "CMU"
     },
     "projectName": {
       "type": "string",
-      "title": "Project Name"
+      "title": "Project Name",
+      "default": "NASAULI"
     },
     "scanPower": {
       "type": "number",
@@ -48,15 +44,10 @@
   },
   "required": [
     "buildId",
-    "buildNumber",
     "location",
-    "isContainer",
     "projectName",
     "scanPower",
     "scanVelocity",
-    "hatchSpacing",
-    "b",
-    "d",
-    "l"
+    "hatchSpacing"
   ]
 }
