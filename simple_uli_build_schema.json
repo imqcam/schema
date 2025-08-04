@@ -37,17 +37,20 @@
     },
     "b": {
       "type": "number",
-      "title": "b (mm)",
+      "title": "breadth(mm)",
+      "description": "Breadth of the build in mm",
       "propertyOrder": 7
     },
     "d": {
       "type": "number",
-      "title": "d (mm)",
+      "title": "depth (mm)",
+      "description": "Depth of the build in mm",
       "propertyOrder": 8
     },
     "l": {
       "type": "number",
-      "title": "L (mm)",
+      "title": "Length (mm)",
+      "description": "Length of the build in mm",
       "propertyOrder": 9
     }
   },

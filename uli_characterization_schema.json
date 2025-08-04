@@ -4,6 +4,7 @@
   "properties": {
     "lookup": {
       "type": "string",
+      "title": "IGSN",
       "description": "Lookup for the IGSN of the sample",
       "format": "autocomplete",
       "options": {
@@ -67,7 +68,7 @@
             "title": "Δ sigma",
             "description": "Delta sigma (σmax − σmin)",
             "options": { "grid_columns": 4 },
-            "propertyOrder": 5
+            "propertyOrder": 5,
           },
           "pMax": {
             "type": "number",
