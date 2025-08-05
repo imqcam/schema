@@ -1,0 +1,326 @@
+{
+  "title": "Four-point flexural test",
+  "description": "Four-point flexural test data for a build",
+  "type": "object",
+  "properties": {
+    "lookup": {
+      "type": "string",
+      "title": "IGSN",
+      "description": "Lookup for the IGSN of the sample",
+      "format": "autocomplete",
+      "options": {
+        "autocomplete": {
+          "search": "search_deposition",
+          "renderResult": "render_deposition",
+          "getResultValue": "get_deposition_value",
+          "autoSelect": true,
+          "debounceTime": 500
+        }
+      },
+      "propertyOrder": 0
+    },
+    "depositionId": {
+      "type": "string",
+      "title": "IGSN ID",
+      "description": "Unique identifier for the deposition",
+      "readOnly": true,
+      "propertyOrder": 999,
+      "watch": {
+        "igsn": "lookup"
+      },
+      "template": "{{split igsn ' - ' 1}}",
+      "options": {
+        "grid_columns": 12,
+        "hidden": true
+      }
+    },
+    "buildId": {
+      "type": "string",
+      "title": "Build ID",
+      "description": "Unique identifier for the build",
+      "readOnly": true,
+      "format": "text",
+      "propertyOrder": 1,
+      "watch": {
+        "igsn": "lookup"
+      },
+      "template": "{{split igsn ' - ' 2}}",
+      "options": {
+        "grid_columns": 12
+      }
+    },
+    "b": {
+      "type": "number",
+      "title": "Width (mm)",
+      "format": "grid",
+      "description": "Width of test beam in mm",
+      "propertyOrder": 2,
+      "options": {
+        "grid_columns": 4
+      }
+    },
+    "d": {
+      "type": "number",
+      "title": "Thickness (mm)",
+      "format": "grid",
+      "description": "Thickness of test beam in mm",
+      "propertyOrder": 3,
+      "options": {
+        "grid_columns": 4
+      }
+    },
+    "l": {
+      "type": "number",
+      "format": "grid",
+      "title": "Length (mm)",
+      "default": 30,
+      "description": "Length of the build in mm",
+      "propertyOrder": 4,
+      "options": {
+        "grid_columns": 4
+      }
+    },
+    "alignment": {
+      "type": "string",
+      "default": "Non-Axial",
+      "enum": [
+        "Non-Axial",
+        "Axial"
+      ],
+      "title": "Axial Alignment",
+      "propertyOrder": 5
+    },
+    "tests": {
+      "type": "array",
+      "title": "Tests",
+      "format": "tabs",
+      "propertyOrder": 6,
+      "items": {
+        "type": "object",
+        "format": "grid-strict",
+        "id": "arr_items",
+        "properties": {
+          "testNumber": {
+            "type": "string",
+            "title": "Test #",
+            "description": "Test number",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 0
+          },
+          "retestNumber": {
+            "type": "string",
+            "title": "Retest",
+            "description": "Retest number",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 1
+          },
+          "testDate": {
+            "type": "string",
+            "format": "date",
+            "title": "Date Tested",
+            "description": "Date of the test",
+            "options": {
+              "grid_columns": 4,
+              "flatpickr": {}
+            },
+            "propertyOrder": 2
+          },
+          "machine": {
+            "type": "string",
+            "title": "Machine",
+            "description": "Machine used for the test",
+            "options": {
+              "grid_columns": 4,
+              "dependencies": {
+                "root.alignment": "Non-Axial"
+              }
+            },
+            "enum": [
+              "Bionix",
+              "1331",
+              "3 kip",
+              "10 kip",
+              "20 kip",
+              "New 20 kip",
+              "New 50 kip",
+              "Old 50 kip",
+              "Unknown"
+            ],
+            "propertyOrder": 3
+          },
+          "testType": {
+            "type": "string",
+            "title": "Test Type",
+            "description": "Type of test conducted (fatigue or tensile)",
+            "options": {
+              "grid_columns": 4,
+              "dependencies": {
+                "root.alignment": "Axial"
+              }
+            },
+            "enum": [
+              "Fatigue",
+              "Tensile"
+            ],
+            "propertyOrder": 3
+          },
+          "sigmaMaxInitiation": {
+            "type": "number",
+            "title": "σ max initiation (MPa)",
+            "description": "Maximum initation flexural stress in MPa",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 4
+          },
+          "deltaSigma": {
+            "type": "number",
+            "title": "Δ sigma",
+            "description": "Delta sigma (σmax − σmin)",
+            "readOnly": true,
+            "template": "{{deltaSigma r sigmaMax}}",
+            "watch": {
+              "r": "arr_items.rRatio",
+              "sigmaMax": "arr_items.sigmaMaxInitiation"
+            },
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 5
+          },
+          "pMax": {
+            "type": "number",
+            "title": "P max (N)",
+            "description": "Maximum load in Newtons",
+            "options": {
+              "grid_columns": 4
+            },
+            "watch": {
+              "l": "root.l",
+              "d": "root.d",
+              "b": "root.b",
+              "sigma": "arr_items.sigmaMaxInitiation"
+            },
+            "propertyOrder": 6
+          },
+          "pMin": {
+            "type": "number",
+            "title": "P min (N)",
+            "description": "Minimum load in Newtons",
+            "template": "{{multiply pMax r}}",
+            "watch": {
+              "l": "root.l",
+              "d": "root.d",
+              "b": "root.b",
+              "sigma": "arr_items.sigmaMaxInitiation",
+              "pMax": "arr_items.pMax",
+              "r": "arr_items.rRatio"
+            },
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 7
+          },
+          "rRatio": {
+            "type": "number",
+            "title": "R-ratio",
+            "default": 0.1,
+            "description": "Ratio of minimum to maximum stress",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 8
+          },
+          "frequency": {
+            "type": "number",
+            "title": "Frequency (Hz)",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 9
+          },
+          "cycles": {
+            "type": "integer",
+            "title": "Cycles",
+            "description": "Number of cycles",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 10
+          },
+          "imaged": {
+            "type": "string",
+            "title": "Imaged?",
+            "enum": [
+              "Yes",
+              "No",
+              "DNF",
+              "Reimage"
+            ],
+            "description": "Sample imaged status",
+            "options": {
+              "grid_columns": 4
+            },
+            "propertyOrder": 11
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes",
+            "description": "Additional notes",
+            "options": {
+              "grid_columns": 12
+            },
+            "propertyOrder": 12
+          }
+        },
+        "required": [
+          "testNumber",
+          "testDate",
+          "sigmaMaxInitiation",
+          "rRatio",
+          "frequency",
+          "cycles"
+        ]
+      }
+    }
+  },
+  "if": {
+    "properties": {
+      "alignment": {
+        "const": "Non-Axial"
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "tests": {
+        "items": {
+          "properties": {
+            "pMax": {
+              "readOnly": true,
+              "template": "{{load b d l sigma}}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "else": {
+    "properties": {
+      "tests": {
+        "items": {
+          "properties": {
+            "pMax": {
+              "readOnly": false,
+              "template": null
+            }
+          }
+        }
+      }
+    }
+  }
+}
