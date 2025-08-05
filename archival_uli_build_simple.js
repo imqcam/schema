@@ -34,3 +34,11 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
         }
     }
 };
+
+Handlebars.registerHelper('split', function (string, separator, index) {
+    try {
+        return string.split(separator)[index].trim();
+    } catch (e) {
+        return '';
+    }
+});
