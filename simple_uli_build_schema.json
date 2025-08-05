@@ -1,5 +1,6 @@
 {
-  "title": "ULIBuild Form",
+  "title": "Archival ULI Build (simplified)",
+  "description": "Schema for Archival ULI Builds, only selected fields are included",
   "type": "object",
   "properties": {
     "buildId": {
@@ -37,7 +38,7 @@
     },
     "b": {
       "type": "number",
-      "title": "breadth(mm)",
+      "title": "breadth (mm)",
       "description": "Breadth of the build in mm",
       "propertyOrder": 7
     },
