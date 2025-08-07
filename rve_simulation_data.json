@@ -84,13 +84,27 @@
                     "description": "True if loading is tensile, False if compressive"
                 },
                 "Loading direction vector": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
+                    "type": "object",
+                    "description": "Direction of the applied load as a 3D unit vector",
+                    "properties": {
+                        "X": {
+                            "type": "number",
+                            "description": "X-component of the unit vector"
+                        },
+                        "Y": {
+                            "type": "number",
+                            "description": "Y-component of the unit vector"
+                        },
+                        "Z": {
+                            "type": "number",
+                            "description": "Z-component of the unit vector"
+                        }
                     },
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "description": "Direction of the applied load as a 3D unit vector (X, Y, Z)"
+                    "required": [
+                        "X",
+                        "Y",
+                        "Z"
+                    ]
                 }
             },
             "required": [
