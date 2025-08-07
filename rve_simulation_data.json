@@ -1,0 +1,474 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synthetic RVE Microstructure",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Experiment name",
+            "description": "e.g., Case_006",
+            "propertyOrder": 1
+        },
+        "Alpha variant volume fractions": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 12,
+            "maxItems": 12,
+            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure from lathsVolFrac.txt",
+            "propertyOrder": 2
+        },
+        "Shape parameter statistics": {
+            "type": "object",
+            "description": "Statistical summary of shape parameters of the laths from shapeParameterStatistics.inp",
+            "propertyOrder": 3,
+            "properties": {
+                "Mean equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Mean radius of laths after sampling"
+                },
+                "Standard deviation of equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Spread of equivalent radius"
+                },
+                "Mean aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Mean of the B/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Spread of B/A aspect ratio"
+                },
+                "Mean aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Mean of the C/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Spread of C/A aspect ratio"
+                }
+            },
+            "required": [
+                "Mean equivalent radius (μm)",
+                "Standard deviation of equivalent radius (μm)",
+                "Mean aspect ratio B to A",
+                "Standard deviation of aspect ratio B to A",
+                "Mean aspect ratio C to A",
+                "Standard deviation of aspect ratio C to A"
+            ]
+        },
+        "Macroscopic loading configuration": {
+            "type": "object",
+            "description": "Loading setup from BC_Macro_Uniaxial.inp for macroscopic uniaxial simulation",
+            "propertyOrder": 4,
+            "properties": {
+                "Loading type": {
+                    "type": "string",
+                    "description": "Type of loading applied (e.g., ConstantStrainRate)"
+                },
+                "Number of direction components": {
+                    "type": "integer",
+                    "description": "Number of components in the loading direction vector (typically 3)"
+                },
+                "Strain rate": {
+                    "type": "number",
+                    "description": "Rate at which strain is applied during the simulation"
+                },
+                "Total simulation time": {
+                    "type": "number",
+                    "description": "Time duration of the simulation (units depend on model setup)"
+                },
+                "Tension applied": {
+                    "type": "boolean",
+                    "description": "True if loading is tensile, False if compressive"
+                },
+                "Loading direction vector": {
+                    "type": "object",
+                    "description": "Direction of the applied load as a 3D unit vector",
+                    "properties": {
+                        "X": {
+                            "type": "number",
+                            "description": "X-component of the unit vector"
+                        },
+                        "Y": {
+                            "type": "number",
+                            "description": "Y-component of the unit vector"
+                        },
+                        "Z": {
+                            "type": "number",
+                            "description": "Z-component of the unit vector"
+                        }
+                    },
+                    "required": [
+                        "X",
+                        "Y",
+                        "Z"
+                    ]
+                }
+            },
+            "required": [
+                "Loading type",
+                "Number of direction components",
+                "Strain rate",
+                "Total simulation time",
+                "Tension applied",
+                "Loading direction vector"
+            ]
+        },
+        "Boundary conditions": {
+            "type": "object",
+            "description": "Boundary condition configuration from BC_Dirichlet.inp",
+            "propertyOrder": 5,
+            "properties": {
+                "Number of boundary conditions": {
+                    "type": "integer",
+                    "description": "Total number of boundary conditions defined"
+                },
+                "Conditions": {
+                    "type": "array",
+                    "description": "List of boundary condition types (e.g., steady or transient)",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ID": {
+                                "type": "integer",
+                                "description": "Identifier of the boundary condition"
+                            },
+                            "Type": {
+                                "type": "string",
+                                "description": "Type of the boundary condition (e.g., steady, transient)"
+                            }
+                        },
+                        "required": [
+                            "ID",
+                            "Type"
+                        ]
+                    }
+                },
+                "Number of time points": {
+                    "type": "integer",
+                    "description": "Number of simulation time steps"
+                },
+                "Number of cycles": {
+                    "type": "integer",
+                    "description": "Number of simulation cycles"
+                },
+                "Warmup time (s)": {
+                    "type": "number",
+                    "description": "Warm-up time before cycles begin, in seconds"
+                },
+                "Time steps (s)": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "description": "Time values for each simulation step in seconds"
+                },
+                "Values": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "description": "Prescribed boundary condition values at each time step"
+                }
+            },
+            "required": [
+                "Number of boundary conditions",
+                "Conditions",
+                "Number of time points",
+                "Number of cycles",
+                "Warmup time (s)",
+                "Time steps (s)",
+                "Values"
+            ]
+        },
+        "Material properties": {
+            "type": "array",
+            "description": "Material property blocks parsed from materialProperties.inp. Each block corresponds to a different phase or material definition.",
+            "propertyOrder": 6,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "type": "string",
+                        "description": "Material name (e.g., BasicPlPhEnhanced)"
+                    },
+                    "Crystal type": {
+                        "type": "integer"
+                    },
+                    "C/A ratio": {
+                        "type": "number"
+                    },
+                    "Temperature for elastic constants": {
+                        "type": "number"
+                    },
+                    "Elastic constants": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 9,
+                        "maxItems": 9
+                    },
+                    "Reduction slope for elastic constants": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 9,
+                        "maxItems": 9
+                    },
+                    "Mass density": {
+                        "type": "number"
+                    },
+                    "Specific heat constant": {
+                        "type": "number"
+                    },
+                    "Coefficient for adiabatic heating": {
+                        "type": "number"
+                    },
+                    "Thermal expansion coefficient": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                    },
+                    "Shear modulus": {
+                        "type": "number"
+                    },
+                    "Poissons ratio": {
+                        "type": "number"
+                    },
+                    "Initial athermal SSD resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial thermal SSD resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal GND resistance constant": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal GND resistance constant": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Activation energy": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Norm Burgers vector": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Reference slip rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Rate sensitivity exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial Hardening rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Asymptotic hardening rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial hardening stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Asymptotic hardening stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal hardening h": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal hardening h": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal saturation stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal saturation stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Dislocation density-independent thermal resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Backstress constant C": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Backstress constant D": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Grain boundary barrier strength": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Interaction matrix": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "Flattened 2D interaction matrix, typically 12x12 or larger."
+                    }
+                },
+                "required": [
+                    "Name",
+                    "Crystal type",
+                    "C/A ratio"
+                ]
+            }
+        },
+        "Lath properties file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file (propertiesFeature.out) containing raw lath-level feature geometry and orientation data",
+            "propertyOrder": 7
+        },
+        "Radial distances file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing X and Y values of the auto- radial plots (radial_distance.txt)",
+            "propertyOrder": 8
+        },
+        "Radial correlations file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing X and Y values of the cross-correlation radial plots (radial_correlations.txt)",
+            "propertyOrder": 9
+        },
+        "Principal components file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the pcs.txt file containing principal component scores (78 x 10 matrix)",
+            "propertyOrder": 10
+        },
+        "Feature to element assignment file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the assignmentFeatureToElementSet.inp file mapping features to elements",
+            "propertyOrder": 11
+        },
+        "Element connectivity file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the connectivitiesElement.inp file describing mesh element connectivity",
+            "propertyOrder": 12
+        },
+        "Nodal coordinates file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the coordinatesNodal.inp file containing 3D coordinates for each node",
+            "propertyOrder": 13
+        },
+        "Feature orientation info file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the informationFeatureCp.inp file with crystallographic or orientation information per feature",
+            "propertyOrder": 14
+        },
+        "Element label mapping file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the mapElementLabel.inp file mapping element IDs to labels",
+            "propertyOrder": 15
+        },
+        "Periodic node pairs file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the mapNodePairsPeriodic3D.inp file defining periodic boundary condition node pairs",
+            "propertyOrder": 16
+        },
+        "Patch definition file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the PATCH_new.inp file containing patch definitions for loading",
+            "propertyOrder": 17
+        },
+        "Principal components metadata file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the principalComponents.inp file containing metadata for principal components",
+            "propertyOrder": 18
+        },
+        "Element feature sets file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the setsElementFeature.inp file defining sets of elements by feature",
+            "propertyOrder": 19
+        },
+        "Node sets file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the setsNode.inp file defining sets of nodes for boundary conditions or grouping",
+            "propertyOrder": 20
+        }
+    },
+    "required": [
+        "Alpha variant volume fractions",
+        "Radial distances file",
+        "Radial correlations file",
+        "Shape parameter statistics",
+        "Macroscopic loading configuration",
+        "Boundary conditions",
+        "Lath properties file"
+    ]
+}
