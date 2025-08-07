@@ -169,106 +169,10 @@
                 "Values"
             ]
         },
-        "Lath geometries": {
-            "type": "array",
-            "description": "List of all features in the RVE, including the beta phase and individual alpha laths",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "Euler angle φ1 (degrees)": {
-                        "type": "number",
-                        "description": "First Euler angle φ1"
-                    },
-                    "Euler angle Φ (degrees)": {
-                        "type": "number",
-                        "description": "Second Euler angle Φ"
-                    },
-                    "Euler angle φ2 (degrees)": {
-                        "type": "number",
-                        "description": "Third Euler angle φ2"
-                    },
-                    "Phase": {
-                        "type": "integer",
-                        "description": "2 = beta phase, 1 = alpha phase"
-                    },
-                    "Feature volume (μm³)": {
-                        "type": "number",
-                        "description": "Volume of the individual lath or beta phase feature"
-                    },
-                    "Alpha variant ID": {
-                        "type": "integer",
-                        "description": "0 for beta phase, 1–12 for alpha variant ID"
-                    },
-                    "Axis 1 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 1"
-                    },
-                    "Axis 1 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 1"
-                    },
-                    "Axis 1 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 1"
-                    },
-                    "Axis 2 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 2"
-                    },
-                    "Axis 2 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 2"
-                    },
-                    "Axis 2 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 2"
-                    },
-                    "Axis 3 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 3"
-                    },
-                    "Axis 3 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 3"
-                    },
-                    "Axis 3 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 3"
-                    },
-                    "Axis length A (m)": {
-                        "type": "number",
-                        "description": "Length of major axis A (meters)"
-                    },
-                    "Axis length B (m)": {
-                        "type": "number",
-                        "description": "Length of major axis B (meters)"
-                    },
-                    "Axis length C (m)": {
-                        "type": "number",
-                        "description": "Length of major axis C (meters)"
-                    }
-                },
-                "required": [
-                    "Euler angle φ1 (degrees)",
-                    "Euler angle Φ (degrees)",
-                    "Euler angle φ2 (degrees)",
-                    "Phase",
-                    "Feature volume (μm³)",
-                    "Alpha variant ID",
-                    "Axis 1 projection X",
-                    "Axis 1 projection Y",
-                    "Axis 1 projection Z",
-                    "Axis 2 projection X",
-                    "Axis 2 projection Y",
-                    "Axis 2 projection Z",
-                    "Axis 3 projection X",
-                    "Axis 3 projection Y",
-                    "Axis 3 projection Z",
-                    "Axis length A (m)",
-                    "Axis length B (m)",
-                    "Axis length C (m)"
-                ]
-            }
+        "Lath properties file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file (propertiesFeature.out) containing raw lath-level feature geometry and orientation data"
         }
     },
     "required": [
@@ -278,6 +182,6 @@
         "Shape parameter statistics",
         "Macroscopic loading configuration",
         "Boundary conditions",
-        "Lath geometries"
+        "Lath properties file"
     ]
 }
