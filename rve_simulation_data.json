@@ -10,21 +10,11 @@
             },
             "minItems": 12,
             "maxItems": 12,
-            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure"
-        },
-        "Radial distances file": {
-            "type": "string",
-            "format": "binary",
-            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
-        },
-        "Radial correlations file": {
-            "type": "string",
-            "format": "binary",
-            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
+            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure from lathsVolFrac.txt"
         },
         "Shape parameter statistics": {
             "type": "object",
-            "description": "Statistical summary of shape parameters of the laths",
+            "description": "Statistical summary of shape parameters of the laths from shapeParameterStatistics.inp",
             "properties": {
                 "Mean equivalent radius (μm)": {
                     "type": "number",
@@ -173,6 +163,16 @@
             "type": "string",
             "format": "binary",
             "description": "Path to the file (propertiesFeature.out) containing raw lath-level feature geometry and orientation data"
+        },
+        "Radial distances file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
+        },
+        "Radial correlations file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
         }
     },
     "required": [
