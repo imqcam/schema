@@ -6,7 +6,8 @@
         "name": {
             "type": "string",
             "title": "Experiment name",
-            "description": "e.g., Case_006"
+            "description": "e.g., Case_006",
+            "propertyOrder": 1
         },
         "Alpha variant volume fractions": {
             "type": "array",
@@ -15,11 +16,13 @@
             },
             "minItems": 12,
             "maxItems": 12,
-            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure from lathsVolFrac.txt"
+            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure from lathsVolFrac.txt",
+            "propertyOrder": 2
         },
         "Shape parameter statistics": {
             "type": "object",
             "description": "Statistical summary of shape parameters of the laths from shapeParameterStatistics.inp",
+            "propertyOrder": 3,
             "properties": {
                 "Mean equivalent radius (μm)": {
                     "type": "number",
@@ -58,6 +61,7 @@
         "Macroscopic loading configuration": {
             "type": "object",
             "description": "Loading setup from BC_Macro_Uniaxial.inp for macroscopic uniaxial simulation",
+            "propertyOrder": 4,
             "properties": {
                 "Loading type": {
                     "type": "string",
@@ -101,6 +105,7 @@
         "Boundary conditions": {
             "type": "object",
             "description": "Boundary condition configuration from BC_Dirichlet.inp",
+            "propertyOrder": 5,
             "properties": {
                 "Number of boundary conditions": {
                     "type": "integer",
@@ -167,6 +172,7 @@
         "Material properties": {
             "type": "array",
             "description": "Material property blocks parsed from materialProperties.inp. Each block corresponds to a different phase or material definition.",
+            "propertyOrder": 6,
             "items": {
                 "type": "object",
                 "properties": {
@@ -360,72 +366,86 @@
         "Lath properties file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the file (propertiesFeature.out) containing raw lath-level feature geometry and orientation data"
+            "description": "Path to the file (propertiesFeature.out) containing raw lath-level feature geometry and orientation data",
+            "propertyOrder": 7
         },
         "Radial distances file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the file containing X and Y values of the auto- radial plots (radial_distance.txt)"
+            "description": "Path to the file containing X and Y values of the auto- radial plots (radial_distance.txt)",
+            "propertyOrder": 8
         },
         "Radial correlations file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the file containing X and Y values of the cross-correlation radial plots (radial_correlations.txt)"
+            "description": "Path to the file containing X and Y values of the cross-correlation radial plots (radial_correlations.txt)",
+            "propertyOrder": 9
         },
         "Principal components file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the pcs.txt file containing principal component scores (78 x 10 matrix)"
+            "description": "Path to the pcs.txt file containing principal component scores (78 x 10 matrix)",
+            "propertyOrder": 10
         },
         "Feature to element assignment file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the assignmentFeatureToElementSet.inp file mapping features to elements"
+            "description": "Path to the assignmentFeatureToElementSet.inp file mapping features to elements",
+            "propertyOrder": 11
         },
         "Element connectivity file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the connectivitiesElement.inp file describing mesh element connectivity"
+            "description": "Path to the connectivitiesElement.inp file describing mesh element connectivity",
+            "propertyOrder": 12
         },
         "Nodal coordinates file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the coordinatesNodal.inp file containing 3D coordinates for each node"
+            "description": "Path to the coordinatesNodal.inp file containing 3D coordinates for each node",
+            "propertyOrder": 13
         },
         "Feature orientation info file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the informationFeatureCp.inp file with crystallographic or orientation information per feature"
+            "description": "Path to the informationFeatureCp.inp file with crystallographic or orientation information per feature",
+            "propertyOrder": 14
         },
         "Element label mapping file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the mapElementLabel.inp file mapping element IDs to labels"
+            "description": "Path to the mapElementLabel.inp file mapping element IDs to labels",
+            "propertyOrder": 15
         },
         "Periodic node pairs file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the mapNodePairsPeriodic3D.inp file defining periodic boundary condition node pairs"
+            "description": "Path to the mapNodePairsPeriodic3D.inp file defining periodic boundary condition node pairs",
+            "propertyOrder": 16
         },
         "Patch definition file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the PATCH_new.inp file containing patch definitions for loading"
+            "description": "Path to the PATCH_new.inp file containing patch definitions for loading",
+            "propertyOrder": 17
         },
         "Principal components metadata file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the principalComponents.inp file containing metadata for principal components"
+            "description": "Path to the principalComponents.inp file containing metadata for principal components",
+            "propertyOrder": 18
         },
         "Element feature sets file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the setsElementFeature.inp file defining sets of elements by feature"
+            "description": "Path to the setsElementFeature.inp file defining sets of elements by feature",
+            "propertyOrder": 19
         },
         "Node sets file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the setsNode.inp file defining sets of nodes for boundary conditions or grouping"
+            "description": "Path to the setsNode.inp file defining sets of nodes for boundary conditions or grouping",
+            "propertyOrder": 20
         }
     },
     "required": [
