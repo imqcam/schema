@@ -60,175 +60,113 @@
                 "Standard deviation of aspect ratio C to A"
             ]
         },
-        "Lath geometries": {
-            "type": "array",
-            "description": "List of all features in the RVE, including the beta phase and individual alpha laths",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "Euler angle φ1 (degrees)": {
-                        "type": "number",
-                        "description": "First Euler angle φ1"
-                    },
-                    "Euler angle Φ (degrees)": {
-                        "type": "number",
-                        "description": "Second Euler angle Φ"
-                    },
-                    "Euler angle φ2 (degrees)": {
-                        "type": "number",
-                        "description": "Third Euler angle φ2"
-                    },
-                    "Phase": {
-                        "type": "integer",
-                        "description": "2 = beta phase, 1 = alpha phase"
-                    },
-                    "Feature volume (μm³)": {
-                        "type": "number",
-                        "description": "Volume of the individual lath or beta phase feature"
-                    },
-                    "Alpha variant ID": {
-                        "type": "integer",
-                        "description": "0 for beta phase, 1–12 for alpha variant ID"
-                    },
-                    "Axis 1 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 1"
-                    },
-                    "Axis 1 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 1"
-                    },
-                    "Axis 1 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 1"
-                    },
-                    "Axis 2 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 2"
-                    },
-                    "Axis 2 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 2"
-                    },
-                    "Axis 2 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 2"
-                    },
-                    "Axis 3 projection X": {
-                        "type": "number",
-                        "description": "X component of major axis 3"
-                    },
-                    "Axis 3 projection Y": {
-                        "type": "number",
-                        "description": "Y component of major axis 3"
-                    },
-                    "Axis 3 projection Z": {
-                        "type": "number",
-                        "description": "Z component of major axis 3"
-                    },
-                    "Axis length A (m)": {
-                        "type": "number",
-                        "description": "Length of major axis A (meters)"
-                    },
-                    "Axis length B (m)": {
-                        "type": "number",
-                        "description": "Length of major axis B (meters)"
-                    },
-                    "Axis length C (m)": {
-                        "type": "number",
-                        "description": "Length of major axis C (meters)"
-                    }
-                },
-                "required": [
-                    "Euler angle φ1 (degrees)",
-                    "Euler angle Φ (degrees)",
-                    "Euler angle φ2 (degrees)",
-                    "Phase",
-                    "Feature volume (μm³)",
-                    "Alpha variant ID",
-                    "Axis 1 projection X",
-                    "Axis 1 projection Y",
-                    "Axis 1 projection Z",
-                    "Axis 2 projection X",
-                    "Axis 2 projection Y",
-                    "Axis 2 projection Z",
-                    "Axis 3 projection X",
-                    "Axis 3 projection Y",
-                    "Axis 3 projection Z",
-                    "Axis length A (m)",
-                    "Axis length B (m)",
-                    "Axis length C (m)"
-                ]
-            }
-        }
-    },
-    "required": [
-        "Alpha variant volume fractions",
-        "Radial distances file",
-        "Radial correlations file",
-        "Shape parameter statistics",
-        "Lath geometries"
-    ]
-}{
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Synthetic RVE Microstructure",
-    "type": "object",
-    "properties": {
-        "Alpha variant volume fractions": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 12,
-            "maxItems": 12,
-            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure"
-        },
-        "Radial distances file": {
-            "type": "string",
-            "format": "binary",
-            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
-        },
-        "Radial correlations file": {
-            "type": "string",
-            "format": "binary",
-            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
-        },
-        "Shape parameter statistics": {
+        "Macroscopic loading configuration": {
             "type": "object",
-            "description": "Statistical summary of shape parameters of the laths",
+            "description": "Loading setup from BC_Macro_Uniaxial.inp for macroscopic uniaxial simulation",
             "properties": {
-                "Mean equivalent radius (μm)": {
-                    "type": "number",
-                    "description": "Mean radius of laths after sampling"
+                "Loading type": {
+                    "type": "string",
+                    "description": "Type of loading applied (e.g., ConstantStrainRate)"
                 },
-                "Standard deviation of equivalent radius (μm)": {
-                    "type": "number",
-                    "description": "Spread of equivalent radius"
+                "Number of direction components": {
+                    "type": "integer",
+                    "description": "Number of components in the loading direction vector (typically 3)"
                 },
-                "Mean aspect ratio B to A": {
+                "Strain rate": {
                     "type": "number",
-                    "description": "Mean of the B/A aspect ratio (unitless)"
+                    "description": "Rate at which strain is applied during the simulation"
                 },
-                "Standard deviation of aspect ratio B to A": {
+                "Total simulation time": {
                     "type": "number",
-                    "description": "Spread of B/A aspect ratio"
+                    "description": "Time duration of the simulation (units depend on model setup)"
                 },
-                "Mean aspect ratio C to A": {
-                    "type": "number",
-                    "description": "Mean of the C/A aspect ratio (unitless)"
+                "Tension applied": {
+                    "type": "boolean",
+                    "description": "True if loading is tensile, False if compressive"
                 },
-                "Standard deviation of aspect ratio C to A": {
-                    "type": "number",
-                    "description": "Spread of C/A aspect ratio"
+                "Loading direction vector": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "description": "Direction of the applied load as a 3D unit vector (X, Y, Z)"
                 }
             },
             "required": [
-                "Mean equivalent radius (μm)",
-                "Standard deviation of equivalent radius (μm)",
-                "Mean aspect ratio B to A",
-                "Standard deviation of aspect ratio B to A",
-                "Mean aspect ratio C to A",
-                "Standard deviation of aspect ratio C to A"
+                "Loading type",
+                "Number of direction components",
+                "Strain rate",
+                "Total simulation time",
+                "Tension applied",
+                "Loading direction vector"
+            ]
+        },
+        "Boundary conditions": {
+            "type": "object",
+            "description": "Boundary condition configuration from BC_Dirichlet.inp",
+            "properties": {
+                "Number of boundary conditions": {
+                    "type": "integer",
+                    "description": "Total number of boundary conditions defined"
+                },
+                "Conditions": {
+                    "type": "array",
+                    "description": "List of boundary condition types (e.g., steady or transient)",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ID": {
+                                "type": "integer",
+                                "description": "Identifier of the boundary condition"
+                            },
+                            "Type": {
+                                "type": "string",
+                                "description": "Type of the boundary condition (e.g., steady, transient)"
+                            }
+                        },
+                        "required": [
+                            "ID",
+                            "Type"
+                        ]
+                    }
+                },
+                "Number of time points": {
+                    "type": "integer",
+                    "description": "Number of simulation time steps"
+                },
+                "Number of cycles": {
+                    "type": "integer",
+                    "description": "Number of simulation cycles"
+                },
+                "Warmup time (s)": {
+                    "type": "number",
+                    "description": "Warm-up time before cycles begin, in seconds"
+                },
+                "Time steps (s)": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "description": "Time values for each simulation step in seconds"
+                },
+                "Values": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "description": "Prescribed boundary condition values at each time step"
+                }
+            },
+            "required": [
+                "Number of boundary conditions",
+                "Conditions",
+                "Number of time points",
+                "Number of cycles",
+                "Warmup time (s)",
+                "Time steps (s)",
+                "Values"
             ]
         },
         "Lath geometries": {
@@ -338,6 +276,8 @@
         "Radial distances file",
         "Radial correlations file",
         "Shape parameter statistics",
+        "Macroscopic loading configuration",
+        "Boundary conditions",
         "Lath geometries"
     ]
 }
