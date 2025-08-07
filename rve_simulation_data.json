@@ -159,6 +159,199 @@
                 "Values"
             ]
         },
+        "Material properties": {
+            "type": "array",
+            "description": "Material property blocks parsed from materialProperties.inp. Each block corresponds to a different phase or material definition.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "type": "string",
+                        "description": "Material name (e.g., BasicPlPhEnhanced)"
+                    },
+                    "Crystal type": {
+                        "type": "integer"
+                    },
+                    "C/A ratio": {
+                        "type": "number"
+                    },
+                    "Temperature for elastic constants": {
+                        "type": "number"
+                    },
+                    "Elastic constants": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 9,
+                        "maxItems": 9
+                    },
+                    "Reduction slope for elastic constants": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 9,
+                        "maxItems": 9
+                    },
+                    "Mass density": {
+                        "type": "number"
+                    },
+                    "Specific heat constant": {
+                        "type": "number"
+                    },
+                    "Coefficient for adiabatic heating": {
+                        "type": "number"
+                    },
+                    "Thermal expansion coefficient": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                    },
+                    "Shear modulus": {
+                        "type": "number"
+                    },
+                    "Poissons ratio": {
+                        "type": "number"
+                    },
+                    "Initial athermal SSD resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial thermal SSD resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal GND resistance constant": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal GND resistance constant": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Activation energy": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Norm Burgers vector": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Reference slip rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Rate sensitivity exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial Hardening rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Asymptotic hardening rate": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Initial hardening stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Asymptotic hardening stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal hardening h": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal hardening h": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Athermal saturation stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Thermal saturation stress": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Dislocation density-independent thermal resistance": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Backstress constant C": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Backstress constant D": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Grain boundary barrier strength": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "Interaction matrix": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "Flattened 2D interaction matrix, typically 12x12 or larger."
+                    }
+                },
+                "required": [
+                    "Name",
+                    "Crystal type",
+                    "C/A ratio"
+                ]
+            }
+        },
         "Lath properties file": {
             "type": "string",
             "format": "binary",
@@ -167,12 +360,67 @@
         "Radial distances file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
+            "description": "Path to the file containing X and Y values of the auto- radial plots (radial_distance.txt)"
         },
         "Radial correlations file": {
             "type": "string",
             "format": "binary",
-            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
+            "description": "Path to the file containing X and Y values of the cross-correlation radial plots (radial_correlations.txt)"
+        },
+        "Principal components file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the pcs.txt file containing principal component scores (78 x 10 matrix)"
+        },
+        "Feature to element assignment file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the assignmentFeatureToElementSet.inp file mapping features to elements"
+        },
+        "Element connectivity file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the connectivitiesElement.inp file describing mesh element connectivity"
+        },
+        "Nodal coordinates file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the coordinatesNodal.inp file containing 3D coordinates for each node"
+        },
+        "Feature orientation info file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the informationFeatureCp.inp file with crystallographic or orientation information per feature"
+        },
+        "Element label mapping file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the mapElementLabel.inp file mapping element IDs to labels"
+        },
+        "Periodic node pairs file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the mapNodePairsPeriodic3D.inp file defining periodic boundary condition node pairs"
+        },
+        "Patch definition file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the PATCH_new.inp file containing patch definitions for loading"
+        },
+        "Principal components metadata file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the principalComponents.inp file containing metadata for principal components"
+        },
+        "Element feature sets file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the setsElementFeature.inp file defining sets of elements by feature"
+        },
+        "Node sets file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the setsNode.inp file defining sets of nodes for boundary conditions or grouping"
         }
     },
     "required": [
