@@ -1,0 +1,343 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synthetic RVE Microstructure",
+    "type": "object",
+    "properties": {
+        "Alpha variant volume fractions": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 12,
+            "maxItems": 12,
+            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure"
+        },
+        "Radial distances file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
+        },
+        "Radial correlations file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
+        },
+        "Shape parameter statistics": {
+            "type": "object",
+            "description": "Statistical summary of shape parameters of the laths",
+            "properties": {
+                "Mean equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Mean radius of laths after sampling"
+                },
+                "Standard deviation of equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Spread of equivalent radius"
+                },
+                "Mean aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Mean of the B/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Spread of B/A aspect ratio"
+                },
+                "Mean aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Mean of the C/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Spread of C/A aspect ratio"
+                }
+            },
+            "required": [
+                "Mean equivalent radius (μm)",
+                "Standard deviation of equivalent radius (μm)",
+                "Mean aspect ratio B to A",
+                "Standard deviation of aspect ratio B to A",
+                "Mean aspect ratio C to A",
+                "Standard deviation of aspect ratio C to A"
+            ]
+        },
+        "Lath geometries": {
+            "type": "array",
+            "description": "List of all features in the RVE, including the beta phase and individual alpha laths",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Euler angle φ1 (degrees)": {
+                        "type": "number",
+                        "description": "First Euler angle φ1"
+                    },
+                    "Euler angle Φ (degrees)": {
+                        "type": "number",
+                        "description": "Second Euler angle Φ"
+                    },
+                    "Euler angle φ2 (degrees)": {
+                        "type": "number",
+                        "description": "Third Euler angle φ2"
+                    },
+                    "Phase": {
+                        "type": "integer",
+                        "description": "2 = beta phase, 1 = alpha phase"
+                    },
+                    "Feature volume (μm³)": {
+                        "type": "number",
+                        "description": "Volume of the individual lath or beta phase feature"
+                    },
+                    "Alpha variant ID": {
+                        "type": "integer",
+                        "description": "0 for beta phase, 1–12 for alpha variant ID"
+                    },
+                    "Axis 1 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 1"
+                    },
+                    "Axis 1 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 1"
+                    },
+                    "Axis 1 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 1"
+                    },
+                    "Axis 2 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 2"
+                    },
+                    "Axis 2 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 2"
+                    },
+                    "Axis 2 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 2"
+                    },
+                    "Axis 3 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 3"
+                    },
+                    "Axis 3 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 3"
+                    },
+                    "Axis 3 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 3"
+                    },
+                    "Axis length A (m)": {
+                        "type": "number",
+                        "description": "Length of major axis A (meters)"
+                    },
+                    "Axis length B (m)": {
+                        "type": "number",
+                        "description": "Length of major axis B (meters)"
+                    },
+                    "Axis length C (m)": {
+                        "type": "number",
+                        "description": "Length of major axis C (meters)"
+                    }
+                },
+                "required": [
+                    "Euler angle φ1 (degrees)",
+                    "Euler angle Φ (degrees)",
+                    "Euler angle φ2 (degrees)",
+                    "Phase",
+                    "Feature volume (μm³)",
+                    "Alpha variant ID",
+                    "Axis 1 projection X",
+                    "Axis 1 projection Y",
+                    "Axis 1 projection Z",
+                    "Axis 2 projection X",
+                    "Axis 2 projection Y",
+                    "Axis 2 projection Z",
+                    "Axis 3 projection X",
+                    "Axis 3 projection Y",
+                    "Axis 3 projection Z",
+                    "Axis length A (m)",
+                    "Axis length B (m)",
+                    "Axis length C (m)"
+                ]
+            }
+        }
+    },
+    "required": [
+        "Alpha variant volume fractions",
+        "Radial distances file",
+        "Radial correlations file",
+        "Shape parameter statistics",
+        "Lath geometries"
+    ]
+}{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synthetic RVE Microstructure",
+    "type": "object",
+    "properties": {
+        "Alpha variant volume fractions": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 12,
+            "maxItems": 12,
+            "description": "Volume fractions (unitless) of the 12 alpha phase variants in the microstructure"
+        },
+        "Radial distances file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing X-values of auto- and cross-correlation plots"
+        },
+        "Radial correlations file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Path to the file containing Y-values of auto- and cross-correlation plots"
+        },
+        "Shape parameter statistics": {
+            "type": "object",
+            "description": "Statistical summary of shape parameters of the laths",
+            "properties": {
+                "Mean equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Mean radius of laths after sampling"
+                },
+                "Standard deviation of equivalent radius (μm)": {
+                    "type": "number",
+                    "description": "Spread of equivalent radius"
+                },
+                "Mean aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Mean of the B/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio B to A": {
+                    "type": "number",
+                    "description": "Spread of B/A aspect ratio"
+                },
+                "Mean aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Mean of the C/A aspect ratio (unitless)"
+                },
+                "Standard deviation of aspect ratio C to A": {
+                    "type": "number",
+                    "description": "Spread of C/A aspect ratio"
+                }
+            },
+            "required": [
+                "Mean equivalent radius (μm)",
+                "Standard deviation of equivalent radius (μm)",
+                "Mean aspect ratio B to A",
+                "Standard deviation of aspect ratio B to A",
+                "Mean aspect ratio C to A",
+                "Standard deviation of aspect ratio C to A"
+            ]
+        },
+        "Lath geometries": {
+            "type": "array",
+            "description": "List of all features in the RVE, including the beta phase and individual alpha laths",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Euler angle φ1 (degrees)": {
+                        "type": "number",
+                        "description": "First Euler angle φ1"
+                    },
+                    "Euler angle Φ (degrees)": {
+                        "type": "number",
+                        "description": "Second Euler angle Φ"
+                    },
+                    "Euler angle φ2 (degrees)": {
+                        "type": "number",
+                        "description": "Third Euler angle φ2"
+                    },
+                    "Phase": {
+                        "type": "integer",
+                        "description": "2 = beta phase, 1 = alpha phase"
+                    },
+                    "Feature volume (μm³)": {
+                        "type": "number",
+                        "description": "Volume of the individual lath or beta phase feature"
+                    },
+                    "Alpha variant ID": {
+                        "type": "integer",
+                        "description": "0 for beta phase, 1–12 for alpha variant ID"
+                    },
+                    "Axis 1 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 1"
+                    },
+                    "Axis 1 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 1"
+                    },
+                    "Axis 1 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 1"
+                    },
+                    "Axis 2 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 2"
+                    },
+                    "Axis 2 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 2"
+                    },
+                    "Axis 2 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 2"
+                    },
+                    "Axis 3 projection X": {
+                        "type": "number",
+                        "description": "X component of major axis 3"
+                    },
+                    "Axis 3 projection Y": {
+                        "type": "number",
+                        "description": "Y component of major axis 3"
+                    },
+                    "Axis 3 projection Z": {
+                        "type": "number",
+                        "description": "Z component of major axis 3"
+                    },
+                    "Axis length A (m)": {
+                        "type": "number",
+                        "description": "Length of major axis A (meters)"
+                    },
+                    "Axis length B (m)": {
+                        "type": "number",
+                        "description": "Length of major axis B (meters)"
+                    },
+                    "Axis length C (m)": {
+                        "type": "number",
+                        "description": "Length of major axis C (meters)"
+                    }
+                },
+                "required": [
+                    "Euler angle φ1 (degrees)",
+                    "Euler angle Φ (degrees)",
+                    "Euler angle φ2 (degrees)",
+                    "Phase",
+                    "Feature volume (μm³)",
+                    "Alpha variant ID",
+                    "Axis 1 projection X",
+                    "Axis 1 projection Y",
+                    "Axis 1 projection Z",
+                    "Axis 2 projection X",
+                    "Axis 2 projection Y",
+                    "Axis 2 projection Z",
+                    "Axis 3 projection X",
+                    "Axis 3 projection Y",
+                    "Axis 3 projection Z",
+                    "Axis length A (m)",
+                    "Axis length B (m)",
+                    "Axis length C (m)"
+                ]
+            }
+        }
+    },
+    "required": [
+        "Alpha variant volume fractions",
+        "Radial distances file",
+        "Radial correlations file",
+        "Shape parameter statistics",
+        "Lath geometries"
+    ]
+}
