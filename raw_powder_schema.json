@@ -23,7 +23,8 @@
             "title": "Powder Alloy",
             "type": "string",
             "enum": [
-                "Ti-6Al-4V"
+                "Ti-6Al-4V",
+                "IN718"
             ],
             "propertyOrder": 1
         },
