@@ -26,27 +26,33 @@
             "properties": {
                 "Mean equivalent radius (μm)": {
                     "type": "number",
-                    "description": "Mean radius of laths after sampling"
+                    "description": "Mean radius of laths after sampling",
+                    "propertyOrder": 1
                 },
                 "Standard deviation of equivalent radius (μm)": {
                     "type": "number",
-                    "description": "Spread of equivalent radius"
+                    "description": "Spread of equivalent radius",
+                    "propertyOrder": 2
                 },
                 "Mean aspect ratio B to A": {
                     "type": "number",
-                    "description": "Mean of the B/A aspect ratio (unitless)"
+                    "description": "Mean of the B/A aspect ratio (unitless)",
+                    "propertyOrder": 3
                 },
                 "Standard deviation of aspect ratio B to A": {
                     "type": "number",
-                    "description": "Spread of B/A aspect ratio"
+                    "description": "Spread of B/A aspect ratio",
+                    "propertyOrder": 4
                 },
                 "Mean aspect ratio C to A": {
                     "type": "number",
-                    "description": "Mean of the C/A aspect ratio (unitless)"
+                    "description": "Mean of the C/A aspect ratio (unitless)",
+                    "propertyOrder": 5
                 },
                 "Standard deviation of aspect ratio C to A": {
                     "type": "number",
-                    "description": "Spread of C/A aspect ratio"
+                    "description": "Spread of C/A aspect ratio",
+                    "propertyOrder": 6
                 }
             },
             "required": [
@@ -65,23 +71,28 @@
             "properties": {
                 "Loading type": {
                     "type": "string",
-                    "description": "Type of loading applied (e.g., ConstantStrainRate)"
+                    "description": "Type of loading applied (e.g., ConstantStrainRate)",
+                    "propertyOrder": 1
                 },
                 "Number of direction components": {
                     "type": "integer",
-                    "description": "Number of components in the loading direction vector (typically 3)"
+                    "description": "Number of components in the loading direction vector (typically 3)",
+                    "propertyOrder": 2
                 },
                 "Strain rate": {
                     "type": "number",
-                    "description": "Rate at which strain is applied during the simulation"
+                    "description": "Rate at which strain is applied during the simulation",
+                    "propertyOrder": 3
                 },
                 "Total simulation time": {
                     "type": "number",
-                    "description": "Time duration of the simulation (units depend on model setup)"
+                    "description": "Time duration of the simulation (units depend on model setup)",
+                    "propertyOrder": 4
                 },
                 "Tension applied": {
                     "type": "boolean",
-                    "description": "True if loading is tensile, False if compressive"
+                    "description": "True if loading is tensile, False if compressive",
+                    "propertyOrder": 5
                 },
                 "Loading direction vector": {
                     "type": "object",
@@ -89,17 +100,21 @@
                     "properties": {
                         "X": {
                             "type": "number",
-                            "description": "X-component of the unit vector"
+                            "description": "X-component of the unit vector",
+                            "propertyOrder": 1
                         },
                         "Y": {
                             "type": "number",
-                            "description": "Y-component of the unit vector"
+                            "description": "Y-component of the unit vector",
+                            "propertyOrder": 2
                         },
                         "Z": {
                             "type": "number",
-                            "description": "Z-component of the unit vector"
+                            "description": "Z-component of the unit vector",
+                            "propertyOrder": 3
                         }
                     },
+                    "propertyOrder": 6,
                     "required": [
                         "X",
                         "Y",
@@ -123,21 +138,25 @@
             "properties": {
                 "Number of boundary conditions": {
                     "type": "integer",
-                    "description": "Total number of boundary conditions defined"
+                    "description": "Total number of boundary conditions defined",
+                    "propertyOrder": 1
                 },
                 "Conditions": {
                     "type": "array",
                     "description": "List of boundary condition types (e.g., steady or transient)",
+                    "propertyOrder": 2,
                     "items": {
                         "type": "object",
                         "properties": {
                             "ID": {
                                 "type": "integer",
-                                "description": "Identifier of the boundary condition"
+                                "description": "Identifier of the boundary condition",
+                                "propertyOrder": 1
                             },
                             "Type": {
                                 "type": "string",
-                                "description": "Type of the boundary condition (e.g., steady, transient)"
+                                "description": "Type of the boundary condition (e.g., steady, transient)",
+                                "propertyOrder": 2
                             }
                         },
                         "required": [
@@ -148,29 +167,34 @@
                 },
                 "Number of time points": {
                     "type": "integer",
-                    "description": "Number of simulation time steps"
+                    "description": "Number of simulation time steps",
+                    "propertyOrder": 3
                 },
                 "Number of cycles": {
                     "type": "integer",
-                    "description": "Number of simulation cycles"
+                    "description": "Number of simulation cycles",
+                    "propertyOrder": 4
                 },
                 "Warmup time (s)": {
                     "type": "number",
-                    "description": "Warm-up time before cycles begin, in seconds"
+                    "description": "Warm-up time before cycles begin, in seconds",
+                    "propertyOrder": 5
                 },
                 "Time steps (s)": {
                     "type": "array",
                     "items": {
                         "type": "number"
                     },
-                    "description": "Time values for each simulation step in seconds"
+                    "description": "Time values for each simulation step in seconds",
+                    "propertyOrder": 6
                 },
                 "Values": {
                     "type": "array",
                     "items": {
                         "type": "number"
                     },
-                    "description": "Prescribed boundary condition values at each time step"
+                    "description": "Prescribed boundary condition values at each time step",
+                    "propertyOrder": 7
                 }
             },
             "required": [
@@ -192,19 +216,24 @@
                 "properties": {
                     "Name": {
                         "type": "string",
-                        "description": "Material name (e.g., BasicPlPhEnhanced)"
+                        "description": "Material name (e.g., BasicPlPhEnhanced)",
+                        "propertyOrder": 1
                     },
                     "Crystal type": {
-                        "type": "integer"
+                        "type": "integer",
+                        "propertyOrder": 2
                     },
                     "C/A ratio": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 3
                     },
                     "Temperature for elastic constants": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 4
                     },
                     "Elastic constants": {
                         "type": "array",
+                        "propertyOrder": 5,
                         "items": {
                             "type": "number"
                         },
@@ -216,20 +245,25 @@
                         "items": {
                             "type": "number"
                         },
+                        "propertyOrder": 6,
                         "minItems": 9,
                         "maxItems": 9
                     },
                     "Mass density": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 7
                     },
                     "Specific heat constant": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 8
                     },
                     "Coefficient for adiabatic heating": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 9
                     },
                     "Thermal expansion coefficient": {
                         "type": "array",
+                        "propertyOrder": 10,
                         "items": {
                             "type": "number"
                         },
@@ -237,137 +271,160 @@
                         "maxItems": 3
                     },
                     "Shear modulus": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 11
                     },
                     "Poissons ratio": {
-                        "type": "number"
+                        "type": "number",
+                        "propertyOrder": 12
                     },
                     "Initial athermal SSD resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 13
                     },
                     "Initial thermal SSD resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 14
                     },
                     "Athermal GND resistance constant": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 15
                     },
                     "Thermal GND resistance constant": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 16
                     },
                     "Activation energy": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 17
                     },
                     "Norm Burgers vector": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 18
                     },
                     "Reference slip rate": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 19
                     },
                     "Rate sensitivity exponent": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 20
                     },
                     "Initial Hardening rate": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 21
                     },
                     "Asymptotic hardening rate": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 22
                     },
                     "Initial hardening stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 23
                     },
                     "Asymptotic hardening stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 24
                     },
                     "Athermal hardening h": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 25
                     },
                     "Thermal hardening h": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 26
                     },
                     "Athermal saturation stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 27
                     },
                     "Thermal saturation stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 28
                     },
                     "Dislocation density-independent thermal resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 29
                     },
                     "Backstress constant C": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 30
                     },
                     "Backstress constant D": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 31
                     },
                     "Grain boundary barrier strength": {
                         "type": "array",
                         "items": {
                             "type": "number"
-                        }
+                        },
+                        "propertyOrder": 32
                     },
                     "Interaction matrix": {
                         "type": "array",
                         "items": {
                             "type": "integer"
                         },
-                        "description": "Flattened 2D interaction matrix, typically 12x12 or larger."
+                        "description": "Flattened 2D interaction matrix, typically 12x12 or larger.",
+                        "propertyOrder": 33
                     }
                 },
                 "required": [
