@@ -24,7 +24,7 @@
             "type": "string",
             "enum": [
                 "Ti-6Al-4V",
-                "IN718"
+                "alloy718"
             ],
             "propertyOrder": 1
         },
