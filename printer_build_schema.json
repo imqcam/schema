@@ -654,15 +654,15 @@
       ],
       "propertyOrder": 6
     },
-    "openjzFile": {
+    "buildFile": {
       "title": "Build File",
-      "description": "Upload the build file (*.openjz)",
+      "description": "Upload the build file (e.g. *.openjz)",
       "$ref": "#/definitions/fileUpload",
       "propertyOrder": 11
     },
-    "eosReportFile": {
-      "title": "EOS Report",
-      "description": "Upload the EOS job quality report (PDF)",
+    "reportFile": {
+      "title": "Build Report File",
+      "description": "Upload e.g. the EOS job quality report (PDF)",
       "$ref": "#/definitions/fileUpload",
       "propertyOrder": 12
     },
