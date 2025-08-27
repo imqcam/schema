@@ -686,8 +686,8 @@
     "flowGas",
     "recoater",
     "buildParameters",
-    "openjzFile",
-    "eosReportFile"
+    "buildFile",
+    "reportFile"
   ],
   "if": {
     "properties": {
