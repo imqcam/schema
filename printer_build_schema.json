@@ -163,57 +163,6 @@
             "grid_break": true,
             "hidden": true
           }
-        },
-        "relatedIdentifiers": {
-          "type": "array",
-          "title": "Related Identifiers",
-          "propertyOrder": 7,
-          "readonly": true,
-          "minItems": 1,
-          "items": {
-            "type": "object",
-            "properties": {
-              "relatedIdentifier": {
-                "type": "string",
-                "title": "Related Identifier",
-                "propertyOrder": 1,
-                "readonly": true,
-                "watch": {
-                  "powderId": "root.rawPowderID"
-                },
-                "template": "/api/v1/entry/{{powderId}}"
-              },
-              "relatedIdentifierType": {
-                "type": "string",
-                "propertyOrder": 2,
-                "readonly": true,
-                "enum": [
-                  "URL",
-                  "IGSN",
-                  "DOI",
-                  "Other"
-                ],
-                "default": "URL"
-              },
-              "relationType": {
-                "type": "string",
-                "propertyOrder": 3,
-                "readonly": true,
-                "default": "HasMetadata"
-              },
-              "relatedMetadataScheme": {
-                "type": "string",
-                "propertyOrder": 4,
-                "readonly": true,
-                "default": "/api/v1/form/663e6d21b18fa1c426e939ab/schema"
-              }
-            }
-          },
-          "options": {
-            "grid_columns": 12,
-            "grid_break": true,
-            "hidden": true
-          }
         }
       }
     },
@@ -484,10 +433,13 @@
       "propertyOrder": 2
     },
     "rawPowderID": {
-      "title": "Raw Powder",
+      "title": "Raw Powders",
       "description": "Reference to a 'Raw Powder Details' entry",
-      "type": "string",
-      "enumSource": "girder.formId:663e6d21b18fa1c426e939ab",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enumSource": "girder.formId:663e6d21b18fa1c426e939ab"
+      },
       "propertyOrder": 3
     },
     "buildGeometries": {
@@ -702,15 +654,15 @@
       ],
       "propertyOrder": 6
     },
-    "openjzFile": {
+    "buildFile": {
       "title": "Build File",
-      "description": "Upload the build file (*.openjz)",
+      "description": "Upload the build file (e.g. *.openjz)",
       "$ref": "#/definitions/fileUpload",
       "propertyOrder": 11
     },
-    "eosReportFile": {
-      "title": "EOS Report",
-      "description": "Upload the EOS job quality report (PDF)",
+    "reportFile": {
+      "title": "Build Report File",
+      "description": "Upload e.g. the EOS job quality report (PDF)",
       "$ref": "#/definitions/fileUpload",
       "propertyOrder": 12
     },
