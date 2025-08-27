@@ -127,47 +127,85 @@
             "type": "object",
             "format": "grid",
             "properties": {
+                "tested": {
+                    "title": "Tested?",
+                    "description": "Check if particle size distribution and virgin powder percentage are known",
+                    "type": "boolean",
+                    "format": "checkbox",
+                    "default": true,
+                    "propertyOrder": 0
+                },
                 "minSize": {
                     "title": "Min Particle Size (microns)",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 100,
-                    "propertyOrder": 0
+                    "propertyOrder": 1,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 },
                 "tenthPercentileSize": {
                     "title": "D10 Particle Size (microns)",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 100,
-                    "propertyOrder": 1
+                    "propertyOrder": 2,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 },
                 "fiftiethPercentileSize": {
                     "title": "D50 Particle Size (microns)",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 100,
-                    "propertyOrder": 2
+                    "propertyOrder": 3,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 },
                 "ninetiethPercentileSize": {
                     "title": "D90 Particle Size (microns)",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 100,
-                    "propertyOrder": 3
+                    "propertyOrder": 4,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 },
                 "maxSize": {
                     "title": "Max Particle Size (microns)",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 100,
-                    "propertyOrder": 4
+                    "propertyOrder": 5,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 },
                 "virginPercent": {
                     "title": "Virgin Powder %",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
-                    "propertyOrder": 5
+                    "propertyOrder": 6,
+                    "options": {
+                        "dependencies": {
+                            "tested": true
+                        }
+                    }
                 }
             },
             "propertyOrder": 8
