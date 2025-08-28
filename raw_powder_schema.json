@@ -329,9 +329,24 @@
       "format": "grid",
       "properties": {
         "file": {
-          "title": "Upload file",
+          "title": "Uploaded File ID",
           "type": "string",
-          "propertyOrder": 0
+          "propertyOrder": 0,
+          "links": [
+            {
+              "rel": "View",
+              "title": "View",
+              "href": "/api/v1/file/{{self}}/download?contentDisposition=inline",
+              "class": "girder-file-link"
+            },
+            {
+              "rel": "Download",
+              "title": "Download",
+              "href": "/api/v1/file/{{self}}/download",
+              "download": true,
+              "class": "girder-file-link"
+            }
+          ]
         },
         "fileType": {
           "title": "Type of File",
@@ -342,7 +357,7 @@
           "propertyOrder": 1
         },
         "button": {
-          "title": "Browse",
+          "title": "Click to Upload",
           "format": "button",
           "options": {
             "button": {
