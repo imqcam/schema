@@ -1,358 +1,358 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Raw Feed Powder",
-    "description": "Metadata associated with a batch of powder used as raw material for metals added manufacturing",
-    "type": "object",
-    "properties": {
-        "rawPowderID": {
-            "title": "Raw Powder ID",
-            "description": "Must be unique among all raw powders",
-            "type": "string",
-            "format": "custom",
-            "template": "PWD_{{alloy}}_{{supplyCompany}}_{{purchaser}}_{{padNumber sampleNumber 3}}{{joinarray extraInfo '_' true}}",
-            "watch": {
-                "supplyCompany": "root.supplyCompany",
-                "alloy": "root.alloy",
-                "purchaser": "root.purchaser",
-                "sampleNumber": "root.sampleNumber",
-                "extraInfo": "root.extraInfo"
-            },
-            "propertyOrder": 0
-        },
-        "alloy": {
-            "title": "Powder Alloy",
-            "type": "string",
-            "enum": [
-                "Ti-6Al-4V",
-                "alloy718"
-            ],
-            "propertyOrder": 1
-        },
-        "supplyCompany": {
-            "title": "Supply Company",
-            "type": "string",
-            "options": {
-                "enum_titles": [
-                    "ATI",
-                    "Elementum",
-                    "Carpenter",
-                    "EOS",
-                    "Kennametal",
-                    "Tekna",
-                    "AP&C",
-                    "P&C",
-                    "Unknown"
-                ]
-            },
-            "enum": [
-                "ATI",
-                "ELE",
-                "CAR",
-                "EOS",
-                "KEN",
-                "TEK",
-                "APC",
-                "PC",
-                "UNK"
-            ],
-            "propertyOrder": 2
-        },
-        "purchaser": {
-            "title": "Purchaser",
-            "type": "string",
-            "options": {
-                "enum_titles": [
-                    "Applied Physics Laboratory",
-                    "Carnegie Mellon University",
-                    "Northwestern University",
-                    "Johns Hopkins University",
-                    "Vanderbilt University",
-                    "University of Texas at San Antonio",
-                    "University of Virginia",
-                    "Case Western Reserve University",
-                    "Southwest Research Institute",
-                    "Pratt & Whitney"
-                ]
-            },
-            "enum": [
-                "APL",
-                "CMU",
-                "NU",
-                "JHU",
-                "VU",
-                "UTSA",
-                "UVA",
-                "CWRU",
-                "SWRI",
-                "PW"
-            ],
-            "propertyOrder": 3
-        },
-        "sampleNumber": {
-            "title": "Sample Number",
-            "description": "Sequential identifier for this sample of powder",
-            "type": "integer",
-            "propertyOrder": 4
-        },
-        "extraInfo": {
-            "title": "Extraneous Information",
-            "description": "Optional identifiers for split/batch numbers, etc.",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "propertyOrder": 5
-        },
-        "batchInformation": {
-            "title": "Additional batch information",
-            "description": "String-only keys/values for misc. metadata (not validated)",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/keyValue"
-            },
-            "propertyOrder": 6
-        },
-        "composition": {
-            "title": "Powder Composition",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/compositionElement"
-            },
-            "minItems": 1,
-            "propertyOrder": 7
-        },
-        "characteristics": {
-            "title": "Powder Characteristics",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "tested": {
-                    "title": "Tested?",
-                    "description": "Check if particle size distribution and virgin powder percentage are known",
-                    "type": "boolean",
-                    "format": "checkbox",
-                    "default": true,
-                    "propertyOrder": 0
-                },
-                "minSize": {
-                    "title": "Min Particle Size (microns)",
-                    "type": "number",
-                    "minimum": 10,
-                    "maximum": 100,
-                    "propertyOrder": 1,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                },
-                "tenthPercentileSize": {
-                    "title": "D10 Particle Size (microns)",
-                    "type": "number",
-                    "minimum": 10,
-                    "maximum": 100,
-                    "propertyOrder": 2,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                },
-                "fiftiethPercentileSize": {
-                    "title": "D50 Particle Size (microns)",
-                    "type": "number",
-                    "minimum": 10,
-                    "maximum": 100,
-                    "propertyOrder": 3,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                },
-                "ninetiethPercentileSize": {
-                    "title": "D90 Particle Size (microns)",
-                    "type": "number",
-                    "minimum": 10,
-                    "maximum": 100,
-                    "propertyOrder": 4,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                },
-                "maxSize": {
-                    "title": "Max Particle Size (microns)",
-                    "type": "number",
-                    "minimum": 10,
-                    "maximum": 100,
-                    "propertyOrder": 5,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                },
-                "virginPercent": {
-                    "title": "Virgin Powder %",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100,
-                    "propertyOrder": 6,
-                    "options": {
-                        "dependencies": {
-                            "tested": true
-                        }
-                    }
-                }
-            },
-            "propertyOrder": 8
-        },
-        "files": {
-            "title": "Associated Files",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/fileUpload"
-            },
-            "propertyOrder": 9
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Raw Feed Powder",
+  "description": "Metadata associated with a batch of powder used as raw material for metals added manufacturing",
+  "type": "object",
+  "properties": {
+    "rawPowderID": {
+      "title": "Raw Powder ID",
+      "description": "Must be unique among all raw powders",
+      "type": "string",
+      "format": "custom",
+      "template": "PWD_{{alloy}}_{{supplyCompany}}_{{purchaser}}_{{padNumber sampleNumber 3}}{{joinarray extraInfo '_' true}}",
+      "watch": {
+        "supplyCompany": "root.supplyCompany",
+        "alloy": "root.alloy",
+        "purchaser": "root.purchaser",
+        "sampleNumber": "root.sampleNumber",
+        "extraInfo": "root.extraInfo"
+      },
+      "propertyOrder": 0
     },
-    "required": [
-        "rawPowderID",
-        "alloy",
-        "composition",
-        "supplyCompany",
-        "characteristics"
-    ],
-    "definitions": {
-        "keyValue": {
-            "title": "Misc. metadata",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "key": {
-                    "title": "Key",
-                    "type": "string",
-                    "propertyOrder": 0
-                },
-                "value": {
-                    "title": "Value",
-                    "type": "string",
-                    "propertyOrder": 1
-                }
-            },
-            "required": [
-                "key",
-                "value"
-            ]
+    "alloy": {
+      "title": "Powder Alloy",
+      "type": "string",
+      "enum": [
+        "Ti-6Al-4V",
+        "alloy718"
+      ],
+      "propertyOrder": 1
+    },
+    "supplyCompany": {
+      "title": "Supply Company",
+      "type": "string",
+      "options": {
+        "enum_titles": [
+          "ATI",
+          "Elementum",
+          "Carpenter",
+          "EOS",
+          "Kennametal",
+          "Tekna",
+          "AP&C",
+          "P&C",
+          "Unknown"
+        ]
+      },
+      "enum": [
+        "ATI",
+        "ELE",
+        "CAR",
+        "EOS",
+        "KEN",
+        "TEK",
+        "APC",
+        "PC",
+        "UNK"
+      ],
+      "propertyOrder": 2
+    },
+    "purchaser": {
+      "title": "Purchaser",
+      "type": "string",
+      "options": {
+        "enum_titles": [
+          "Applied Physics Laboratory",
+          "Carnegie Mellon University",
+          "Northwestern University",
+          "Johns Hopkins University",
+          "Vanderbilt University",
+          "University of Texas at San Antonio",
+          "University of Virginia",
+          "Case Western Reserve University",
+          "Southwest Research Institute",
+          "Pratt & Whitney"
+        ]
+      },
+      "enum": [
+        "APL",
+        "CMU",
+        "NU",
+        "JHU",
+        "VU",
+        "UTSA",
+        "UVA",
+        "CWRU",
+        "SWRI",
+        "PW"
+      ],
+      "propertyOrder": 3
+    },
+    "sampleNumber": {
+      "title": "Sample Number",
+      "description": "Sequential identifier for this sample of powder",
+      "type": "integer",
+      "propertyOrder": 4
+    },
+    "extraInfo": {
+      "title": "Extraneous Information",
+      "description": "Optional identifiers for split/batch numbers, etc.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "propertyOrder": 5
+    },
+    "batchInformation": {
+      "title": "Additional batch information",
+      "description": "String-only keys/values for misc. metadata (not validated)",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/keyValue"
+      },
+      "propertyOrder": 6
+    },
+    "composition": {
+      "title": "Powder Composition",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/compositionElement"
+      },
+      "minItems": 1,
+      "propertyOrder": 7
+    },
+    "characteristics": {
+      "title": "Powder Characteristics",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "tested": {
+          "title": "Tested?",
+          "description": "Check if particle size distribution and virgin powder percentage are known",
+          "type": "boolean",
+          "format": "checkbox",
+          "default": true,
+          "propertyOrder": 0
         },
-        "compositionElement": {
-            "title": "Element",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "element": {
-                    "title": "Element",
-                    "type": "string",
-                    "enum": [
-                        "Ti",
-                        "Al",
-                        "V",
-                        "Ni",
-                        "Cr",
-                        "Fe",
-                        "Mo",
-                        "Nb",
-                        "Ta",
-                        "Co",
-                        "Mn",
-                        "Cu",
-                        "Si",
-                        "C",
-                        "S",
-                        "P",
-                        "B",
-                        "O",
-                        "N",
-                        "H",
-                        "Y"
-                    ],
-                    "propertyOrder": 0
-                },
-                "amount": {
-                    "title": "Amount",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100,
-                    "propertyOrder": 1
-                },
-                "isBalance": {
-                    "title": "Balance?",
-                    "type": "boolean",
-                    "format": "checkbox",
-                    "propertyOrder": 2
-                },
-                "unit": {
-                    "title": "Unit of measure",
-                    "type": "string",
-                    "enum": [
-                        "%",
-                        "max %"
-                    ],
-                    "propertyOrder": 3
-                },
-                "method": {
-                    "title": "Method",
-                    "type": "string",
-                    "enum": [
-                        "WET (Inductively coupled plasma emission)",
-                        "GAS (Inert gas fusion)",
-                        "CS (Combustion/IR detection)",
-                        "NA (for balance)"
-                    ],
-                    "propertyOrder": 4
-                }
-            },
-            "required": [
-                "element",
-                "amount",
-                "isBalance",
-                "unit",
-                "method"
-            ]
-        },
-        "fileUpload": {
-            "title": "File",
-            "type": "object",
-            "format": "grid",
-            "properties": {
-                "file": {
-                    "title": "Upload file",
-                    "type": "string",
-                    "propertyOrder": 0
-                },
-                "fileType": {
-                    "title": "Type of File",
-                    "type": "string",
-                    "enum": [
-                        "Manufacturer report PDF"
-                    ],
-                    "propertyOrder": 1
-                },
-                "button": {
-                    "title": "Browse",
-                    "format": "button",
-                    "options": {
-                        "button": {
-                            "action": "button1CB",
-                            "uploadFor": "file"
-                        }
-                    },
-                    "propertyOrder": 2
-                }
+        "minSize": {
+          "title": "Min Particle Size (microns)",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "propertyOrder": 1,
+          "options": {
+            "dependencies": {
+              "tested": true
             }
+          }
+        },
+        "tenthPercentileSize": {
+          "title": "D10 Particle Size (microns)",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "propertyOrder": 2,
+          "options": {
+            "dependencies": {
+              "tested": true
+            }
+          }
+        },
+        "fiftiethPercentileSize": {
+          "title": "D50 Particle Size (microns)",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "propertyOrder": 3,
+          "options": {
+            "dependencies": {
+              "tested": true
+            }
+          }
+        },
+        "ninetiethPercentileSize": {
+          "title": "D90 Particle Size (microns)",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "propertyOrder": 4,
+          "options": {
+            "dependencies": {
+              "tested": true
+            }
+          }
+        },
+        "maxSize": {
+          "title": "Max Particle Size (microns)",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "propertyOrder": 5,
+          "options": {
+            "dependencies": {
+              "tested": true
+            }
+          }
+        },
+        "virginPercent": {
+          "title": "Virgin Powder %",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "propertyOrder": 6,
+          "options": {
+            "dependencies": {
+              "tested": true
+            }
+          }
         }
+      },
+      "propertyOrder": 8
+    },
+    "files": {
+      "title": "Associated Files",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fileUpload"
+      },
+      "propertyOrder": 9
     }
+  },
+  "required": [
+    "rawPowderID",
+    "alloy",
+    "composition",
+    "supplyCompany",
+    "characteristics"
+  ],
+  "definitions": {
+    "keyValue": {
+      "title": "Misc. metadata",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string",
+          "propertyOrder": 0
+        },
+        "value": {
+          "title": "Value",
+          "type": "string",
+          "propertyOrder": 1
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "compositionElement": {
+      "title": "Element",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "element": {
+          "title": "Element",
+          "type": "string",
+          "enum": [
+            "Ti",
+            "Al",
+            "V",
+            "Ni",
+            "Cr",
+            "Fe",
+            "Mo",
+            "Nb",
+            "Ta",
+            "Co",
+            "Mn",
+            "Cu",
+            "Si",
+            "C",
+            "S",
+            "P",
+            "B",
+            "O",
+            "N",
+            "H",
+            "Y"
+          ],
+          "propertyOrder": 0
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "propertyOrder": 1
+        },
+        "isBalance": {
+          "title": "Balance?",
+          "type": "boolean",
+          "format": "checkbox",
+          "propertyOrder": 2
+        },
+        "unit": {
+          "title": "Unit of measure",
+          "type": "string",
+          "enum": [
+            "%",
+            "max %"
+          ],
+          "propertyOrder": 3
+        },
+        "method": {
+          "title": "Method",
+          "type": "string",
+          "enum": [
+            "WET (Inductively coupled plasma emission)",
+            "GAS (Inert gas fusion)",
+            "CS (Combustion/IR detection)",
+            "NA (for balance)"
+          ],
+          "propertyOrder": 4
+        }
+      },
+      "required": [
+        "element",
+        "amount",
+        "isBalance",
+        "unit",
+        "method"
+      ]
+    },
+    "fileUpload": {
+      "title": "File",
+      "type": "object",
+      "format": "grid",
+      "properties": {
+        "file": {
+          "title": "Upload file",
+          "type": "string",
+          "propertyOrder": 0
+        },
+        "fileType": {
+          "title": "Type of File",
+          "type": "string",
+          "enum": [
+            "Manufacturer report PDF"
+          ],
+          "propertyOrder": 1
+        },
+        "button": {
+          "title": "Browse",
+          "format": "button",
+          "options": {
+            "button": {
+              "action": "button1CB",
+              "uploadFor": "file"
+            }
+          },
+          "propertyOrder": 2
+        }
+      }
+    }
+  }
 }
