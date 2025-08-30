@@ -1,8 +1,36 @@
 {
   "title": "Printer Build",
-  "description": "Metadata for a single build using a metals additive manufacturing printer",
+  "description": "Metadata for a single build using a metals additive manufacturing printer (POC: Katie O'Donnell and Sierra Green)",
   "type": "object",
   "definitions": {
+    "laserSpeed": {
+      "type": "number",
+      "title": "Laser Speed",
+      "description": "Laser speed in mm/s",
+      "minimum": 0,
+      "unit": "mm/s"
+    },
+    "hatchSpacing": {
+      "type": "number",
+      "title": "Hatch Spacing",
+      "description": "Hatch spacing in µm",
+      "minimum": 0,
+      "unit": "µm"
+    },
+    "laserPower": {
+      "type": "number",
+      "title": "Laser Power",
+      "description": "Laser Power in Watts",
+      "minimum": 0,
+      "unit": "W"
+    },
+    "layerThickness": {
+      "type": "number",
+      "title": "Layer Thickness",
+      "description": "Layer thickness in µm",
+      "minimum": 0,
+      "unit": "µm"
+    },
     "igsnMetadata": {
       "id": "igsnMetadata",
       "type": "object",
@@ -294,33 +322,21 @@
       "type": "object",
       "properties": {
         "laserPower": {
-          "title": "Laser Power (W)",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 370
+          "$ref": "#/definitions/laserPower"
         },
-        "laserVelocity": {
-          "title": "Laser Velocity (mm/s)",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 10000
+        "laserSpeed": {
+          "$ref": "#/definitions/laserSpeed"
         },
         "hatchSpacing": {
-          "title": "Hatch Spacing (µm)",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 300
+          "$ref": "#/definitions/hatchSpacing"
         },
         "layerThickness": {
-          "title": "Layer Thickness (µm)",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+          "$ref": "#/definitions/layerThickness"
         }
       },
       "required": [
         "laserPower",
-        "laserVelocity",
+        "laserSpeed",
         "hatchSpacing",
         "layerThickness"
       ]
