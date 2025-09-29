@@ -1,0 +1,93 @@
+ {
+  "title": "Factrography",
+  "description": "Factrography",
+  "type": "object",
+  "properties": {
+    "igsn": {
+      "type": "string",
+      "title": "IGSN",
+      "description": "Lookup for the IGSN of the sample",
+      "format": "autocomplete",
+      "options": {
+        "autocomplete": {
+          "search": "search_deposition",
+          "renderResult": "render_deposition",
+          "getResultValue": "get_deposition_value",
+          "autoSelect": true,
+          "debounceTime": 500
+        }
+      },
+      "propertyOrder": 0
+    },
+    "Build_ID": {
+      "type": "string",
+      "title": "Build ID",
+      "propertyOrder": 1
+    },
+    "tests": {
+      "type": "array",
+      "title": "Tests",
+      "format": "tabs",
+      "propertyOrder": 2,
+      "items": {
+        "type": "object",
+        "options": {
+          "fields_layout": "grid"
+        },
+        "properties": {
+          "Test_number": { "type": "string", "title": "Test Number", "propertyOrder": 0 },
+          "Retest": { "type": "string", "title": "Retest", "propertyOrder": 1 },
+          "Initiation_Defect": { "type": "string", "title": "Initiation Defect", "propertyOrder": 2 },
+          "Defect_Type": { "type": "string", "title": "Defect Type", "propertyOrder": 3 },
+          "Initiated_at_Chamfer": { "type": "boolean", "title": "Initiated at Chamfer", "propertyOrder": 4 },
+          "Surface_Subsurface": { "type": "string", "title": "Surface/Subsurface", "propertyOrder": 5 },
+          "area": { "type": "number", "title": "Area", "propertyOrder": 6 },
+          "x": { "type": "number", "title": "X coordinate", "propertyOrder": 7 },
+          "y": { "type": "number", "title": "Y coordinate", "propertyOrder": 8 },
+          "perimeter": { "type": "number", "title": "Perimeter", "propertyOrder": 9 },
+          "circ": { "type": "number", "title": "Circularity", "propertyOrder": 10 },
+          "feret": { "type": "number", "title": "Feret", "propertyOrder": 11 },
+          "feretX": { "type": "number", "title": "Feret X", "propertyOrder": 12 },
+          "feretY": { "type": "number", "title": "Feret Y", "propertyOrder": 13 },
+          "feretAngle": { "type": "number", "title": "Feret Angle", "propertyOrder": 14 },
+          "minFeret": { "type": "number", "title": "Min Feret", "propertyOrder": 15 },
+          "aspRatio": { "type": "number", "title": "Aspect Ratio", "propertyOrder": 16 },
+          "roundness": { "type": "number", "title": "Roundness", "propertyOrder": 17 },
+          "convexity": { "type": "number", "title": "Convexity", "propertyOrder": 18 },
+          "rootArea": { "type": "number", "title": "Root Area", "propertyOrder": 19 },
+          "eqdiameter": { "type": "number", "title": "Equivalent Diameter", "propertyOrder": 20 }
+        },
+        "fieldsets": [
+          {
+            "title": "Test Info",
+            "fields": ["Test_number", "Retest", "Initiation_Defect"]
+          },
+          {
+            "title": "Defect Info",
+            "fields": ["Defect_Type", "Initiated_at_Chamfer", "Surface_Subsurface"]
+          },
+          {
+            "title": "Measurements 1",
+            "fields": ["area", "x", "y"]
+          },
+          {
+            "title": "Measurements 2",
+            "fields": ["perimeter", "circ", "feret"]
+          },
+          {
+            "title": "Feret Details",
+            "fields": ["feretX", "feretY", "feretAngle"]
+          },
+          {
+            "title": "Shape & Min Feret",
+            "fields": ["minFeret", "aspRatio", "roundness"]
+          },
+          {
+            "title": "Remaining Properties",
+            "fields": ["convexity", "rootArea", "eqdiameter"]
+          }
+        ]
+      }
+    }
+  }
+}
