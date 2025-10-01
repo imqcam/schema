@@ -9,14 +9,22 @@
       "description": "Lookup for the IGSN of the sample",
       "format": "autocomplete",
       "options": {
+<<<<<<< HEAD
+=======
+        "grid_columns": 12,
+>>>>>>> 645feabcdb3d5aa4458f989c64f3802b79b83afe
         "autocomplete": {
           "search": "search_deposition",
           "renderResult": "render_deposition",
           "getResultValue": "get_deposition_value",
           "autoSelect": true,
           "debounceTime": 500
+<<<<<<< HEAD
         },
         "grid_columns": 12
+=======
+        }
+>>>>>>> 645feabcdb3d5aa4458f989c64f3802b79b83afe
       },
       "propertyOrder": 0
     },
@@ -25,7 +33,11 @@
       "title": "Build ID",
       "description": "Unique identifier for the build",
       "propertyOrder": 1,
+<<<<<<< HEAD
       "options": { "grid_columns": 6 }
+=======
+      "options": { "grid_columns": 12 }
+>>>>>>> 645feabcdb3d5aa4458f989c64f3802b79b83afe
     },
     "tests": {
       "type": "array",
@@ -35,6 +47,7 @@
       "propertyOrder": 2,
       "items": {
         "type": "object",
+<<<<<<< HEAD
         "options": { "fields_layout": "grid" },
         "properties": {
           "Test_number": {
@@ -187,16 +200,54 @@
             "x-formula": "sqrt(area)",
             "template": "{{sqrt area}}",
             "watch": { "area": "arr_items.area" },
+=======
+        "format": "grid-strict",
+        "properties": {
+          "Test_number": { "type": "string", "title": "Test Number", "propertyOrder": 0, "options": { "grid_columns": 4 } },
+          "Retest": { "type": "string", "title": "Retest", "propertyOrder": 1, "options": { "grid_columns": 4 } },
+          "Initiation_Defect": { "type": "string", "title": "Initiation Defect", "propertyOrder": 2, "options": { "grid_columns": 4 } },
+          "Defect_Type": { "type": "string", "title": "Defect Type", "enum": ["LOF", "Keyhole", "Gas_Pore", ""], "propertyOrder": 3, "options": { "grid_columns": 4 } },
+          "Fatigue_Tensile": { "type": "string", "title": "Fatigue Tensile", "enum": ["fatigue", ""], "propertyOrder": 4, "options": { "grid_columns": 4 } },
+          "Initiated_at_Chamfer": { "type": "boolean", "title": "Initiated at Chamfer", "propertyOrder": 5, "options": { "grid_columns": 4 } },
+          "Surface_Subsurface": { "type": "string", "title": "Surface/Subsurface", "enum": ["subsurface", "Surface", ""], "propertyOrder": 6, "options": { "grid_columns": 4 } },
+          "area": { "type": "number", "title": "Area", "propertyOrder": 7, "options": { "grid_columns": 4 } },
+          "x": { "type": "number", "title": "X coordinate", "propertyOrder": 8, "options": { "grid_columns": 4 } },
+          "y": { "type": "number", "title": "Y coordinate", "propertyOrder": 9, "options": { "grid_columns": 4 } },
+          "perimeter": { "type": "number", "title": "Perimeter", "propertyOrder": 10, "options": { "grid_columns": 4 } },
+          "circ": { "type": "number", "title": "Circularity", "propertyOrder": 11, "options": { "grid_columns": 4 } },
+          "feret": { "type": "number", "title": "Feret", "propertyOrder": 12, "options": { "grid_columns": 4 } },
+          "feretX": { "type": "number", "title": "Feret X", "propertyOrder": 13, "options": { "grid_columns": 4 } },
+          "feretY": { "type": "number", "title": "Feret Y", "propertyOrder": 14, "options": { "grid_columns": 4 } },
+          "feretAngle": { "type": "number", "title": "Feret Angle", "propertyOrder": 15, "options": { "grid_columns": 4 } },
+          "minFeret": { "type": "number", "title": "Min Feret", "propertyOrder": 16, "options": { "grid_columns": 4 } },
+          "aspRatio": { "type": "number", "title": "Aspect Ratio", "propertyOrder": 17, "options": { "grid_columns": 4 } },
+          "roundness": { "type": "number", "title": "Roundness", "propertyOrder": 18, "options": { "grid_columns": 4 } },
+          "convexity": { "type": "number", "title": "Convexity", "propertyOrder": 19, "options": { "grid_columns": 4 } },
+          "rootArea": {
+            "type": "number",
+            "title": "Root Area",
+            "description": "Auto-calculated sqrt(area)",
+            "readOnly": true,
+            "template": "{{sqrt area}}",
+            "watch": { "area": "area" },
+>>>>>>> 645feabcdb3d5aa4458f989c64f3802b79b83afe
             "propertyOrder": 20,
             "options": { "grid_columns": 4 }
           },
           "equidiameter": {
             "type": "number",
             "title": "Equidiameter",
+<<<<<<< HEAD
             "description": "sqrt((4*area)/π)",
             "readOnly": true,
             "template": "{{equidiameter area}}",
             "watch": { "area": "arr_items.area" },
+=======
+            "description": "Auto-calculated sqrt((4*area)/π)",
+            "readOnly": true,
+            "template": "{{equidiameter area}}",
+            "watch": { "area": "area" },
+>>>>>>> 645feabcdb3d5aa4458f989c64f3802b79b83afe
             "propertyOrder": 21,
             "options": { "grid_columns": 4 }
           }
