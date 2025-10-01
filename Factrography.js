@@ -21,18 +21,17 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
         }
     }
 };
-
-// Split helper for template auto-filling
 Handlebars.registerHelper('split', function (string, separator, index) {
     try { return string.split(separator)[index].trim(); } catch (e) { return ''; }
 });
 
-// Custom formula helpers
+// sqrt helper for rootArea
 Handlebars.registerHelper("sqrt", function (value) {
   if (typeof value === "number") return Math.sqrt(value).toFixed(2);
   return "";
 });
 
+// equidiameter helper
 Handlebars.registerHelper("equidiameter", function (value) {
   if (typeof value === "number") return Math.sqrt((4 * value) / Math.PI).toFixed(2);
   return "";
