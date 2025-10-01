@@ -25,13 +25,12 @@ Handlebars.registerHelper('split', function (string, separator, index) {
     try { return string.split(separator)[index].trim(); } catch (e) { return ''; }
 });
 
-// sqrt helper for rootArea
+// Custom formula helpers
 Handlebars.registerHelper("sqrt", function (value) {
   if (typeof value === "number") return Math.sqrt(value).toFixed(2);
   return "";
 });
 
-// equidiameter helper
 Handlebars.registerHelper("equidiameter", function (value) {
   if (typeof value === "number") return Math.sqrt((4 * value) / Math.PI).toFixed(2);
   return "";
