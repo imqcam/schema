@@ -33,11 +33,19 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
 
 // Handlebars helpers
 Handlebars.registerHelper('sqrt', function (value) {
-  try { return Math.sqrt(parseFloat(value)).toFixed(2); } 
-  catch (e) { return 0; }
+  try { 
+    return Math.sqrt(parseFloat(value)); // full numeric precision
+  } 
+  catch (e) { 
+    return 0; 
+  }
 });
 
 Handlebars.registerHelper('equidiameter', function (area) {
-  try { return Math.sqrt((4 * parseFloat(area)) / Math.PI).toFixed(2); }
-  catch (e) { return 0; }
+  try { 
+    return Math.sqrt((4 * parseFloat(area)) / Math.PI); // full numeric precision
+  }
+  catch (e) { 
+    return 0; 
+  }
 });
