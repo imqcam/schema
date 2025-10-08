@@ -32,13 +32,13 @@
     "tests": {
       "type": "array",
       "title": "Tests",
-      "id": "tests",
       "description": "List of test results",
       "format": "tabs",
       "propertyOrder": 2,
       "items": {
         "type": "object",
         "format": "grid-strict",
+        "id": "arr_items",
         "properties": {
           "Test_number": {
             "type": "string",
@@ -219,9 +219,9 @@
             "type": "number",
             "title": "Root Area",
             "readOnly": true,
-            "template": "{{sqrt watch.area}}",
+            "template": "{{sqrt area}}",
             "watch": {
-              "area": "area"
+              "area": "arr_items.area"
             },
             "propertyOrder": 20,
             "options": {
@@ -232,9 +232,9 @@
             "type": "number",
             "title": "Equidiameter",
             "readOnly": true,
-            "template": "{{equidiameter watch.area}}",
+            "template": "{{equidiameter area}}",
             "watch": {
-              "area": "area"
+              "area": "arr_items.area"
             },
             "propertyOrder": 21,
             "options": {
