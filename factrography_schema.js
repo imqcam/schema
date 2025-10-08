@@ -32,10 +32,10 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
 };
 
 // Handlebars helpers
-Handlebars.registerHelper('sqrt', function (value) {
+Handlebars.registerHelper('sqrt', function (area) {
   try { 
-     console.log(value, "hi");
-     const num = parseFloat(value);
+     console.log(area, "Area");
+    const num = parseFloat(area);
     //return Math.sqrt(parseFloat(num).toFixed(2)); // full numeric precision
     return Number(Math.sqrt(num).toFixed(2));
   } 
