@@ -19,36 +19,6 @@
       },
       "propertyOrder": 0
     },
-    "depositionId": {
-      "type": "string",
-      "title": "IGSN ID",
-      "description": "Unique identifier for the deposition",
-      "readOnly": true,
-      "propertyOrder": 999,
-      "watch": {
-        "igsn": "lookup"
-      },
-      "template": "{{split igsn ' - ' 1}}",
-      "options": {
-        "grid_columns": 12,
-        "hidden": true
-      }
-    },
-    "buildId": {
-      "type": "string",
-      "title": "Build ID",
-      "description": "Unique identifier for the build",
-      "readOnly": true,
-      "format": "text",
-      "propertyOrder": 1,
-      "watch": {
-        "igsn": "lookup"
-      },
-      "template": "{{split igsn ' - ' 2}}",
-      "options": {
-        "grid_columns": 12
-      }
-    },
     "tests": {
       "type": "array",
       "title": "Tests",
