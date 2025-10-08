@@ -34,9 +34,10 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
 // Handlebars helpers
 Handlebars.registerHelper('sqrt', function (value) {
   try { 
-     console.log(value);
+     console.log(value, "hi");
      const num = parseFloat(value);
-    return Math.sqrt(parseFloat(num)); // full numeric precision
+    //return Math.sqrt(parseFloat(num).toFixed(2)); // full numeric precision
+    return Number(Math.sqrt(num).toFixed(2));
   } 
   catch (e) { 
     return 0;
