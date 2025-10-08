@@ -1,6 +1,6 @@
 {
   "title": "Factrography",
-  "description": "Schema for factrography test data",
+  "description": "Schema for Factrography test data",
   "type": "object",
   "properties": {
     "lookup": {
