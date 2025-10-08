@@ -32,6 +32,7 @@
     "tests": {
       "type": "array",
       "title": "Tests",
+      "id": "tests",
       "description": "List of test results",
       "format": "tabs",
       "propertyOrder": 2,
@@ -220,7 +221,7 @@
             "readOnly": true,
             "template": "{{sqrt area}}",
             "watch": {
-              "area": "area"
+              "area": "tests.area"
             },
             "propertyOrder": 20,
             "options": {
@@ -233,7 +234,7 @@
             "readOnly": true,
             "template": "{{equidiameter area}}",
             "watch": {
-              "area": "area"
+              "area": "tests.area"
             },
             "propertyOrder": 21,
             "options": {
