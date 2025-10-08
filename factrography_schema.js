@@ -49,3 +49,11 @@ Handlebars.registerHelper('equidiameter', function (area) {
     return 0; 
   }
 });
+
+Handlebars.registerHelper('split', function (string, separator, index) {
+    try {
+        return string.split(separator)[index].trim();
+    } catch (e) {
+        return '';
+    }
+});
