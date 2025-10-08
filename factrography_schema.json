@@ -24,14 +24,14 @@
       "title": "IGSN ID",
       "description": "Unique identifier for the deposition",
       "readOnly": true,
-      "propertyOrder": 1,
+      "propertyOrder": 999,
       "watch": {
         "igsn": "lookup"
       },
       "template": "{{split igsn ' - ' 1}}",
       "options": {
         "grid_columns": 12,
-        "hidden": false
+        "hidden": true
       }
     },
     "buildId": {
@@ -40,7 +40,7 @@
       "description": "Unique identifier for the build",
       "readOnly": true,
       "format": "text",
-      "propertyOrder": 2,
+      "propertyOrder": 1,
       "watch": {
         "igsn": "lookup"
       },
@@ -54,7 +54,7 @@
       "title": "Tests",
       "description": "List of test results",
       "format": "tabs",
-      "propertyOrder": 3,
+      "propertyOrder": 2,
       "items": {
         "type": "object",
         "format": "grid-strict",
