@@ -32,12 +32,10 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
 };
 
 // Handlebars helpers
-Handlebars.registerHelper('sqrt', function (value) {
+Handlebars.registerHelper('sqrt', function (area) {
   try { 
-     console.log(value, "hi");
-     const num = parseFloat(value);
-    //return Math.sqrt(parseFloat(num).toFixed(2)); // full numeric precision
-    return Number(Math.sqrt(num).toFixed(2));
+     console.log(area);
+    return Number(Math.sqrt(area));
   } 
   catch (e) { 
     return 0;
@@ -47,7 +45,7 @@ Handlebars.registerHelper('sqrt', function (value) {
 Handlebars.registerHelper('equidiameter', function (area) {
   try { 
     console.log(area);
-    return Math.sqrt((4 * parseFloat(area)) / Math.PI); // full numeric precision
+    return Math.sqrt((4 * parseFloat()) / Math.PI); // full numeric precision
   }
   catch (e) { 
     return 0; 

@@ -219,9 +219,9 @@
             "type": "number",
             "title": "Root Area",
             "readOnly": true,
-            "template": "{{sqrt area}}",
+            "template": "{{sqrt watch.area}}",
             "watch": {
-              "area": "tests.area"
+              "area": "area"
             },
             "propertyOrder": 20,
             "options": {
@@ -232,9 +232,9 @@
             "type": "number",
             "title": "Equidiameter",
             "readOnly": true,
-            "template": "{{equidiameter area}}",
+            "template": "{{equidiameter watch.area}}",
             "watch": {
-              "area": "tests.area"
+              "area": "area"
             },
             "propertyOrder": 21,
             "options": {
