@@ -55,10 +55,12 @@
       "description": "List of test results",
       "format": "tabs",
       "propertyOrder": 2,
+      "options": {
+                "infoText": "📏 Note: All units are in µm (micrometers)."
+        },
       "items": {
         "type": "object",
         "format": "grid-strict",
-        "id": "arr_items",
         "properties": {
           "Test_number": {
             "type": "string",
@@ -102,8 +104,8 @@
             "type": "string",
             "title": "Fatigue Tensile",
             "enum": [
-              "fatigue",
-              ""
+              "fatigue", "tensile",
+              ""  
             ],
             "propertyOrder": 4,
             "options": {
