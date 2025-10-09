@@ -34,7 +34,7 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
 // Handlebars helpers
 Handlebars.registerHelper('sqrt', function (area) {
   try { 
-    return Number(Math.sqrt(area).toFixed(8));
+    return Number(Math.sqrt(area));
   } 
   catch (e) { 
     return 0;
