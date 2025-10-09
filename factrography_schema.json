@@ -55,6 +55,7 @@
       "description": "Note: All values in this form are in µm (micrometers).",
       "format": "tabs",
       "propertyOrder": 2,
+      "minItems": 1,
       "items": {
         "type": "object",
         "format": "grid-strict",
@@ -266,5 +267,5 @@
       }
     }
   },
-    "required": ["lookup", "depositionId", "buildId", "tests"]
+  "required": ["lookup", "depositionId", "buildId", "tests"]
 }
