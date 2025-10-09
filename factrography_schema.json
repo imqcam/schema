@@ -61,7 +61,7 @@
         "format": "grid-strict",
         "id": "arr_items",
         "properties": {
-          "Test_number": {
+          "testNumber": {
             "type": "string",
             "title": "Test Number",
             "propertyOrder": 0,
@@ -263,9 +263,8 @@
             }
           }
         },
-        "required": ["Test_number"]
+        "required": ["testNumber"]
       }
     }
-  },
-  "required": ["lookup", "depositionId", "buildId", "tests"]
+  }
 }
