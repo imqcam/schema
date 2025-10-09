@@ -261,8 +261,10 @@
               "grid_columns": 4
             }
           }
-        }
+        },
+        "required": ["Test_number"]
       }
     }
-  }
+  },
+    "required": ["lookup", "depositionId", "buildId", "tests"]
 }
