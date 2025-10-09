@@ -1,5 +1,5 @@
 {
-  "title": "Factrography",
+  "title": "Factrography Test Data Schema",
   "description": "Schema for Factrography test data",
   "type": "object",
   "properties": {
