@@ -53,11 +53,9 @@
       "type": "array",
       "title": "Tests",
       "description": "List of test results",
+      "description": "Note: All values in this form are in µm (micrometers).",
       "format": "tabs",
       "propertyOrder": 2,
-      "options": {
-                "infoText": "📏 Note: All units are in µm (micrometers)."
-        },
       "items": {
         "type": "object",
         "format": "grid-strict",
