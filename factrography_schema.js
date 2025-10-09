@@ -42,11 +42,12 @@ Handlebars.registerHelper('sqrt', function (area) {
 });
 
 Handlebars.registerHelper('equidiameter', function (area) {
-  try { 
-    return Number(Math.sqrt((4 * parseFloat(area)) / Math.PI).toFixed(8)); 
-  }
-  catch (e) { 
-    return 0; 
+  try {
+    const val = parseFloat(area);
+    if (isNaN(val)) return 0; // return 0 if area is invalid
+    return Number(Math.sqrt((4 * val) / Math.PI).toFixed(8));
+  } catch (e) {
+    return 0;
   }
 });
 
