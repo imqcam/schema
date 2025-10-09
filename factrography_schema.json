@@ -52,13 +52,13 @@
     "tests": {
       "type": "array",
       "title": "Tests",
-      "description": "List of test results",
       "description": "Note: All values in this form are in µm (micrometers).",
       "format": "tabs",
       "propertyOrder": 2,
       "items": {
         "type": "object",
         "format": "grid-strict",
+        "id": "arr_items",
         "properties": {
           "Test_number": {
             "type": "string",
