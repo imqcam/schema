@@ -106,7 +106,7 @@
             }
           },
           "Initiated_at_Chamfer": {
-            "type": "boolean",
+            "type": "string",
             "title": "Initiated at Chamfer",
             "propertyOrder": 4,
             "enum": ["Yes","No",""],
