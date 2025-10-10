@@ -1,0 +1,264 @@
+{
+  "title": "Factrography Test Data Schema",
+  "description": "Schema for Factrography test data",
+  "type": "object",
+  "properties": {
+    "lookup": {
+      "type": "string",
+      "title": "IGSN",
+      "description": "Lookup for the IGSN of the sample",
+      "format": "autocomplete",
+      "options": {
+        "autocomplete": {
+          "search": "search_deposition",
+          "renderResult": "render_deposition",
+          "getResultValue": "get_deposition_value",
+          "autoSelect": true,
+          "debounceTime": 500
+        }
+      },
+      "propertyOrder": 0
+    },
+    "depositionId": {
+      "type": "string",
+      "title": "IGSN ID",
+      "description": "Unique identifier for the deposition",
+      "readOnly": true,
+      "propertyOrder": 999,
+      "watch": {
+        "igsn": "lookup"
+      },
+      "template": "{{split igsn ' - ' 1}}",
+      "options": {
+        "grid_columns": 12,
+        "hidden": true
+      }
+    },
+    "buildId": {
+      "type": "string",
+      "title": "Build ID",
+      "description": "Unique identifier for the build",
+      "readOnly": true,
+      "format": "text",
+      "propertyOrder": 1,
+      "watch": {
+        "igsn": "lookup"
+      },
+      "template": "{{split igsn ' - ' 2}}",
+      "options": {
+        "grid_columns": 12
+      }
+    },
+    "tests": {
+      "type": "array",
+      "title": "Tests",
+      "description": "Note: All values in this form are in µm (micrometers).",
+      "format": "tabs",
+      "propertyOrder": 2,
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "format": "grid-strict",
+        "id": "arr_items",
+        "required": ["testNumber"],
+        "properties": {
+          "testNumber": {
+            "type": "integer",
+            "title": "Test Number",
+            "propertyOrder": 0,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "Retest": {
+            "type": "integer",
+            "title": "Retest",
+            "propertyOrder": 1,
+            "enum": [ 0,1],
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "Defect_Type": {
+            "type": "string",
+            "title": "Defect Type",
+            "enum": [
+              "LOF",
+              "Keyhole",
+              "Gas_Pore",
+              ""
+            ],
+            "propertyOrder": 2,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "Fatigue_Tensile": {
+            "type": "string",
+            "title": "Fatigue Tensile",
+            "enum": [
+              "fatigue", "tensile",
+              ""  
+            ],
+            "propertyOrder": 3,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "Initiated_at_Chamfer": {
+            "type": "string",
+            "title": "Initiated at Chamfer",
+            "propertyOrder": 4,
+            "enum": ["Yes","No",""],
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "Surface_Subsurface": {
+            "type": "string",
+            "title": "Surface/Subsurface",
+            "enum": [
+              "subsurface",
+              "Surface",
+              ""
+            ],
+            "propertyOrder": 5,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "area": {
+            "type": "number",
+            "title": "Area",
+            "propertyOrder": 6,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "x": {
+            "type": "number",
+            "title": "X coordinate",
+            "propertyOrder": 7,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "y": {
+            "type": "number",
+            "title": "Y coordinate",
+            "propertyOrder": 8,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "perimeter": {
+            "type": "number",
+            "title": "Perimeter",
+            "propertyOrder": 9,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "circ": {
+            "type": "number",
+            "title": "Circularity",
+            "propertyOrder": 10,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "feret": {
+            "type": "number",
+            "title": "Feret",
+            "propertyOrder": 11,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "feretX": {
+            "type": "number",
+            "title": "Feret X",
+            "propertyOrder": 12,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "feretY": {
+            "type": "number",
+            "title": "Feret Y",
+            "propertyOrder": 13,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "feretAngle": {
+            "type": "number",
+            "title": "Feret Angle",
+            "propertyOrder": 14,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "minFeret": {
+            "type": "number",
+            "title": "Min Feret",
+            "propertyOrder": 15,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "aspRatio": {
+            "type": "number",
+            "title": "Aspect Ratio",
+            "propertyOrder": 16,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "roundness": {
+            "type": "number",
+            "title": "Roundness",
+            "propertyOrder": 17,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "convexity": {
+            "type": "number",
+            "title": "Convexity",
+            "propertyOrder": 18,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "rootArea": {
+            "type": "number",
+            "title": "Root Area",
+            "readOnly": true,
+            "template": "{{sqrt area}}",
+            "watch": {
+              "area": "arr_items.area"
+            },
+            "propertyOrder": 19,
+            "options": {
+              "grid_columns": 4
+            }
+          },
+          "equidiameter": {
+            "type": "number",
+            "title": "Equidiameter",
+            "readOnly": true,
+            "template": "{{equidiameter area}}",
+            "watch": {
+              "area": "arr_items.area"
+            },
+            "propertyOrder": 20,
+            "options": {
+              "grid_columns": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}
