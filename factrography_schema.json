@@ -83,6 +83,11 @@
             "type": "string",
             "title": "Initiation Defect",
             "propertyOrder": 2,
+            "enum": [
+              "Yes",
+              "No",
+              ""
+            ],
             "options": {
               "grid_columns": 4
             }
