@@ -79,19 +79,6 @@
               "grid_columns": 4
             }
           },
-          "Initiation_Defect": {
-            "type": "string",
-            "title": "Initiation Defect",
-            "propertyOrder": 2,
-            "enum": [
-              "Yes",
-              "No",
-              ""
-            ],
-            "options": {
-              "grid_columns": 4
-            }
-          },
           "Defect_Type": {
             "type": "string",
             "title": "Defect Type",
@@ -101,7 +88,7 @@
               "Gas_Pore",
               ""
             ],
-            "propertyOrder": 3,
+            "propertyOrder": 2,
             "options": {
               "grid_columns": 4
             }
@@ -113,7 +100,7 @@
               "fatigue", "tensile",
               ""  
             ],
-            "propertyOrder": 4,
+            "propertyOrder": 3,
             "options": {
               "grid_columns": 4
             }
@@ -121,7 +108,8 @@
           "Initiated_at_Chamfer": {
             "type": "boolean",
             "title": "Initiated at Chamfer",
-            "propertyOrder": 5,
+            "propertyOrder": 4,
+            "enum": ["Yes","No",""],
             "options": {
               "grid_columns": 4
             }
@@ -134,7 +122,7 @@
               "Surface",
               ""
             ],
-            "propertyOrder": 6,
+            "propertyOrder": 5,
             "options": {
               "grid_columns": 4
             }
@@ -142,7 +130,7 @@
           "area": {
             "type": "number",
             "title": "Area",
-            "propertyOrder": 7,
+            "propertyOrder": 6,
             "options": {
               "grid_columns": 4
             }
@@ -150,7 +138,7 @@
           "x": {
             "type": "number",
             "title": "X coordinate",
-            "propertyOrder": 8,
+            "propertyOrder": 7,
             "options": {
               "grid_columns": 4
             }
@@ -158,7 +146,7 @@
           "y": {
             "type": "number",
             "title": "Y coordinate",
-            "propertyOrder": 9,
+            "propertyOrder": 8,
             "options": {
               "grid_columns": 4
             }
@@ -166,7 +154,7 @@
           "perimeter": {
             "type": "number",
             "title": "Perimeter",
-            "propertyOrder": 10,
+            "propertyOrder": 9,
             "options": {
               "grid_columns": 4
             }
@@ -174,7 +162,7 @@
           "circ": {
             "type": "number",
             "title": "Circularity",
-            "propertyOrder": 11,
+            "propertyOrder": 10,
             "options": {
               "grid_columns": 4
             }
@@ -182,7 +170,7 @@
           "feret": {
             "type": "number",
             "title": "Feret",
-            "propertyOrder": 12,
+            "propertyOrder": 11,
             "options": {
               "grid_columns": 4
             }
@@ -190,7 +178,7 @@
           "feretX": {
             "type": "number",
             "title": "Feret X",
-            "propertyOrder": 13,
+            "propertyOrder": 12,
             "options": {
               "grid_columns": 4
             }
@@ -198,7 +186,7 @@
           "feretY": {
             "type": "number",
             "title": "Feret Y",
-            "propertyOrder": 14,
+            "propertyOrder": 13,
             "options": {
               "grid_columns": 4
             }
@@ -206,7 +194,7 @@
           "feretAngle": {
             "type": "number",
             "title": "Feret Angle",
-            "propertyOrder": 15,
+            "propertyOrder": 14,
             "options": {
               "grid_columns": 4
             }
@@ -214,7 +202,7 @@
           "minFeret": {
             "type": "number",
             "title": "Min Feret",
-            "propertyOrder": 16,
+            "propertyOrder": 15,
             "options": {
               "grid_columns": 4
             }
@@ -222,7 +210,7 @@
           "aspRatio": {
             "type": "number",
             "title": "Aspect Ratio",
-            "propertyOrder": 17,
+            "propertyOrder": 16,
             "options": {
               "grid_columns": 4
             }
@@ -230,7 +218,7 @@
           "roundness": {
             "type": "number",
             "title": "Roundness",
-            "propertyOrder": 18,
+            "propertyOrder": 17,
             "options": {
               "grid_columns": 4
             }
@@ -238,7 +226,7 @@
           "convexity": {
             "type": "number",
             "title": "Convexity",
-            "propertyOrder": 19,
+            "propertyOrder": 18,
             "options": {
               "grid_columns": 4
             }
@@ -251,7 +239,7 @@
             "watch": {
               "area": "arr_items.area"
             },
-            "propertyOrder": 20,
+            "propertyOrder": 19,
             "options": {
               "grid_columns": 4
             }
@@ -264,7 +252,7 @@
             "watch": {
               "area": "arr_items.area"
             },
-            "propertyOrder": 21,
+            "propertyOrder": 20,
             "options": {
               "grid_columns": 4
             }
