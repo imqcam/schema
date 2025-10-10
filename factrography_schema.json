@@ -60,9 +60,10 @@
         "type": "object",
         "format": "grid-strict",
         "id": "arr_items",
+        "required": ["testNumber"],
         "properties": {
           "testNumber": {
-            "type": "string",
+            "type": "number",
             "title": "Test Number",
             "propertyOrder": 0,
             "options": {
@@ -70,7 +71,7 @@
             }
           },
           "Retest": {
-            "type": "string",
+            "type": "boolean",
             "title": "Retest",
             "propertyOrder": 1,
             "options": {
@@ -262,8 +263,7 @@
               "grid_columns": 4
             }
           }
-        },
-        "required": ["testNumber"]
+        }
       }
     }
   }
