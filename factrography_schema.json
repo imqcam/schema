@@ -63,7 +63,7 @@
         "required": ["testNumber"],
         "properties": {
           "testNumber": {
-            "type": "number",
+            "type": "integer",
             "title": "Test Number",
             "propertyOrder": 0,
             "options": {
@@ -71,9 +71,10 @@
             }
           },
           "Retest": {
-            "type": "boolean",
+            "type": "integer",
             "title": "Retest",
             "propertyOrder": 1,
+            "enum": [ 0,1],
             "options": {
               "grid_columns": 4
             }
