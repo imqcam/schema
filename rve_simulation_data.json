@@ -267,7 +267,7 @@
                         "propertyOrder": 10,
                         "items": {
                             "type": "number"
-                        },
+                        }
                     },
                     "shear modulus": {
                         "type": "number",
