@@ -424,7 +424,8 @@
                         "propertyOrder": 32
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "Lath properties file": {
             "type": "string",
