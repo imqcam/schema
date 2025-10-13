@@ -232,7 +232,7 @@
                         "type": "number",
                         "propertyOrder": 3
                     },
-                    "Temperature for elastic constants": {
+                    "temperature for elastic constants": {
                         "type": "number",
                         "propertyOrder": 4
                     },
@@ -245,7 +245,7 @@
                         "minItems": 9,
                         "maxItems": 9
                     },
-                    "Reduction slope for elastic constants": {
+                    "reduction slope for elastic constants": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -254,11 +254,11 @@
                         "minItems": 9,
                         "maxItems": 9
                     },
-                    "Mass density": {
+                    "mass density": {
                         "type": "number",
                         "propertyOrder": 7
                     },
-                    "Specific heat constant": {
+                    "specific heat constant": {
                         "type": "number",
                         "propertyOrder": 8
                     },
@@ -266,7 +266,7 @@
                         "type": "number",
                         "propertyOrder": 9
                     },
-                    "Thermal expansion coefficient": {
+                    "thermal expansion coefficient": {
                         "type": "array",
                         "propertyOrder": 10,
                         "items": {
@@ -275,7 +275,7 @@
                         "minItems": 3,
                         "maxItems": 3
                     },
-                    "Shear modulus": {
+                    "shear modulus": {
                         "type": "number",
                         "propertyOrder": 11
                     },
@@ -304,7 +304,7 @@
                         },
                         "propertyOrder": 15
                     },
-                    "Thermal GND resistance constant": {
+                    "thermal GND resistance constant": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -318,21 +318,21 @@
                         },
                         "propertyOrder": 17
                     },
-                    "Norm Burgers vector": {
+                    "norm Burgers vector": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 18
                     },
-                    "Reference slip rate": {
+                    "reference slip rate": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 19
                     },
-                    "Rate sensitivity exponent": {
+                    "rate sensitivity exponent": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -374,7 +374,7 @@
                         },
                         "propertyOrder": 25
                     },
-                    "Thermal hardening h": {
+                    "thermal hardening h": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -388,7 +388,7 @@
                         },
                         "propertyOrder": 27
                     },
-                    "Thermal saturation stress": {
+                    "thermal saturation stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
