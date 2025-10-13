@@ -248,7 +248,7 @@
                         "items": {
                             "type": "number"
                         },
-                        "propertyOrder": 6,
+                        "propertyOrder": 6
                     },
                     "mass density": {
                         "type": "number",
