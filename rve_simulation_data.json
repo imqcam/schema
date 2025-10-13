@@ -54,15 +54,7 @@
                     "description": "Spread of C/A aspect ratio",
                     "propertyOrder": 6
                 }
-            },
-            "required": [
-                "Mean equivalent radius (μm)",
-                "Standard deviation of equivalent radius (μm)",
-                "Mean aspect ratio B to A",
-                "Standard deviation of aspect ratio B to A",
-                "Mean aspect ratio C to A",
-                "Standard deviation of aspect ratio C to A"
-            ]
+            }
         },
         "Macroscopic loading configuration": {
             "type": "object",
@@ -114,22 +106,9 @@
                             "propertyOrder": 3
                         }
                     },
-                    "propertyOrder": 6,
-                    "required": [
-                        "X",
-                        "Y",
-                        "Z"
-                    ]
+                    "propertyOrder": 6
                 }
-            },
-            "required": [
-                "Loading type",
-                "Number of direction components",
-                "Strain rate",
-                "Total simulation time",
-                "Tension applied",
-                "Loading direction vector"
-            ]
+            }
         },
         "Boundary conditions": {
             "type": "object",
@@ -158,11 +137,7 @@
                                 "description": "Type of the boundary condition (e.g., steady, transient)",
                                 "propertyOrder": 2
                             }
-                        },
-                        "required": [
-                            "ID",
-                            "Type"
-                        ]
+                        }
                     }
                 },
                 "Number of time points": {
@@ -196,16 +171,7 @@
                     "description": "Prescribed boundary condition values at each time step",
                     "propertyOrder": 7
                 }
-            },
-            "required": [
-                "Number of boundary conditions",
-                "Conditions",
-                "Number of time points",
-                "Number of cycles",
-                "Warmup time (s)",
-                "Time steps (s)",
-                "Values"
-            ]
+            }
         },
         "Material properties": {
             "type": "array",
@@ -534,14 +500,5 @@
             "propertyOrder": 20
         }
     },
-    "required": [
-        "Alpha variant volume fractions",
-        "Radial distances file",
-        "Radial correlations file",
-        "Shape parameter statistics",
-        "Macroscopic loading configuration",
-        "Boundary conditions",
-        "Lath properties file"
-    ],
     "additionalProperties": false
 }
