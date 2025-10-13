@@ -422,14 +422,6 @@
                             "type": "number"
                         },
                         "propertyOrder": 32
-                    },
-                    "Interaction matrix": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "description": "Flattened 2D interaction matrix, typically 12x12 or larger.",
-                        "propertyOrder": 33
                     }
                 }
             }
