@@ -242,8 +242,6 @@
                         "items": {
                             "type": "number"
                         },
-                        "minItems": 9,
-                        "maxItems": 9
                     },
                     "reduction slope for elastic constants": {
                         "type": "array",
@@ -251,8 +249,6 @@
                             "type": "number"
                         },
                         "propertyOrder": 6,
-                        "minItems": 9,
-                        "maxItems": 9
                     },
                     "mass density": {
                         "type": "number",
@@ -272,8 +268,6 @@
                         "items": {
                             "type": "number"
                         },
-                        "minItems": 3,
-                        "maxItems": 3
                     },
                     "shear modulus": {
                         "type": "number",
@@ -422,7 +416,35 @@
                             "type": "number"
                         },
                         "propertyOrder": 32
-                    }
+                    },
+                    "athermal n exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "propertyOrder": 33
+                    },
+                    "thermal n exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "propertyOrder": 34
+                    },
+                    "athermal r exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "propertyOrder": 35
+                    },
+                    "thermal r exponent": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "propertyOrder": 36
+                    },
                 }
             },
             "additionalProperties": false
