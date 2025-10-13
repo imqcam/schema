@@ -241,7 +241,7 @@
                         "propertyOrder": 5,
                         "items": {
                             "type": "number"
-                        },
+                        }
                     },
                     "reduction slope for elastic constants": {
                         "type": "array",
