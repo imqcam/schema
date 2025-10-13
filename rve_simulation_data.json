@@ -444,7 +444,7 @@
                             "type": "number"
                         },
                         "propertyOrder": 36
-                    },
+                    }
                 }
             },
             "additionalProperties": false
