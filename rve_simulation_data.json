@@ -224,7 +224,7 @@
                         "description": "Material name (e.g., BasicPlPhEnhanced)",
                         "propertyOrder": 1
                     },
-                    "Crystal type": {
+                    "crystal type": {
                         "type": "integer",
                         "propertyOrder": 2
                     },
@@ -236,7 +236,7 @@
                         "type": "number",
                         "propertyOrder": 4
                     },
-                    "Elastic constants": {
+                    "elastic constants": {
                         "type": "array",
                         "propertyOrder": 5,
                         "items": {
@@ -262,7 +262,7 @@
                         "type": "number",
                         "propertyOrder": 8
                     },
-                    "Coefficient for adiabatic heating": {
+                    "coefficient for adiabatic heating": {
                         "type": "number",
                         "propertyOrder": 9
                     },
@@ -283,21 +283,21 @@
                         "type": "number",
                         "propertyOrder": 12
                     },
-                    "Initial athermal SSD resistance": {
+                    "initial athermal SSD resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 13
                     },
-                    "Initial thermal SSD resistance": {
+                    "initial thermal SSD resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 14
                     },
-                    "Athermal GND resistance constant": {
+                    "athermal GND resistance constant": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -311,7 +311,7 @@
                         },
                         "propertyOrder": 16
                     },
-                    "Activation energy": {
+                    "activation energy": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -367,7 +367,7 @@
                         },
                         "propertyOrder": 24
                     },
-                    "Athermal hardening h": {
+                    "athermal hardening h": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -381,7 +381,7 @@
                         },
                         "propertyOrder": 26
                     },
-                    "Athermal saturation stress": {
+                    "athermal saturation stress": {
                         "type": "array",
                         "items": {
                             "type": "number"
@@ -395,28 +395,28 @@
                         },
                         "propertyOrder": 28
                     },
-                    "Dislocation density-independent thermal resistance": {
+                    "dislocation density-independent thermal resistance": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 29
                     },
-                    "Backstress constant C": {
+                    "backstress constant C": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 30
                     },
-                    "Backstress constant D": {
+                    "backstress constant D": {
                         "type": "array",
                         "items": {
                             "type": "number"
                         },
                         "propertyOrder": 31
                     },
-                    "Grain boundary barrier strength": {
+                    "grain boundary barrier strength": {
                         "type": "array",
                         "items": {
                             "type": "number"
