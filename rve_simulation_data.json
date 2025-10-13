@@ -431,7 +431,7 @@
                         "description": "Flattened 2D interaction matrix, typically 12x12 or larger.",
                         "propertyOrder": 33
                     }
-                },
+                }
             }
         },
         "Lath properties file": {
