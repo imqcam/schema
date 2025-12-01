@@ -1,8 +1,38 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "NASA Ti64 30um Layers Data",
-  "description": "Metadata associated with experimental results from NASA Ti64 30um layers study",
+  "description": "Metadata associated with experimental results from NASA Ti64 30um layers study (POC: Brendan Croom)",
   "type": "object",
+  "definitions": {
+    "laserSpeed": {
+      "type": "number",
+      "title": "Laser Speed",
+      "description": "Laser speed in mm/s",
+      "minimum": 0,
+      "unit": "mm/s"
+    },
+    "hatchSpacing": {
+      "type": "number",
+      "title": "Hatch Spacing",
+      "description": "Hatch spacing in mm",
+      "minimum": 0,
+      "unit": "mm"
+    },
+    "laserPower": {
+      "type": "number",
+      "title": "Laser Power",
+      "description": "Laser Power in Watts",
+      "minimum": 0,
+      "unit": "W"
+    },
+    "layerThickness": {
+      "type": "number",
+      "title": "Layer Thickness",
+      "description": "Layer thickness in mm",
+      "minimum": 0,
+      "unit": "mm"
+    }
+  },
   "properties": {
     "Build_ID": {
       "title": "Build ID",
@@ -49,11 +79,11 @@
       "propertyOrder": 3
     },
     "Build_Date": {
-  "title": "Build Date",
-  "description": "Estimated build date of the sample",
-  "type": "string",
-  "format": "date",
-  "propertyOrder": 4
+      "title": "Build Date",
+      "description": "Estimated build date of the sample",
+      "type": "string",
+      "format": "date",
+      "propertyOrder": 4
     },
     "Location": {
       "title": "Build Location",
@@ -123,28 +153,20 @@
       "type": "number",
       "propertyOrder": 13
     },
-    "Hatch_mm": {
-      "title": "Hatch Spacing",
-      "description": "Hatch spacing in mm",
-      "type": "number",
+    "HatchSpacing": {
+      "$ref": "#/definitions/hatchSpacing",
       "propertyOrder": 14
     },
-    "Speed_mm_per_s": {
-      "title": "Speed",
-      "description": "Laser speed in mm/s",
-      "type": "number",
+    "laserSpeed": {
+      "$ref": "#/definitions/laserSpeed",
       "propertyOrder": 15
     },
-    "Power_W": {
-      "title": "Power",
-      "description": "Laser Power in Watts",
-      "type": "number",
+    "laserPower": {
+      "$ref": "#/definitions/laserPower",
       "propertyOrder": 16
     },
-    "Layer_mm": {
-      "title": "Layer Thickness",
-      "description": "Layer thickness in mm",
-      "type": "number",
+    "layerThickness": {
+      "$ref": "#/definitions/layerThickness",
       "propertyOrder": 17
     },
     "VED_J_per_mm3": {
@@ -187,10 +209,10 @@
     "Yield_Strength_MPa",
     "Peak_Stress_MPa",
     "Elongation_Percent",
-    "Hatch_mm",
-    "Speed_mm_per_s",
-    "Power_W",
-    "Layer_mm",
+    "HatchSpacing",
+    "laserSpeed",
+    "laserPower",
+    "layerThickness",
     "VED_J_per_mm3",
     "Porosity_percent_infill",
     "Percent_Porosity_Contour",
