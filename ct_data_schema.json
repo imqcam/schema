@@ -6,7 +6,7 @@
   "properties": {
     "Build_ID": {
       "title": "Build ID",
-      "description": "Unique identifier for the build, formatted as DATE_LOC_MAT_GEOM_PART_[###]",
+      "description": "BLD-1: Unique identifier for the build, formatted as DATE_LOC_MAT_GEOM_PART_[###]",
       "type": "string",
       "format": "custom",
       "template": "{{Parameter_Label}}_{{Build_Date}}_{{Location}}_{{Material}}_{{Geometry}}",
@@ -125,25 +125,25 @@
     },
     "Hatch_mm": {
       "title": "Hatch Spacing",
-      "description": "Hatch spacing in mm",
+      "description": "PRC-3-2-6: Hatch spacing in mm",
       "type": "number",
       "propertyOrder": 14
     },
     "Speed_mm_per_s": {
       "title": "Speed",
-      "description": "Laser speed in mm/s",
+      "description": "PRC-3-2-9: Laser speed in mm/s",
       "type": "number",
       "propertyOrder": 15
     },
     "Power_W": {
       "title": "Power",
-      "description": "Laser Power in Watts",
+      "description": "PRC-3-2-3:Laser Power in Watts",
       "type": "number",
       "propertyOrder": 16
     },
     "Layer_mm": {
       "title": "Layer Thickness",
-      "description": "Layer thickness in mm",
+      "description": "PRC-3-2-1:Layer thickness in mm",
       "type": "number",
       "propertyOrder": 17
     },

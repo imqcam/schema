@@ -37,7 +37,7 @@
     "buildId": {
       "type": "string",
       "title": "Build ID",
-      "description": "Unique identifier for the build",
+      "description": "BLD-1: Unique identifier for the build",
       "readOnly": true,
       "format": "text",
       "propertyOrder": 1,
@@ -65,16 +65,19 @@
     },
     "scanPower": {
       "type": "number",
+      "description": "PRC-3-2-3",
       "title": "Scan Power (W)",
       "propertyOrder": 4
     },
     "scanVelocity": {
       "type": "number",
+      "description": " PRC-3-2-9",
       "title": "Scan velocity (mm/s)",
       "propertyOrder": 5
     },
     "hatchSpacing": {
       "type": "number",
+      "description": "PRC-3-2-6",
       "title": "Hatch Spacing (mm)",
       "propertyOrder": 6
     }
