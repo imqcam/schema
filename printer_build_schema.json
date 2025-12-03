@@ -296,23 +296,27 @@
         "laserPower": {
           "title": "Laser Power (W)",
           "type": "number",
+          "description": "PRC-3-2-3",
           "minimum": 0,
           "maximum": 370
         },
         "laserVelocity": {
           "title": "Laser Velocity (mm/s)",
           "type": "number",
+          "description": "PRC-3-2-9",
           "minimum": 0,
           "maximum": 10000
         },
         "hatchSpacing": {
           "title": "Hatch Spacing (µm)",
           "type": "number",
+          "description": "PRC-3-2-6",
           "minimum": 0,
           "maximum": 300
         },
         "layerThickness": {
           "title": "Layer Thickness (µm)",
+          "description": "PRC-3-2-1",
           "type": "number",
           "minimum": 0,
           "maximum": 100
@@ -364,6 +368,7 @@
         "targetPath": {
           "type": "string",
           "title": "Target Path",
+          "description": "BLD-1: Unique identifier for the build",
           "watch": {
             "path": "root.printerBuildID"
           },
@@ -427,7 +432,7 @@
     },
     "printerBuildID": {
       "title": "Printer Build ID",
-      "description": "Automatically generated identifier for the printer build",
+      "description": "BLD-1: Automatically generated identifier for the printer build",
       "type": "string",
       "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}{{joinarray extraInfo '_' true}}",
       "watch": {
@@ -440,7 +445,7 @@
     },
     "buildMachine": {
       "title": "Build Machine",
-      "description": "Machine used for the build",
+      "description": "AMS-1-6: Machine used for the build",
       "type": "string",
       "enum": [
         "EOS M290 at CMU"
@@ -518,6 +523,7 @@
       "properties": {
         "type": {
           "title": "Gas Type",
+          "description": "MAT-4-4",
           "type": "string",
           "enum": [
             "Ar",
