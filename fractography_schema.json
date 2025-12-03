@@ -1,6 +1,6 @@
 {
-  "title": "Factrography Test Data Schema",
-  "description": "Schema for Factrography test data",
+  "title": "Fractography Test Data Schema",
+  "description": "Schema for Fractography test data",
   "type": "object",
   "properties": {
     "lookup": {
