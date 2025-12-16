@@ -269,7 +269,10 @@
             "enum_titles": [
               "4PTF (4-point bending fatigue)",
               "TEN (Tensile)",
-              "AXFT (Axial Fatigue)"
+              "AXFT (Axial Fatigue)",
+              "CP (challenge part)",
+              "IPYR (inverted pyramids)",
+              "FCG (fatigue crack growth)"
             ]
           },
           "propertyOrder": 0,
