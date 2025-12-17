@@ -262,7 +262,10 @@
           "enum": [
             "4PTF",
             "TEN",
-            "AXFT"
+            "AXFT",
+            "CP",
+            "IPYR",
+            "FCG"
           ],
           "options": {
             "grid_columns": 6,
