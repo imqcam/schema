@@ -46,7 +46,7 @@ Handlebars.registerHelper('formatHTParamsShort', function (stress_relief, heat_t
     if (stress_relief.time_hr) srPartsArray.push(`${stress_relief.time_hr}hr`);
     if (stress_relief.temperature_C) srPartsArray.push(`${stress_relief.temperature_C}C`);
     if (stress_relief.ramp_up_C_per_min) srPartsArray.push(`${stress_relief.ramp_up_C_per_min}rpm`);
-    if (stress_relief.cool) srPartsArray.push(`${stress_relief.cool.substring(0, 1).toUpperCase()}${stress_relief.cool.substring(1).toLowerCase()}`);
+    if (stress_relief.cooling_method) srPartsArray.push(`${stress_relief.cooling_method.substring(0, 1).toUpperCase()}${stress_relief.cooling_method.substring(1).toLowerCase()}`);
     if (stress_relief.environment) srPartsArray.push(`${stress_relief.environment}`);
     
     const srParams = srPartsArray.join('-');
@@ -67,7 +67,7 @@ Handlebars.registerHelper('formatHTParamsShort', function (stress_relief, heat_t
             if (ht.time_hr) htSubArray.push(`${ht.time_hr}hr`);
             if (ht.temperature_C) htSubArray.push(`${ht.temperature_C}C`);
             if (ht.ramp_up_C_per_min) htSubArray.push(`${ht.ramp_up_C_per_min}rpm`);
-            if (ht.cool) htSubArray.push(`${ht.cool.substring(0, 1).toUpperCase()}${ht.cool.substring(1).toLowerCase()}`);
+            if (ht.cooling_method) htSubArray.push(`${ht.cooling_method.substring(0, 1).toUpperCase()}${ht.cooling_method.substring(1).toLowerCase()}`);
             if (ht.environment) htSubArray.push(`${ht.environment}`);
             
             return htSubArray.join('-');
