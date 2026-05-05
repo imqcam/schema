@@ -19,16 +19,16 @@
       },
       "propertyOrder": 0
     },
-    "depositionId": {
+    "sampleIGSN": {
       "type": "string",
-      "title": "IGSN ID",
-      "description": "Unique identifier for the deposition",
+      "title": "IGSN",
+      "description": "IGSN of the test sample",
       "readOnly": true,
       "propertyOrder": 999,
       "watch": {
         "igsn": "lookup"
       },
-      "template": "{{split igsn ' - ' 1}}",
+      "template": "{{split igsn ' - ' 0}}",
       "options": {
         "grid_columns": 12,
         "hidden": true
