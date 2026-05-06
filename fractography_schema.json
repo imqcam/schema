@@ -87,6 +87,7 @@
               "Keyhole",
               "Gas_Pore",
               "Machining_Defect",
+              "Contamination",
               ""
             ],
             "propertyOrder": 2,
