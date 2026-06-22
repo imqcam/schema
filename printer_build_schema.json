@@ -28,7 +28,10 @@
           "type": "string",
           "description": "Originating Institution",
           "enum": [
-            "CM"
+            "CM",
+            "NW",
+            "APL",
+            "JHU"
           ],
           "default": "CM",
           "propertyOrder": 1,
@@ -36,7 +39,10 @@
             "titleHidden": true,
             "grid_columns": 3,
             "enum_titles": [
-              "Carnegie Mellon University"
+              "Carnegie Mellon University",
+              "Northwestern University",
+              "JHU Applied Physics Laboratory",
+              "Johns Hopkins University"
             ]
           }
         },
@@ -265,7 +271,10 @@
             "AXFT",
             "CP",
             "IPYR",
-            "FCG"
+            "FCG",
+            "MC",
+            "RBF",
+            "C"
           ],
           "options": {
             "grid_columns": 6,
@@ -275,7 +284,10 @@
               "AXFT (Axial Fatigue)",
               "CP (challenge part)",
               "IPYR (inverted pyramids)",
-              "FCG (fatigue crack growth)"
+              "FCG (fatigue crack growth)",
+              "MC (Microstructure cubes)",
+              "RBF (Rotating beam fatigue)",
+              "C (Composition)"
             ]
           },
           "propertyOrder": 0,
@@ -454,7 +466,8 @@
       "description": "AMS-1-6: Machine used for the build",
       "type": "string",
       "enum": [
-        "EOS M290 at CMU"
+        "EOS M290 at CMU",
+        "Renishaw 500Q"
       ],
       "propertyOrder": 2
     },
@@ -671,7 +684,9 @@
               "Katie O'Donnell",
               "Sierra Green",
               "Justin Miner",
-              "David Reyes Ortiz"
+              "David Reyes Ortiz",
+              "Kourtney Porsch",
+              "Brendan Croom"
             ]
           },
           "propertyOrder": 3
