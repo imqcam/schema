@@ -28,15 +28,17 @@
           "type": "string",
           "description": "Originating Institution",
           "enum": [
-            "CM"
+            "CM",
+            "AP"
           ],
-          "default": "CM",
+          "default": "",
           "propertyOrder": 1,
           "options": {
             "titleHidden": true,
             "grid_columns": 3,
             "enum_titles": [
-              "Carnegie Mellon University"
+              "Carnegie Mellon University",
+              "JHU Applied Physics Laboratory"
             ]
           }
         },
@@ -46,13 +48,35 @@
           "enum": [
             "X"
           ],
-          "default": "X",
+          "default": "",
           "propertyOrder": 2,
           "options": {
             "titleHidden": true,
             "grid_columns": 3,
+            "dependencies": {
+              "institution": "CM"
+            },
             "enum_titles": [
               "Unknown"
+            ]
+          }
+        },
+        "groupAP": {
+          "type": "string",
+          "description": "Group within the institution",
+          "enum": [
+            "L"
+          ],
+          "default": "",
+          "propertyOrder": 2,
+          "options": {
+            "titleHidden": true,
+            "grid_columns": 3,
+            "dependencies": {
+              "institution": "AP"
+            },
+            "enum_titles": [
+              "APL"
             ]
           }
         },
@@ -190,10 +214,11 @@
           "propertyOrder": 2,
           "description": "The unique identifier for the build.",
           "hidden": true,
-          "template": "{{org}}{{gCM}}{{material}}{{sMA}}",
+          "template": "{{org}}{{gCM}}{{gAP}}{{material}}{{sMA}}",
           "watch": {
             "org": "root.igsnMeta.institution",
             "gCM": "root.igsnMeta.groupCM",
+            "gAP": "root.igsnMeta.groupAP",
             "material": "root.igsnMeta.material",
             "sMA": "root.igsnMeta.submaterialMA"
           },
@@ -265,7 +290,10 @@
             "AXFT",
             "CP",
             "IPYR",
-            "FCG"
+            "FCG",
+            "MC",
+            "RBF",
+            "C"
           ],
           "options": {
             "grid_columns": 6,
@@ -275,7 +303,10 @@
               "AXFT (Axial Fatigue)",
               "CP (challenge part)",
               "IPYR (inverted pyramids)",
-              "FCG (fatigue crack growth)"
+              "FCG (fatigue crack growth)",
+              "MC (Microstructure cubes)",
+              "RBF (Rotating beam fatigue)",
+              "C (Composition)"
             ]
           },
           "propertyOrder": 0,
@@ -454,7 +485,8 @@
       "description": "AMS-1-6: Machine used for the build",
       "type": "string",
       "enum": [
-        "EOS M290 at CMU"
+        "EOS M290 at CMU",
+        "Renishaw 500Q"
       ],
       "propertyOrder": 2
     },
@@ -671,7 +703,9 @@
               "Katie O'Donnell",
               "Sierra Green",
               "Justin Miner",
-              "David Reyes Ortiz"
+              "David Reyes Ortiz",
+              "Kourtney Porsch",
+              "Brendan Croom"
             ]
           },
           "propertyOrder": 3
