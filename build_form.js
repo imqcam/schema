@@ -58,13 +58,38 @@ Handlebars.registerHelper('joinarray', function (a, sep, prefix=false) {
     return result;
 });
 
-Handlebars.registerHelper('formatBuildParams', function (params) {
+Handlebars.registerHelper('formatBuildParams', function (params, mode) {
     if (!params || !Array.isArray(params) || params.length === 0) {
         return '';
     }
-    
+
+  const normalize = (value) => (value === undefined || value === null || value === '' ? '' : value);
+  const hasValue = (value) => !(value === undefined || value === null || value === '');
+  const isPulsedMode = mode === 'pulsed' || (mode !== 'continuous' && params.some(p => hasValue(p.pulseDistance) || hasValue(p.exposureTime)));
+
     return params
-        .map(p => `${p.type}:${p.laserSpeed}:${p.laserPower}:${p.layerThickness}:${p.hatchSpacing}`)
+    .map(p => {
+      if (isPulsedMode) {
+        return [
+          p.type,
+          'P',
+          normalize(p.pulseDistance),
+          normalize(p.exposureTime),
+          normalize(p.laserPower),
+          normalize(p.layerThickness),
+          normalize(p.hatchSpacing)
+        ].join(':');
+      }
+
+      return [
+        p.type,
+        'C',
+        normalize(p.laserSpeed),
+        normalize(p.laserPower),
+        normalize(p.layerThickness),
+        normalize(p.hatchSpacing)
+      ].join(':');
+    })
         .join('_');
 });
 
@@ -94,7 +119,7 @@ JSONEditor.defaults.custom_validators.push(function (schema, value, path) {
     return [{
       path: path,
       property: 'type',
-      message: `Duplicate build parameter type(s) not allowed: ${[...duplicates].join(', ')}. 
+      message: `Duplicate build parameter type(s) not allowed: ${[...duplicates].join(', ')}.
 Each type (upskin, downskin, infill, contouring) may only appear once.`
     }];
   }
