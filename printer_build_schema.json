@@ -141,10 +141,10 @@
         "title": {
           "type": "string",
           "title": "Sample Name",
-          "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}{{joinarray extraInfo '_' true}}",
+          "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{rawPowderMaterial rawPowderID}}{{joinarray extraInfo '_' true}}",
           "watch": {
             "params": "root.userParameters",
-            "material": "root.buildPlate.material",
+            "rawPowderID": "root.rawPowderID",
             "extraInfo": "root.extraInfo"
           },
           "readOnly": true,
@@ -471,10 +471,10 @@
       "title": "Printer Build ID",
       "description": "BLD-1: Automatically generated identifier for the printer build",
       "type": "string",
-      "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{material}}{{joinarray extraInfo '_' true}}",
+      "template": "{{replaceAll params.runDate '-' ''}}_{{params.location}}_{{rawPowderMaterial rawPowderID}}{{joinarray extraInfo '_' true}}",
       "watch": {
         "params": "root.userParameters",
-        "material": "root.buildPlate.material",
+        "rawPowderID": "root.rawPowderID",
         "extraInfo": "root.extraInfo"
       },
       "readOnly": true,
@@ -494,6 +494,8 @@
       "title": "Raw Powders",
       "description": "Reference to a 'Raw Powder Details' entry",
       "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
       "items": {
         "type": "string",
         "enumSource": "girder.formId:663e6d21b18fa1c426e939ab"
