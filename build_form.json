@@ -44,7 +44,7 @@
       "type": "string",
       "template": "{{formatBuildParams params}}",
       "readOnly": true,
-      "propertyOrder": 2,
+      "propertyOrder": 1,
       "watch": {
         "params": "root.buildParameters"
       },
@@ -56,19 +56,22 @@
       "title": "Build Process Parameters",
       "description": "Laser process parameters for all regions of the build. Each type (upskin, downskin, infill, contouring) can appear only once.",
       "propertyOrder": 3,
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 4,
-      "uniqueItemProperties": ["type"],
-      "items": {
-        "type": "object",
-        "format": "grid",
-        "options": {
-          "grid_columns": 12
-        },
-        "oneOf": [
-          {
-            "title": "Continuous (Laser Speed)",
+      "options": {
+      "grid_columns": 12
+    },
+      "oneOf": [
+        {
+          "title": "Continuous",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItemProperties": ["type"],
+          "items": {
+            "type": "object",
+            "format": "grid",
+            "options": {
+              "grid_columns": 12
+            },
             "properties": {
               "type": {
                 "type": "string",
@@ -118,11 +121,22 @@
                 }
               }
             },
-            "required": ["type", "laserPower", "layerThickness", "hatchSpacing", "laserSpeed"],
+            "required": ["type", "laserSpeed", "laserPower", "layerThickness", "hatchSpacing"],
             "additionalProperties": false
-          },
-          {
-            "title": "Pulsed (Distance & Exposure)",
+          }
+        },
+        {
+          "title": "Pulsed",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItemProperties": ["type"],
+          "items": {
+            "type": "object",
+            "format": "grid",
+            "options": {
+              "grid_columns": 12
+            },
             "properties": {
               "type": {
                 "type": "string",
@@ -181,11 +195,11 @@
                 }
               }
             },
-            "required": ["type", "laserPower", "layerThickness", "hatchSpacing", "pulseDistance", "exposureTime"],
+            "required": ["type", "pulseDistance", "exposureTime", "laserPower", "layerThickness", "hatchSpacing"],
             "additionalProperties": false
           }
-        ]
-      }
+        }
+      ]
     }
   },
   "required": ["lookup", "buildParameters"]
