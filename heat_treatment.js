@@ -35,73 +35,62 @@ window.JSONEditor.defaults.callbacks.autocomplete = {
     }
 };
 
+// Small synchronous, deterministic hash (FNV-1a, 32-bit) rendered as base36.
+// Used to guarantee ID uniqueness across the *full* parameter set while keeping
+// the human-readable portion short. Web Crypto's digest is async and can't be
+// used inside this synchronous template helper.
+function shortHash(str) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 0x01000193);
+    }
+    return (h >>> 0).toString(36).padStart(6, '0');
+}
+
 Handlebars.registerHelper('formatHTParamsShort', function (stress_relief, heat_treatment) {
     if (!stress_relief) {
         return '';
     }
 
-    // Build SR params array - include units/labels with values
-    const srPartsArray = [];
+    const cycles = (heat_treatment && Array.isArray(heat_treatment)) ? heat_treatment : [];
 
-    if (stress_relief.time_hr) srPartsArray.push(`${stress_relief.time_hr}hr`);
-    if (stress_relief.temperature_C) srPartsArray.push(`${stress_relief.temperature_C}C`);
-    if (stress_relief.ramp_up_C_per_min) srPartsArray.push(`${stress_relief.ramp_up_C_per_min}rpm`);
-    if (stress_relief.cooling_method) srPartsArray.push(`${stress_relief.cooling_method.substring(0, 1).toUpperCase()}${stress_relief.cooling_method.substring(1).toLowerCase()}`);
-    if (stress_relief.environment) srPartsArray.push(`${stress_relief.environment}`);
+    const stageIsHipped = stage => stage && stage.HIP && typeof stage.HIP === 'object';
 
-    const srParams = srPartsArray.join('-');
+    const tempStr = value =>
+        (value === undefined || value === null || value === '') ? '?' : `${value}`;
 
-    const formatHipPressure = function (pressure_MPa) {
-      if (pressure_MPa === undefined || pressure_MPa === null || pressure_MPa === '') {
-        return '';
-      }
+    // Human-readable part: the temperature profile, which is how a recipe is
+    // actually recognized. SR temperature, then each subsequent cycle's peak
+    // temperature. A HIPed stage carries a "+HIP" marker on its peak temp.
+    let readable = `${tempStr(stress_relief.temperature_C)}SR`;
 
-      const numericPressure = Number(pressure_MPa);
-      if (Number.isNaN(numericPressure)) {
-        return '';
-      }
-
-      const formattedPressure = Number.isInteger(numericPressure)
-        ? `${numericPressure}`
-        : `${parseFloat(numericPressure.toFixed(3))}`;
-
-      return `HIP-${formattedPressure}MPa`;
-    };
-
-    // Heat Treatment parameters
-    let htParams = '';
-
-    if (heat_treatment && Array.isArray(heat_treatment) && heat_treatment.length > 0) {
-        const htPartsArray = heat_treatment.map(ht => {
-            // Build HT params array - include units/labels with values
-            const htSubArray = [];
-            if (ht.time_hr) htSubArray.push(`${ht.time_hr}hr`);
-            if (ht.temperature_C) htSubArray.push(`${ht.temperature_C}C`);
-            if (ht.ramp_up_C_per_min) htSubArray.push(`${ht.ramp_up_C_per_min}rpm`);
-            if (ht.cooling_method) htSubArray.push(`${ht.cooling_method.substring(0, 1).toUpperCase()}${ht.cooling_method.substring(1).toLowerCase()}`);
-            if (ht.environment) htSubArray.push(`${ht.environment}`);
-
-        if (ht.HIP && typeof ht.HIP === 'object') {
-          const hipLabel = formatHipPressure(ht.HIP.pressure_MPa);
-          if (hipLabel) {
-            htSubArray.push(hipLabel);
-          }
-        }
-
-            return htSubArray.join('-');
+    if (cycles.length > 0) {
+        const profile = cycles.map(ht => {
+            let token = tempStr(ht.temperature_C);
+            if (stageIsHipped(ht)) {
+                token += '+HIP';
+            }
+            return token;
         });
-
-        htParams = htPartsArray.join('_');
+        readable += `_${profile.join('-')}`;
     }
 
-    // Final format: HT_[SR params]_SR[_HT params][_hipped]
-    let result = `HT_${srParams}_SR`;
+    // Hash part: covers every parameter of every stage (times, ramp rates,
+    // cooling, environment, HIP pressure) so any difference anywhere produces a
+    // distinct ID, even when two recipes share the same temperature profile.
+    const canonStage = stage => [
+        stage.time_hr,
+        stage.temperature_C,
+        stage.ramp_up_C_per_min,
+        stage.cooling_method,
+        stage.environment,
+        stageIsHipped(stage) ? stage.HIP.pressure_MPa : 'noHIP'
+    ].join('|');
 
-    if (htParams) {
-        result += `_${htParams}`;
-    }
+    const canonical = [stress_relief].concat(cycles).map(canonStage).join('||');
 
-    return result;
+    return `HT_${readable}_${shortHash(canonical)}`;
 });
 
 // Validator to prevent changing HeattreatmentID to a completely different value

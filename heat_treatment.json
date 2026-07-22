@@ -61,7 +61,7 @@
   "properties": {
     "heat_treatment_id": {
       "title": "Heat Treatment ID",
-      "description": "Automatically generated, unique identifier for this heat treatment record",
+      "description": "Auto-generated unique ID: HT_'SR temp'SR_'cycle peak temps, +HIP marks a HIPed stage'_'hash of all parameters'",
       "notes": "This ID is auto-generated based on heat treatment parameters. You can modify it to correct missing values, but cannot change it to a completely different ID.",
       "type": "string",
       "template": "{{formatHTParamsShort stress_relief heat_treatment}}",
