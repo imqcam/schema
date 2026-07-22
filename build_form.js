@@ -63,34 +63,39 @@ Handlebars.registerHelper('formatBuildParams', function (params, mode) {
         return '';
     }
 
-  const normalize = (value) => (value === undefined || value === null || value === '' ? '' : value);
-  const hasValue = (value) => !(value === undefined || value === null || value === '');
-  const isPulsedMode = mode === 'pulsed' || (mode !== 'continuous' && params.some(p => hasValue(p.pulseDistance) || hasValue(p.exposureTime)));
+    const TYPE_ORDER = ['upskin', 'downskin', 'infill', 'contouring'];
+    const TYPE_ABBR = { upskin: 'u', downskin: 'd', infill: 'i', contouring: 'c' };
 
-    return params
-    .map(p => {
-      if (isPulsedMode) {
-        return [
-          p.type,
-          'P',
-          normalize(p.pulseDistance),
-          normalize(p.exposureTime),
-          normalize(p.laserPower),
-          normalize(p.layerThickness),
-          normalize(p.hatchSpacing)
-        ].join(':');
-      }
+    const normalize = (value) => (value === undefined || value === null || value === '' ? '' : value);
+    const hasValue = (value) => !(value === undefined || value === null || value === '');
+    const isPulsedMode = mode === 'pulsed' || (mode !== 'continuous' && params.some(p => hasValue(p.pulseDistance) || hasValue(p.exposureTime)));
 
-      return [
-        p.type,
-        'C',
-        normalize(p.laserSpeed),
-        normalize(p.laserPower),
-        normalize(p.layerThickness),
-        normalize(p.hatchSpacing)
-      ].join(':');
-    })
-        .join('_');
+    // Parameter signature of a region: mode + values, excluding the region type.
+    const signature = (p) => (isPulsedMode
+        ? ['P', normalize(p.pulseDistance), normalize(p.exposureTime), normalize(p.laserPower), normalize(p.layerThickness), normalize(p.hatchSpacing)]
+        : ['C', normalize(p.laserSpeed), normalize(p.laserPower), normalize(p.layerThickness), normalize(p.hatchSpacing)]
+    ).join(':');
+
+    // Sort regions into canonical order so the same set always yields the same ID.
+    const sorted = params.slice().sort((a, b) => TYPE_ORDER.indexOf(a.type) - TYPE_ORDER.indexOf(b.type));
+
+    // Collapse regions sharing identical parameters: group their type initials in
+    // front of a single shared token (e.g. all four identical regions -> "udic:C:...").
+    const groups = [];
+    const bySig = {};
+    sorted.forEach(p => {
+        const sig = signature(p);
+        const abbr = TYPE_ABBR[p.type] || p.type;
+        if (Object.prototype.hasOwnProperty.call(bySig, sig)) {
+            bySig[sig].types += abbr;
+        } else {
+            const group = { types: abbr, sig };
+            bySig[sig] = group;
+            groups.push(group);
+        }
+    });
+
+    return groups.map(g => `${g.types}:${g.sig}`).join('_');
 });
 
 JSONEditor.defaults.custom_validators.push(function (schema, value, path) {
